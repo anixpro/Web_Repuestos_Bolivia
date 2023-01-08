@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="urn:skb.cl/web-erp:01Consulta" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="urn:skb.cl/web-erp:01Consulta" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>
+    <sidl:sidl xmlns:sidl="http://www.sap.com/2007/03/sidl" />
+  </wsdl:documentation>
+  <wsp:UsingPolicy wsdl:required="true" />
+  <wsp:Policy wsu:Id="BN_ZB_CONSULTA_REP">
+    <wsaw:UsingAddressing xmlns:wsaw="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+    <saptrnbnd:OptimizedXMLTransfer uri="http://xml.sap.com/2006/11/esi/esp/binxml" xmlns:saptrnbnd="http://www.sap.com/webas/710/soap/features/transportbinding/" wsp:Optional="true" />
+    <wsp:ExactlyOne xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility">
+      <wsp:All>
+        <sp:TransportBinding>
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken>
+                  <wsp:Policy>
+                    <sp:HttpBasicAuthentication />
+                  </wsp:Policy>
+                </sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:TripleDesRsa15 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="IF_MI_WebS_Repuestos_Synch">
+    <wsp:ExactlyOne xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" />
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="OP_MI_WebS_Repuestos_Synch">
+    <sapcomhnd:enableCommit xmlns:sapcomhnd="http://www.sap.com/NW05/soap/features/commit/">false</sapcomhnd:enableCommit>
+    <sapblock:enableBlocking xmlns:sapblock="http://www.sap.com/NW05/soap/features/blocking/">true</sapblock:enableBlocking>
+    <saptrhnw05:required xmlns:saptrhnw05="http://www.sap.com/NW05/soap/features/transaction/">no</saptrhnw05:required>
+    <saprmnw05:enableWSRM xmlns:saprmnw05="http://www.sap.com/NW05/soap/features/wsrm/">false</saprmnw05:enableWSRM>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema xmlns:xi0="urn:skb.cl/web-erp:01Consulta" xmlns="urn:skb.cl/web-erp:01Consulta" targetNamespace="urn:skb.cl/web-erp:01Consulta">
+      <xsd:complexType name="DT_ERP_Repuestos">
+        <xsd:sequence>
+          <xsd:element name="Items">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="E_VKORG" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_MFRPN" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_KWMENG" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_MAKTX" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_MVGR4" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_VTWEG" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_KUNNR" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_ZESD002">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="EZ_BEZEI" type="xsd:string" />
+                <xsd:element minOccurs="0" name="EZ_MFRPN" type="xsd:string" />
+                <xsd:element minOccurs="0" name="EZ_MAKTX" type="xsd:string" />
+                <xsd:element minOccurs="0" name="EZ_KONDM" type="xsd:string" />
+                <xsd:element minOccurs="0" name="EZ_COM_QTY" type="xsd:string" />
+                <xsd:element minOccurs="0" name="EZ_KBETR1" type="xsd:string" />
+                <xsd:element minOccurs="0" name="EZ_KBETR2" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_ZESD003">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="T_MFRPN" type="xsd:string" />
+                <xsd:element minOccurs="0" name="T_MAKTX" type="xsd:string" />
+                <xsd:element minOccurs="0" name="T_INTTYPE" type="xsd:string" />
+                <xsd:element minOccurs="0" name="T_KONDM" type="xsd:string" />
+                <xsd:element minOccurs="0" name="T_KBETR1" type="xsd:string" />
+                <xsd:element minOccurs="0" name="T_KBETR2" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Errores">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="E_TYPE" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_CODE" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_NUMBER" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_MESSAGE" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_LOG_NO" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_LOG_MSG_NO" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_MESSAGE_V1" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_MESSAGE_V2" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_MESSAGE_V3" type="xsd:string" />
+                <xsd:element minOccurs="0" name="E_MESSAGE_V4" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Web_Repuestos">
+        <xsd:sequence>
+          <xsd:element name="Item">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="I_VKORG" type="xsd:string" />
+                <xsd:element minOccurs="0" name="I_MFRPN" type="xsd:string" />
+                <xsd:element minOccurs="0" name="I_KWMENG" type="xsd:string" />
+                <xsd:element minOccurs="0" name="I_MAKTX" type="xsd:string" />
+                <xsd:element minOccurs="0" name="I_MVGR4" type="xsd:string" />
+                <xsd:element minOccurs="0" name="I_VTWEG" type="xsd:string" />
+                <xsd:element minOccurs="0" name="I_KUNNR" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="MT_ERP_Repuestos" type="xi0:DT_ERP_Repuestos" />
+      <xsd:element name="MT_Web_Repuestos" type="xi0:DT_Web_Repuestos" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_Web_Repuestos">
+    <wsdl:part name="MT_Web_Repuestos" element="tns:MT_Web_Repuestos" />
+  </wsdl:message>
+  <wsdl:message name="MT_ERP_Repuestos">
+    <wsdl:part name="MT_ERP_Repuestos" element="tns:MT_ERP_Repuestos" />
+  </wsdl:message>
+  <wsdl:portType name="MI_WebS_Repuestos_Synch">
+    <wsp:Policy>
+      <wsp:PolicyReference URI="#IF_MI_WebS_Repuestos_Synch" />
+    </wsp:Policy>
+    <wsdl:operation name="MI_WebS_Repuestos_Synch">
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_MI_WebS_Repuestos_Synch" />
+      </wsp:Policy>
+      <wsdl:input message="tns:MT_Web_Repuestos" />
+      <wsdl:output message="tns:MT_ERP_Repuestos" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ZB_CONSULTA_REP" type="tns:MI_WebS_Repuestos_Synch">
+    <wsp:Policy>
+      <wsp:PolicyReference URI="#BN_ZB_CONSULTA_REP" />
+    </wsp:Policy>
+    <wsa:EndpointReference xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+      <wsa:ReferenceParameters />
+    </wsa:EndpointReference>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MI_WebS_Repuestos_Synch">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ZWS_CONSULTA_REP">
+    <wsdl:port name="ZB_CONSULTA_REP" binding="tns:ZB_CONSULTA_REP">
+      <soap:address location="http://skerptat.sk.cl:8000/sap/bc/srt/xip/sap/zmi_webs_repuestos_synch/200/zws_consulta_rep/zb_consulta_rep" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

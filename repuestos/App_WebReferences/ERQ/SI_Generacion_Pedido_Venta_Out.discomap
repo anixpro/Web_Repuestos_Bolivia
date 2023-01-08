@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://sk2poqpoqda.sk.cl:50000/dir/wsdl?p=ic/c77b2a6c1d993323aa8cde713736a0a9" filename="SI_Generacion_Pedido_Venta_Out.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

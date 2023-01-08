@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RealizarPedido">
+    <Position X="1.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAQAIQBQhAqAAgEEAEMCAAAAEoAAAQAEA0ACA=</HashCode>
+      <FileName>App_Code\controlador\RealizarPedido.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_controlBd" />
+      <Field Name="_sapApi" />
+      <Property Name="ResultBusqueda" />
+      <Property Name="ResultPedido" />
+      <Property Name="ResultReemplazos" />
+      <Property Name="ConfirmarPedido1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CrearCotizacion">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AChAAgWAARkQQAAAAAAAAAAAAgAAAAEBAAEAAgAAABA=</HashCode>
+      <FileName>App_Code\modelo\CrearCotizacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfirmarPedido">
+    <Position X="7.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAAAAAAAAAAAAAAAACAAAAAAEEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\modelo\ConfirmarPedido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RespConsultaRepuesto">
+    <Position X="9.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAABEAgwASAACEAAAAAAABggAAAAAEAAAQABAAAAA=</HashCode>
+      <FileName>App_Code\modelo\RespConsultaRepuesto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RespConfirmarPedido">
+    <Position X="11.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>App_Code\modelo\RespConfirmarPedido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RespCadenaReemplazo">
+    <Position X="14.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BACAUBEAAACCAAAAARBAgAAAgiAAAAAAEAAgAAAAAAA=</HashCode>
+      <FileName>App_Code\modelo\RespCadenaReemplazo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SapAPI">
+    <Position X="1.25" Y="8.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>pkAAwAAwCKQEAFIkMACkAIAgAgEQAAkAIBBAQacCCIA=</HashCode>
+      <FileName>App_Code\SapAPI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlBD">
+    <Position X="4.5" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AiAAAAAAgACCAAAAgSAAHIAICAQAAAAYAAAAYKAAAAg=</HashCode>
+      <FileName>App_Code\controlador\ControlBD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vfc">
+    <Position X="4.5" Y="20" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAIBEIADhBki5gAAgSkAAADIGABRgDAAhAsAAYAAAIA=</HashCode>
+      <FileName>App_Code\modelo\Vfc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlBoletin">
+    <Position X="1.25" Y="20.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIgAA=</HashCode>
+      <FileName>App_Code\controlador\ControlBoletin.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="modeloBoletin" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ControlContenido">
+    <Position X="19.75" Y="9" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\controlador\ControlContenido.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Contenido" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ControlExcel">
+    <Position X="10.25" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAYAAIAAAQAAQABAAAEAABAAECAgDAQAAAQAQEAoA=</HashCode>
+      <FileName>App_Code\controlador\ControlExcel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Excel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ControlPersona">
+    <Position X="7.5" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIQACSgAAAIABABAQAACAAAwAAAAAAQACCIAAGAEYIE=</HashCode>
+      <FileName>App_Code\controlador\ControlPersona.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="persona" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ControlVfc">
+    <Position X="4.5" Y="14.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAIAAgEEggAAAAIEAAABAEAAAgCAAAAAAAAAAAIQ=</HashCode>
+      <FileName>App_Code\controlador\ControlVfc.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="vfc" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Auto">
+    <Position X="14.75" Y="16.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAVABAAhQqAAAIQAkgIAAQAREEZAIgAAAEABABADAAA=</HashCode>
+      <FileName>App_Code\modelo\Auto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boletin">
+    <Position X="1.25" Y="22.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAgAAAAAAUEAgAgAQABEAAAAAACAAAAAAAIgBA=</HashCode>
+      <FileName>App_Code\modelo\Boletin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Contenido">
+    <Position X="16.75" Y="9" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAARAAAAAAAAAAUCggAgAQAAEAABBAAQQAAAAAAAABQ=</HashCode>
+      <FileName>App_Code\modelo\Contenido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="detalleSolicitud">
+    <Position X="10.5" Y="16.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABihAIgIAQCIAAAAAAAEAAgABAAAAEQAAABEAAAQo=</HashCode>
+      <FileName>App_Code\modelo\detalleSolicitud.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Excel">
+    <Position X="13.75" Y="9" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAABIAAACAWABUBAEQQBEAGCAEDAAAIAQAAEIIA=</HashCode>
+      <FileName>App_Code\modelo\Excel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="manejoTXT.Clases.ExtencionCorrecta">
+    <Position X="1.25" Y="27.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\modelo\ExtencionCorrecta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Persona">
+    <Position X="7.5" Y="15" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EBAAAApggAAAICQAYgAggQAIMAAAAACCTCIIAIKGcKQ=</HashCode>
+      <FileName>App_Code\modelo\Persona.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="registroSolicitud">
+    <Position X="12.75" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAQihEAgIBQoIQAQKAEEEAAAFBAAABEUAAABBAAEAo=</HashCode>
+      <FileName>App_Code\modelo\registroSolicitud.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

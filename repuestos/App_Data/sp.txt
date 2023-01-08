@@ -1,0 +1,15 @@
+CREATE PROCEDURE sp_loguin @usuario VARCHAR(50), @contrasena VARCHAR(20)
+AS
+BEGIN
+SELECT persona.nombre,personaPermisos.cargo
+FROM persona, personaPermisos
+WHERE persona.usuario =@usuario
+AND persona.contrasena=@contrasena
+AND persona.rut = personaPermisos.rut
+	IF @@rowcount >0
+	BEGIN
+		RETURN 1
+	END
+	ELSE
+		RETURN 0
+END

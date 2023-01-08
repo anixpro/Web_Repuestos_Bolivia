@@ -1,0 +1,8 @@
+Id 7 - CHERY - B09 Desde 0 Hasta 999999999 Factor 1,70
+Id 7 Desde 0 Hasta 100 Factor 1,70 Usuario 10433318991 Fecha/Hora 15-12-2022 16:41:26
+Id 7 - CHERY - B09 Desde 0 Hasta 100 Factor 1,70
+Id 7 Desde 0 Hasta 100 Factor 2,00 Usuario 10433318991 Fecha/Hora 15-12-2022 16:41:36
+Id 12 - CHERY - B09 Desde 0 Hasta 0 Factor 0,00
+Id 12 Desde 100 Hasta 200 Factor 3,00 Usuario 10433318991 Fecha/Hora 15-12-2022 16:41:59
+Id 12 - CHERY - B09 Desde 100 Hasta 200 Factor 3,00
+Id 12 Desde 101 Hasta 200 Factor 3,00 Usuario 10433318991 Fecha/Hora 15-12-2022 16:42:26

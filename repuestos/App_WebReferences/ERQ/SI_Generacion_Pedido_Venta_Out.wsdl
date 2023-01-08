@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:p1="urn:skb.cl:generacion_pedido_venta" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" name="SI_Generacion_Pedido_Venta_Out" targetNamespace="urn:skb.cl:generacion_pedido_venta" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsp:UsingPolicy wsdl:required="true" />
+  <wsp:Policy wsu:Id="OP_SI_Generacion_Pedido_Venta_Out" />
+  <wsdl:types>
+    <xsd:schema xmlns="urn:skb.cl:generacion_pedido_venta" targetNamespace="urn:skb.cl:generacion_pedido_venta" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="MT_Generacion_Pedido_Venta_Response" type="p1:DT_Generacion_Pedido_Venta_Response" />
+      <xsd:element name="MT_Generacion_Pedido_Venta_Request" type="p1:DT_Generacion_Pedido_Venta_Request" />
+      <xsd:complexType name="DT_Generacion_Pedido_Venta_Response">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">e47f44cb46ac11e595bb00000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="E_VBELN" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">4f23a94729a511e5ae4a00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Número de documento comercial</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="E_ERROR" type="p1:DT_Errores">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">798102e629a511e5981400059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Generacion_Pedido_Venta_Request">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">023d5f64afeb11e980630000003be2aa</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ORDER_HEADER_IN">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">13de856f447d11e5b9d900059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="DOC_TYPE">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">0f9799f4447d11e5a15a00059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Tipo de material</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="4" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="SALES_ORG">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3145c687447e11e5c7ac00059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Organización de ventas</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="4" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="DISTR_CHAN">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3145c688447e11e5927900059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Canal de distribución</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="2" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="DIVISION">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3145c689447e11e580e300059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Sector</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="2" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="SALES_GRP">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3145c68a447e11e582c600059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Grupo de vendedores</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="3" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="SALES_OFF">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3145c68b447e11e5871600059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Oficina de ventas</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="4" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="PURCH_NO_C">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">beebecbd447e11e5ae7600059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Número de pedido del cliente</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="35" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="ORD_REASON">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">6b0c5ae5662211e5c5d700059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Motivo de pedido (motivo de la operación)</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="35" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="DLV_BLOCK">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">6b0c5ae6662211e5979700059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Bloqueo de nota de entrega cabecera de documento</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="35" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="PURCH_DATE">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">024b79fbafeb11e9bb8600059a3c7a00</xsd:appinfo>
+                    <xsd:documentation>Fecha del pedido de compras efectuado por el cliente</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="8" />
+                      <xsd:maxLength value="10" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ORDER_ITEMS_IN">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">960077c7448111e5924800059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="ITM_NUMBER">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">f6ea6059448011e5a18300059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Posición documento ventas</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="6" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="MATERIAL">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">f6ea605a448011e5874800059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Número de material</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="40" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="PLANT">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">f6ea605c448011e5bd3d00059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Centro</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="4" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="STORE_LOC">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">f6ea605d448011e5b26400059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Almacén</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="4" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="TARGET_QTY">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">f6ea605e448011e580c500059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Cantidad prevista en unidad de medida de venta</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="17" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="TARGET_QU">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">f6ea605f448011e5c08900059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Unidad de medida para la cantidad prevista</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="3" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="SALES_UNIT">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">960077c5448111e5ac4100059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Unidad de medida de venta</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="3" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="PROFIT_CTR">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">960077c6448111e5cf3a00059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Centro Beneficio</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="10" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ORDER_PARTNERS">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fdc4242e448811e5b76300059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="PARTN_ROLE">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">83470a1f448211e5a56200059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Función de interlocutor</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="2" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="PARTN_NUMB">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">83470a20448211e5b8d500059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Número de deudor</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="10" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="ITM_NUMBER">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">83470a21448211e59a4000059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Número de posición del documento comercial</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="6" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ORDER_SCHEDULES_IN">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">0d64104b448a11e58a4300059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="ITM_NUMBER">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">fdc43b40448811e5905d00059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Posición documento ventas</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="6" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="REQ_QTY">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">fdc43b45448811e5824000059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Cantidad pedida por el cliente en UMV</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="17" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ORDER_CONDITIONS_IN">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">f5356717448d11e5982c00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="ITM_NUMBER">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">6861496c448c11e5b25500059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Número de posición de la condición</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="6" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="COND_TYPE">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">6861496f448c11e58da200059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Clase de condición</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="4" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="COND_VALUE">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">68614970448c11e5b20800059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Impte.condición</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="35" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element minOccurs="0" name="CURRENCY">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">68614971448c11e5a1cd00059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Clave de moneda</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:minLength value="1" />
+                      <xsd:maxLength value="5" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Errores">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">62bdb771470f11e5924300000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="E_TYPE" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd32fd5470f11e59a9600059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_CODE" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd32fd6470f11e5907300059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_NUMBER" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd376a1470f11e5c53400059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_MESSAGE" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd376a2470f11e5c62f00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_LOG_NO" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd376a3470f11e5b13b00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_LOG_MSG_NO" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd376a4470f11e5be1b00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_MESSAGE_V1" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd376a5470f11e5a9f500059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_MESSAGE_V2" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd376a6470f11e5942b00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_MESSAGE_V3" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd376a7470f11e5c0f800059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="E_MESSAGE_V4" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">fbd376a8470f11e5ca6f00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_Generacion_Pedido_Venta_Request">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Generacion_Pedido_Venta_Request" element="p1:MT_Generacion_Pedido_Venta_Request" />
+  </wsdl:message>
+  <wsdl:message name="MT_Generacion_Pedido_Venta_Response">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Generacion_Pedido_Venta_Response" element="p1:MT_Generacion_Pedido_Venta_Response" />
+  </wsdl:message>
+  <wsdl:portType name="SI_Generacion_Pedido_Venta_Out">
+    <wsdl:documentation />
+    <wsdl:operation name="SI_Generacion_Pedido_Venta_Out">
+      <wsdl:documentation />
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_SI_Generacion_Pedido_Venta_Out" />
+      </wsp:Policy>
+      <wsdl:input message="p1:MT_Generacion_Pedido_Venta_Request" />
+      <wsdl:output message="p1:MT_Generacion_Pedido_Venta_Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_Generacion_Pedido_Venta_OutBinding" type="p1:SI_Generacion_Pedido_Venta_Out">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <wsdl:operation name="SI_Generacion_Pedido_Venta_Out">
+      <operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <wsdl:input>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:input>
+      <wsdl:output>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SI_Generacion_Pedido_Venta_OutService">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_Generacion_Pedido_Venta_OutBinding">
+      <address location="http://sk2poqpoqda.sk.cl:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBRPTOS_PE_Q&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Generacion_Pedido_Venta_Out&amp;interfaceNamespace=urn%3Askb.cl%3Ageneracion_pedido_venta" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_Generacion_Pedido_Venta_OutBinding">
+      <address location="https://sk2poqpoqda.sk.cl:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBRPTOS_PE_Q&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Generacion_Pedido_Venta_Out&amp;interfaceNamespace=urn%3Askb.cl%3Ageneracion_pedido_venta" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

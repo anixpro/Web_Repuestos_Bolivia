@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="RepuestosModel">
+  <DataContextMoniker Name="/RepuestosModelDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9b2e6972-3238-4335-b51e-c09b5ea494fa" absoluteBounds="6.375, 1.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/RepuestosModelDataContext/t_Envios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dbd2a1c5-4d69-4d2f-85cd-22bef1cad71b" absoluteBounds="6.39, 1.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

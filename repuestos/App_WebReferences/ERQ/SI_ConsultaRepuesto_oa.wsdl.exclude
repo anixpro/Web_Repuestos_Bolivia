@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:p1="urn:skb.cl:consulta_repuesto" xmlns:rfc="urn:sap-com:document:sap:rfc:functions" name="SI_ConsultaRepuesto_oa" targetNamespace="urn:skb.cl:consulta_repuesto" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsp:UsingPolicy wsdl:required="true" />
+  <wsp:Policy wsu:Id="OP_SI_ConsultaRepuesto_oa" />
+  <wsdl:types>
+    <xsd:schema xmlns="urn:sap-com:document:sap:rfc:functions" targetNamespace="urn:sap-com:document:sap:rfc:functions" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="ZWS011_CONSULTA_REPUESTO_PE.Response">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" name="E_KUNNR" type="xsd:string" />
+            <xsd:element minOccurs="0" name="E_KWMENG" type="xsd:string" />
+            <xsd:element minOccurs="0" name="E_MAKTX" type="xsd:string" />
+            <xsd:element minOccurs="0" name="E_MFRPN" type="xsd:string" />
+            <xsd:element minOccurs="0" name="E_MVGR4" type="xsd:string" />
+            <xsd:element minOccurs="0" name="E_VKORG" type="xsd:string" />
+            <xsd:element minOccurs="0" name="E_VTWEG" type="xsd:string" />
+            <xsd:element minOccurs="0" name="T_RETURN">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="rfc:ZEWS004" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="T_ZESD002">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="rfc:ZEWS026" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="T_ZESD003">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="rfc:ZEWS027" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ZWS011_CONSULTA_REPUESTO_PE">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element minOccurs="0" name="I_FORANEO" type="xsd:string" />
+            <xsd:element minOccurs="0" name="I_KUNNR" type="xsd:string" />
+            <xsd:element minOccurs="0" name="I_KWMENG" type="xsd:string" />
+            <xsd:element minOccurs="0" name="I_MAKTX" type="xsd:string" />
+            <xsd:element minOccurs="0" name="I_MFRPN" type="xsd:string" />
+            <xsd:element minOccurs="0" name="I_MVGR4" type="xsd:string" />
+            <xsd:element minOccurs="0" name="I_VKORG" type="xsd:string" />
+            <xsd:element minOccurs="0" name="I_VTWEG" type="xsd:string" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ZEWS027">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="T_MFRPN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="T_MAKTX" type="xsd:string" />
+          <xsd:element minOccurs="0" name="T_INTTYPE" type="xsd:string" />
+          <xsd:element minOccurs="0" name="T_KONDM" type="xsd:string" />
+          <xsd:element minOccurs="0" name="T_KBETR1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="T_KBETR2" type="xsd:string" />
+			<xsd:element minOccurs="0" name="T_MVGR1" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ZEWS004">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="TYPE" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NUMBER" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MESSAGE" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LOG_NO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LOG_MSG_NO" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MESSAGE_V1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MESSAGE_V2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MESSAGE_V3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MESSAGE_V4" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PARAMETER" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ROW" type="xsd:string" />
+          <xsd:element minOccurs="0" name="FIELD" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SYSTEM" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ZEWS026">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="EZ_BEZEI" type="xsd:string" />
+          <xsd:element minOccurs="0" name="EZ_MFRPN" type="xsd:string" />
+          <xsd:element minOccurs="0" name="EZ_MAKTX" type="xsd:string" />
+          <xsd:element minOccurs="0" name="EZ_KONDM" type="xsd:string" />
+          <xsd:element minOccurs="0" name="EZ_COM_QTY" type="xsd:string" />
+          <xsd:element minOccurs="0" name="EZ_KBETR1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="EZ_KBETR2" type="xsd:string" />
+			<xsd:element minOccurs="0" name="EZ_MVGR1" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="rfc.ZWS011_CONSULTA_REPUESTO_PE.Input">
+    <wsdl:documentation />
+    <wsdl:part name="parameters" element="rfc:ZWS011_CONSULTA_REPUESTO_PE" />
+  </wsdl:message>
+  <wsdl:message name="rfc.ZWS011_CONSULTA_REPUESTO_PE.Output">
+    <wsdl:documentation />
+    <wsdl:part name="parameters" element="rfc:ZWS011_CONSULTA_REPUESTO_PE.Response" />
+  </wsdl:message>
+  <wsdl:portType name="SI_ConsultaRepuesto_oa">
+    <wsdl:documentation />
+    <wsdl:operation name="SI_ConsultaRepuesto_oa">
+      <wsdl:documentation />
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_SI_ConsultaRepuesto_oa" />
+      </wsp:Policy>
+      <wsdl:input message="p1:rfc.ZWS011_CONSULTA_REPUESTO_PE.Input" />
+      <wsdl:output message="p1:rfc.ZWS011_CONSULTA_REPUESTO_PE.Output" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_ConsultaRepuesto_oaBinding" type="p1:SI_ConsultaRepuesto_oa">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <wsdl:operation name="SI_ConsultaRepuesto_oa">
+      <operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <wsdl:input>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:input>
+      <wsdl:output>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SI_ConsultaRepuesto_oaService">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_ConsultaRepuesto_oaBinding">
+      <address location="http://sk-po-qa.sk.cl:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBWTY_PE_Q&amp;receiverParty=&amp;receiverService=&amp;interface=SI_ConsultaRepuesto_oa&amp;interfaceNamespace=urn%3Askb.cl%3Aconsulta_repuesto" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_ConsultaRepuesto_oaBinding">
+      <address location="https://sk-po-qa.sk.cl:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBWTY_PE_Q&amp;receiverParty=&amp;receiverService=&amp;interface=SI_ConsultaRepuesto_oa&amp;interfaceNamespace=urn%3Askb.cl%3Aconsulta_repuesto" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

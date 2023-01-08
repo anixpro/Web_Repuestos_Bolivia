@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:p1="urn:skb.cl:generacion_pedido_venta" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" name="SI_Generacion_Pedido_Venta_Out" targetNamespace="urn:skb.cl:generacion_pedido_venta" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsp:UsingPolicy wsdl:required="true" />
+  <wsp:Policy wsu:Id="OP_SI_Generacion_Pedido_Venta_Out" />
+  <wsdl:types>
+    <xsd:schema xmlns="urn:skb.cl:generacion_pedido_venta" targetNamespace="urn:skb.cl:generacion_pedido_venta" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="MT_Generacion_Pedido_Venta_Request" type="p1:DT_Generacion_Pedido_Venta_Request" />
+      <xsd:element name="MT_Generacion_Pedido_Venta_Response" type="p1:DT_Generacion_Pedido_Venta_Response" />
+      <xsd:complexType name="DT_Errores">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">fccf53e429a411e5c56000000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="E_TYPE" type="xsd:string" />
+          <xsd:element name="E_CODE" type="xsd:string" />
+          <xsd:element name="E_NUMBER" type="xsd:string" />
+          <xsd:element name="E_MESSAGE" type="xsd:string" />
+          <xsd:element name="E_LOG_NO" type="xsd:string" />
+          <xsd:element name="E_LOG_MSG_NO" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V1" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V2" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V3" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V4" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Generacion_Pedido_Venta_Request">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">99c8e36029a411e5bf3300000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="I_VBELN" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">f847609b29a411e59a8800059a3c7800</xsd:appinfo>
+              <xsd:documentation>Número de documento comercial</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_AUART" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">f847609c29a411e5b2cc00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Clase de documento de ventas</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_LPRIO" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">f847609d29a411e5bee700059a3c7800</xsd:appinfo>
+              <xsd:documentation>Prioridad de entrega</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Generacion_Pedido_Venta_Response">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">f09a881329a411e594d700000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="E_VBELN" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">4f23a94729a511e5ae4a00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Número de documento comercial</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="E_ERROR" type="p1:DT_Errores">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">798102e629a511e5981400059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_Generacion_Pedido_Venta_Request">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Generacion_Pedido_Venta_Request" element="p1:MT_Generacion_Pedido_Venta_Request" />
+  </wsdl:message>
+  <wsdl:message name="MT_Generacion_Pedido_Venta_Response">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Generacion_Pedido_Venta_Response" element="p1:MT_Generacion_Pedido_Venta_Response" />
+  </wsdl:message>
+  <wsdl:portType name="SI_Generacion_Pedido_Venta_Out">
+    <wsdl:documentation />
+    <wsdl:operation name="SI_Generacion_Pedido_Venta_Out">
+      <wsdl:documentation />
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_SI_Generacion_Pedido_Venta_Out" />
+      </wsp:Policy>
+      <wsdl:input message="p1:MT_Generacion_Pedido_Venta_Request" />
+      <wsdl:output message="p1:MT_Generacion_Pedido_Venta_Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_Generacion_Pedido_Venta_OutBinding" type="p1:SI_Generacion_Pedido_Venta_Out">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <wsdl:operation name="SI_Generacion_Pedido_Venta_Out">
+      <operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <wsdl:input>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:input>
+      <wsdl:output>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SI_Generacion_Pedido_Venta_OutService">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_Generacion_Pedido_Venta_OutBinding">
+      <address location="http://skpidev.sk.cl:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBRPTOS_PE_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Generacion_Pedido_Venta_Out&amp;interfaceNamespace=urn%3Askb.cl%3Ageneracion_pedido_venta" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_Generacion_Pedido_Venta_OutBinding">
+      <address location="https://skpidev.sk.cl:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBRPTOS_PE_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Generacion_Pedido_Venta_Out&amp;interfaceNamespace=urn%3Askb.cl%3Ageneracion_pedido_venta" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

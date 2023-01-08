@@ -1,0 +1,1602 @@
+﻿/* DEFAULTS
+----------------------------------------------------------*/
+body
+{
+    /*background: url("../img/gradient.jpg") repeat-x scroll 0 0 #EDEDED;*/
+    background-repeat: repeat-x;
+    font-size: .80em;
+    font-family: "Helvetica Neue" , "Lucida Grande" , "Segoe UI" , Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    display: none;
+}
+
+.opcionMenu
+{
+    background-image: url(../img/mnu_middle.gif);
+}
+
+.subMenu
+{
+    background-color: White;
+    border-style: groove;
+}
+
+a img
+{
+    border: none;
+}
+
+.boletinesSinLeer
+{
+    background-color: Yellow;
+    font-size: smaller;
+    margin: 0px;
+    padding: 0px;
+    font-size: smaller;
+    position: relative;
+    top: -10px;
+}
+
+.simplelink
+{
+    text-decoration: none;
+}
+
+.simplelink2
+{
+    text-decoration: underline;
+    color: Blue;
+    font-weight: bold;
+}
+
+/* botones sexys */
+
+.button
+{
+    border-top: 1px solid #c78bc7;
+    background: #65a9d7;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+    background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+    background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+    background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+    background: -o-linear-gradient(top, #3e779d, #65a9d7);
+    padding: 3.5px 7px;
+    -webkit-border-radius: 34px;
+    -moz-border-radius: 34px;
+    border-radius: 34px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 12px;
+    font-family: Georgia, Serif;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.button:hover
+{
+    border-top-color: #28597a;
+    background: #28597a;
+    color: #ccc;
+}
+.button:active
+{
+    border-top-color: #1b435e;
+    background: #1b435e;
+}
+
+/* fin botones sexys */
+
+#menuEnLinea
+{
+    list-style: none;
+}
+
+.menuEnLineaLi
+{
+    list-style: none;
+    float: left;
+    position: relative;
+}
+
+.menuEnLineaUl
+{
+    background-color: #FFFFFF;
+    position: absolute;
+    border: 1px;
+    border-style: solid; /*Para quitar espacios de listas*/
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    width: 165px;
+    z-index: 2;
+}
+
+.menuEnLineaLiLi
+{
+    text-decoration: none;
+    list-style: none;
+    display: block;
+}
+
+.menuEnLineaLiLi a
+{
+    text-decoration: none;
+    display: block;
+    color: #000000;
+}
+
+.menuEnLineaLiLi :hover
+{
+    background-color: #EDEDED;
+}
+
+.menuEnLineaSubMenu
+{
+}
+
+.menuEnLineaLi:hover
+{
+    visibility: inherit; /* fixes IE7 'sticky bug' */
+}
+
+
+.menuEnLineaA
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    color: #000000;
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: normal;
+    position: relative;
+    top: -10px;
+}
+
+.menuEnLineaIconos
+{
+    position: relative;
+    top: -8px;
+}
+
+.menuEnLineaFlechitas
+{
+    position: relative;
+    top: -12px;
+}
+
+.menuEnLineaMenuIzq
+{
+    padding: 0px 0px 0px 0px;
+}
+
+.menuEnLineaMenuMitad
+{
+    background-image: url(../img/mnu_middle.gif);
+    padding: 14px 0px 0px 0px;
+}
+
+.menuEnLineaMenuMitad:hover
+{
+    cursor: pointer;
+}
+
+p
+{
+    margin-bottom: 10px;
+    line-height: 1.6em;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #666666;
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: 200;
+    margin-bottom: 0px;
+}
+
+h1
+{
+    font-size: 1.6em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+h2
+{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+h4
+{
+    font-size: 1.1em;
+}
+
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h1> and <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0px;
+}
+
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+.page
+{
+    width: 1123px;
+    background-color: #FFF;
+    margin: 20px auto 0px auto; /*border: 1px solid #496077;*/
+}
+
+.header
+{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    background: #FFFFFF;
+    width: 1112px; /*background-image: url('../img/header1.png');*/
+    background-image: url('../img/bg-beta1.png');
+    height: 117px;
+}
+
+.header h1
+{
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
+    color: #f9f9f9;
+    border: none;
+    line-height: 2em;
+    font-size: 2em;
+}
+
+.main
+{
+    margin: 0px 0px 0px 40px;
+    min-height: 250px;
+    width: 780px;
+    float: left; /*border-style: groove;     border-width : thin;     background-image: url("../img/bg-capa.jpg");     background-repeat: repeat-x;     background-position: center bottom;     border: 1px solid #BADCDE;*/
+    overflow: hidden;
+}
+
+.sidebar
+{
+    float: left;
+    width: 292px;
+    text-align: left;
+    min-height: 346px;
+}
+
+.leftCol
+{
+    padding: 6px 0px;
+    margin: 12px 8px 8px 8px;
+    width: 200px;
+    min-height: 200px;
+}
+
+.footer
+{
+    color: #4e5766;
+    padding: 8px 0px 0px 0px;
+    margin: 0px auto;
+    text-align: center;
+    line-height: normal;
+}
+
+
+/* TAB MENU   
+----------------------------------------------------------*/
+
+div.hideSkiplink
+{
+    /*background-color:#3a4f63;*/
+    width: 100%;
+    padding-left: 40px;
+}
+
+/* FORM ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset
+{
+    margin: 1em 0px;
+    padding: 1em;
+    border: 1px solid #ccc;
+}
+
+fieldset p
+{
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+    display: block;
+}
+
+fieldset label.inline
+{
+    display: inline;
+}
+
+legend
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
+
+input.textEntry
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+input.passwordEntry
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+div.accountInfo
+{
+    width: 42%;
+}
+
+/* MISC  
+----------------------------------------------------------*/
+
+.clear
+{
+    clear: both;
+}
+
+.title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+}
+
+.loginDisplay
+{
+    float: right;
+    font-size: 1.1em;
+    display: block;
+    text-align: center;
+    padding: 30px;
+    color: White;
+    font-weight: bold;
+    top: 10px;
+    right: 0px;
+    position: absolute;
+}
+
+.loginDisplay a:link
+{
+    color: white;
+}
+
+.loginDisplay a:visited
+{
+    color: white;
+}
+
+.loginDisplay a:hover
+{
+    color: white;
+}
+
+.failureNotification
+{
+    font-size: 1.2em;
+    color: Red;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.submitButton
+{
+    text-align: right;
+    padding-right: 10px;
+}
+.login
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 235px;
+}
+.resumenPedido
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 590px;
+    border-style: groove;
+    border-width: thin;
+}
+
+.grillaSucursales
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    border-style: groove;
+    border-width: thin;
+}
+
+.contacto
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    text-align: center;
+}
+.loginError
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    text-align: center;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.avisoInsert
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    text-align: left;
+    font-size: medium;
+    font-weight: bold;
+}
+
+
+.center
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+.centerGrande
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 270px;
+}
+
+/* Estilo página noticias   
+----------------------------------------------------------*/
+.FloatLeft
+{
+    float: left;
+}
+
+.promocionIzq
+{
+    border-style: groove;
+    border-width: thin;
+    width: 380px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 200px;
+}
+
+.homeIzq
+{
+    border-style: groove;
+    border-width: thin;
+    width: 380px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 367px;
+}
+
+.homeIzqBotonAgregar
+{
+    /*border-style: groove;     border-width : thin;*/
+    width: 375px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px; /*background-image: url("../img/bg-capa.jpg");     background-repeat: repeat-x;     background-position: center bottom;     border: 1px solid #BADCDE;*/
+    overflow: hidden; /*height: 300px;*/
+    text-align: center;
+}
+
+.homeDer
+{
+    border-style: groove;
+    border-width: thin;
+    width: 386px;
+    display: inline;
+    float: left;
+    margin: 5px 0px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 367px;
+}
+
+.promocionDer
+{
+    border-style: groove;
+    border-width: thin;
+    width: 386px;
+    display: inline;
+    float: left;
+    margin: 5px 0px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 200px;
+}
+
+.homeDerBotonAgregar
+{
+    /*border-style:	groove;     border-width:	thin;*/
+    width: 375px;
+    display: inline;
+    float: left;
+    margin: 5px 0px 0px 0px; /*background-image:		url("../img/bg-capa.jpg");     background-repeat:		repeat-x;     background-position:	center bottom;     border:			1px solid #BADCDE;*/
+    overflow: hidden; /*height: 300px;*/
+    text-align: center;
+}
+
+.homeBajo
+{
+    border-width: thin;
+    border-style: groove;
+    width: 778px;
+    margin: 5px 0px 0px 0px;
+    float: left;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 60px;
+}
+
+.homeBajoBotonAgregar
+{
+    /*border-width: thin;     border-style: groove;*/
+    width: 772px;
+    margin: 5px 0px 0px 0px;
+    float: left; /*background-image: url("../img/bg-capa.jpg");     background-repeat: repeat-x;     background-position: center bottom;     border: 1px solid #BADCDE;*/
+    overflow: hidden; /*height: 60px*/
+    text-align: center;
+}
+
+.homeUp
+{
+    border-width: thin;
+    border-style: groove;
+    width: 778px;
+    margin: 5px 0px 0px 0px;
+    float: left;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 300px;
+}
+
+.contenidoCentral
+{
+    border-width: thin;
+    border-style: groove;
+    width: 778px;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: auto;
+    height: 400px;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
+
+.contenidoCentralJustificado
+{
+    border-width: thin;
+    border-style: groove;
+    width: 778px;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: auto;
+    height: 400px;
+    text-align: justify;
+    padding: 10px 10px 10px 10px;
+}
+
+.promocionUp
+{
+    border-width: thin;
+    border-style: groove;
+    width: 778px;
+    margin: 5px 0px 0px 0px;
+    float: left;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 652px;
+}
+.ranking
+{
+    text-align: center;
+    border-width: thin;
+    border-style: groove;
+    width: 368px;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 300px;
+}
+.giftCard
+{
+    text-align: center;
+    border-width: thin;
+    border-style: groove;
+    width: 271px;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 300px;
+}
+
+.homeUpBotonAgregar
+{
+    /* 	border-width: thin;     border-style: groove;*/
+    width: 775px;
+    margin: 5px 0px 0px 0px;
+    float: left;
+    text-align: center; /*background-image: url("../img/bg-capa.jpg");     background-repeat: repeat-x;     background-position: center bottom;     border: 1px solid #BADCDE;*/
+    overflow: hidden;
+}
+
+.rankingBotonAgregar
+{
+    /* 	border-width: thin;     border-style: groove;*/
+    width: 775px;
+    margin: 5px 0px 0px 0px;
+    float: left;
+    text-align: center; /*background-image: url("../img/bg-capa.jpg");     background-repeat: repeat-x;     background-position: center bottom;     border: 1px solid #BADCDE;*/
+    overflow: hidden;
+}
+
+.botonAgregar
+{
+    /*left: 12px; 	bottom: 1px; 	position: absolute;*/
+}
+
+.boletines
+{
+    border-width: thin;
+    border-style: groove;
+    border: 1px solid #BADCDE;
+    text-align: center;
+    width: 778px;
+    display: inline;
+    float: left;
+    margin: 5px 0px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    height: 686px;
+}
+
+.tablaBuscarBoletin
+{
+    width: 225px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ContMedio
+{
+    width: 588px;
+    display: inline;
+    float: left;
+}
+
+.menuEnLineaDescripcion
+{
+    padding: 0px 0px 0px 21px;
+}
+
+.ContInfer
+{
+    display: block;
+}
+
+img
+{
+    /*max-width: 390px;*/
+}
+
+#agregarNoticia
+{
+    border-style: groove;
+    border-width: 1px;
+    margin: 3px;
+    max-width: 390px;
+    width: 390px;
+    display: inline;
+}
+
+.titulo
+{
+    border-width: thin;
+    border-style: groove;
+    margin: 5px 0px 0px 0px;
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
+    border: 1px solid #BADCDE;
+}
+
+.costadoIzquierdo
+{
+    border-width: thin;
+    border-style: groove;
+    float: left;
+    width: 160px;
+    max-width: 170px;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+}
+
+.costadoIzquierdoNoticias
+{
+    border-width: thin;
+    border-style: groove;
+    float: left;
+    width: 160px;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE; /*overflow:auto*/
+}
+
+.costadoDerecho
+{
+    border-width: thin;
+    border-style: groove;
+    float: right;
+    width: 600px;
+    margin: 5px 0px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+}
+
+.costadoDerechoNoticias
+{
+    border-width: thin;
+    border-style: groove;
+    float: right;
+    width: 605px;
+    margin: 5px 0px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: auto;
+}
+
+.nuevoAccesorio
+{
+    border-width: thin;
+    border-style: groove;
+    width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+}
+
+.nuevaPromo
+{
+    border-width: thin;
+    border-style: groove;
+    width: 308px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    text-align: center;
+}
+
+.verPromos
+{
+    border-width: thin;
+    border-style: groove;
+    border: 1px solid #BADCDE;
+    width: 285px;
+    padding: 4px 5px 0px 15px;
+    overflow: auto;
+    float: left;
+}
+
+.verPromo
+{
+    float: left;
+    width: 270px;
+    padding: 20px 0px 0px 12px;
+}
+
+.accesorio
+{
+    max-width: 400px;
+    width: 400px;
+}
+
+.contenedor
+{
+    overflow: hidden;
+}
+.pie
+{
+    border-width: thin;
+    border-style: groove;
+    margin: 5px 0px 0px 0px;
+    float: left;
+}
+
+.encuesta
+{
+    border-style: groove;
+    border-width: thin;
+    width: 280px;
+    min-height: 100px;
+    height: 250px;
+    margin: 10px 10px 0px 10px;
+    text-align: center;
+    background-image: url("../img/bg-capa-reves.jpg");
+    background-repeat: repeat-x;
+    background-position: center top;
+    border: 1px solid #BADCDE;
+}
+
+.informacionGeneral
+{
+    text-align: center;
+    border-style: groove;
+    border-width: thin;
+    width: 280px;
+    height: 218px;
+    margin: 10px 10px 0px 10px;
+    background-image: url("../img/bg-capa-reves.jpg");
+    background-repeat: repeat-x;
+    background-position: center top;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+}
+
+
+.footDer
+{
+    font-weight: bold;
+    text-align: right;
+    margin-right: 45px;
+}
+
+.medio
+{
+}
+
+
+/*------------Promociones-----------*/
+.PromoIzq
+{
+    border-style: groove;
+    border-width: 1px;
+    max-width: 248px;
+    width: 248px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+}
+
+.PromoDer
+{
+    border-style: groove;
+    border-width: 1px;
+    max-width: 337px;
+    width: 337px;
+    display: inline;
+    float: left;
+    margin: 5px 0px 0px 0px;
+}
+
+
+
+#titAccesorio
+{
+    background-repeat: repeat-x;
+    color: #EFF8FB;
+}
+
+#titCotizar
+{
+    background-image: url('../img/fondoHeaderAcc.png');
+    background-repeat: repeat-x;
+    font-family: Verdana;
+    font-size: 16px;
+    font-weight: bold;
+    color: #EFF8FB;
+}
+
+
+#imgAccesorio
+{
+    margin: 4px;
+    width: 100px;
+    height: 110px;
+    float: left;
+    display: inline;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#cuerpoAccesorio
+{
+    border-style: groove;
+    border-width: thin;
+    width: 100%;
+    float: left;
+    display: inline;
+}
+
+.promocionSuperiorIzquierdo
+{
+    width: 294px;
+    border-style: groove;
+    border: 1px;
+    float: left;
+    max-width: 294px;
+    min-height: 250px;
+    display: inline;
+}
+
+.promocionSuperiorDerecho
+{
+    width: 294px;
+    border-style: groove;
+    border: 1px;
+    float: right;
+    max-width: 294px;
+    min-height: 250px;
+    display: inline;
+}
+.PromocionInferiorIzquierdo
+{
+    width: 294px;
+    border: 1px;
+    float: left;
+    display: inline;
+    max-width: 294px;
+}
+
+.PromocionInferiorDerecho
+{
+    width: 294px;
+    border: 1px;
+    float: right;
+    display: inline;
+    max-width: 294px;
+}
+
+/*Hacer invisible o visible*/
+
+.visi
+{
+    display: inherit;
+}
+.invi
+{
+    display: none;
+}
+
+/* tooltip styling. by default the element to be styled is .tooltip  */
+.tooltip
+{
+    display: none;
+    background: transparent url(../img/black_arrow.png);
+    font-size: 12px;
+    height: 70px;
+    width: 160px;
+    padding: 25px;
+    color: #fff;
+}
+
+select
+{
+    max-width: 370px;
+}
+
+.editorContainer
+{
+    width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.editorAdd
+{
+    padding: 0px 0px 0px 90px;
+}
+.divItemAccesorio
+{
+    height: 190px;
+    width: 130px;
+    display: inline;
+    float: left;
+    text-align: center;
+    padding: 0px 30px 46px;
+}
+
+.btnPaginacionAccesorio
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 130px;
+}
+
+.panelFiltraCodigoBancoRepto
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 420px;
+}
+
+#divBusqueda
+{
+    border-width: thin;
+    border-style: groove;
+    width: 242px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    float: left;
+    height: 130px;
+}
+
+#divResultado
+{
+    border-width: thin;
+    border-style: groove;
+    width: 530px;
+    height: 111px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    float: right;
+    margin-bottom: 10px;
+    height: 130px;
+}
+
+#divCadenaReemplazo
+{
+    border-width: thin;
+    border-style: groove;
+    width: 530px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    float: right;
+    margin-bottom: 10px;
+}
+
+#divCarrito
+{
+    border-width: thin;
+    border-style: groove;
+    width: 530px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    float: right;
+}
+
+#divBuscarMenu
+{
+    border-width: thin;
+    border-style: groove;
+    width: 242px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    float: left;
+}
+.spnAdd2Cart
+{
+    cursor: pointer;
+}
+
+.tdBuscaRepuesto
+{
+    border-width: thin;
+    border-style: groove;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+}
+
+.tdIngrRepto
+{
+    border-width: thin;
+    border-style: groove;
+    border:1px solid #BADCDE;
+}
+
+.tablaConfirmarPedido
+{
+    border-width: thin;
+    border-style: groove;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+}
+
+.vfcBuscarRepuesto
+{
+    border-width: thin;
+    border-style: groove;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+}
+
+.noExistenReemplazos
+{
+    width: 200px;
+    float: right;
+    border-width: thin;
+    border-style: groove;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+}
+
+.leiNoticia
+{
+    border-width: thin;
+    border-style: groove;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+}
+
+.noticiaPreview
+{
+    width: 770px;
+    border-width: thin;
+    border-style: groove;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    overflow: auto;
+    height: 458px;
+    border: 1px solid #BADCDE;
+}
+
+.iframe
+{
+    border: 0px;
+    width: 250px;
+    height: 250px;
+}
+
+.cajaGenerica
+{
+    border-width: thin;
+    border-style: groove;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    overflow: auto;
+    border: 1px solid #BADCDE;
+}
+
+#msjesError
+{
+    font-weight: bold;
+    text-align: center;
+    background-color: Orange;
+}
+
+.msjesError
+{
+    font-weight: bold;
+    text-align: center;
+    background-color: Orange;
+}
+
+.gridViewRowSmall
+{
+    font-size: xx-small;
+}
+
+.mantenedorUsuariosIzquierda
+{
+    border-style: groove;
+    border-width: thin;
+    width: 170px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 367px;
+    padding: 14px 0px 0px 0px;
+}
+
+.mantenedorUsuariosDerecha
+{
+    border-style: groove;
+    border-width: thin;
+    width: 562px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 367px;
+    padding: 14px 0px 0px 20px;
+}
+.tablaCrearUsuario
+{
+    margin: 5px 10px 0px 0px;
+}
+
+.floatLeft
+{
+    float: left;
+}
+
+.mantenedorBuscaPersona
+{
+    border-style: groove;
+    border-width: thin;
+    width: 562px;
+    display: inline;
+    float: left;
+    margin-top: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    padding: 14px 0px 0px 20px;
+    padding-bottom: 16px;
+    height: 102px;
+    margin-bottom: 6px;
+}
+
+.tablaBuscadorPersonas
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+.mantenedorUsuariosEditarIzquierda
+{
+    border-style: groove;
+    border-width: thin;
+    width: 170px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 119px;
+    padding: 14px 0px 0px 0px;
+}
+
+.mantenedorConcesionariosIzquierda
+{
+    border-style: groove;
+    border-width: thin;
+    width: 170px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 367px;
+    padding: 14px 0px 0px 0px;
+}
+
+.mantenedorConcesionariosDerecha
+{
+    border-style: groove;
+    border-width: thin;
+    width: 562px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    min-height: 367px;
+    padding: 14px 0px 0px 20px;
+}
+
+.mantenedorMarcasIzquierdaLargo
+{
+    border-style: groove;
+    border-width: thin;
+    width: 170px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 704px;
+    padding: 14px 0px 0px 0px;
+}
+
+.tablaMarcas
+{
+    margin-right: auto; /*margin-left: auto;*/
+    width: 544px;
+}
+
+.indicadoresIzquierda
+{
+    border-style: groove;
+    border-width: thin;
+    width: 170px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    padding: 14px 0px 0px 0px;
+}
+
+.indicadoresDerecha
+{
+    border-style: groove;
+    border-width: thin;
+    width: 562px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    min-height: 151px;
+    padding: 14px 0px 0px 20px;
+}
+
+.nombreConcesionario
+{
+    font-weight: bold;
+    font-size: medium;
+    text-decoration: underline;
+}
+
+.usuarioUpdate
+{
+    border-width: thin;
+    border-style: groove;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: auto;
+    height: 235px;
+    padding: 10px 10px 10px 10px;
+}
+
+.ui-tabs-panel
+{
+    overflow: auto;
+}
+
+.UpdateProgressContent
+{
+    border: 1px dashed #C0C0C0;
+    background-color: #FFFFFF;
+    width: 200px;
+    text-align: center;
+    vertical-align: bottom;
+    z-index: 1001;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+.UpdateProgressBackground
+{
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    z-index: 1000;
+    background-color: #CCCCCC;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    height: 1000px;
+    width: 100%;
+}
+
+.canastitoCompra
+{
+    float: left;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.divItemBancoReptos
+{
+    display: inline;
+    float: left;
+    text-align: center;
+    overflow: auto;
+    width: 100%;
+}
+.tablaBancoReptos
+{
+    border-style: hidden;
+    border-width: 5px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablaBancoReptos td
+{
+    border-style: ridge;
+    border-width: 3px;
+    text-align: left;
+}
+
+.tablaSolicitudReptos
+{
+    border-style: hidden;
+    border-width: 5px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablaSolicitudReptos td
+{
+    border-style: ridge;
+    border-width: 3px;
+    text-align: center;
+}
+
+/* Grid noticias */
+.tablaNoticias
+{
+    margin-right: auto;
+    width: 170px;
+}

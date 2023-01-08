@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:p1="urn:skb.cl/consulta_vehiculos_sap" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" name="SI_Consulta_Vehiculos" targetNamespace="urn:skb.cl/consulta_vehiculos_sap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsp:UsingPolicy wsdl:required="true" />
+  <wsp:Policy wsu:Id="OP_Consulta_Vehiculos" />
+  <wsdl:types>
+    <xsd:schema xmlns="urn:skb.cl/consulta_vehiculos_sap" targetNamespace="urn:skb.cl/consulta_vehiculos_sap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="MT_Consulta_Vehiculos_Response" type="p1:DT_Consulta_Vehiculos_Response" />
+      <xsd:element name="MT_Consulta_Vehiculos_Request" type="p1:DT_Consulta_Vehiculos_Request" />
+      <xsd:complexType name="DT_Consulta_Vehiculos_Response">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">f8dc3127a70411e4c70100000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Caracteristicas_Vehiculos">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">e9caff8ba0bc11e49d1f00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="VHVIN" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">33615178a0be11e480c400059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="NOMBRE" type="xsd:string" />
+                <xsd:element name="VALOR" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_RETURN">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">328203bca0bf11e4976900059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="TYPE" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3281d47ca0bf11e4c9ba00059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="ID" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3281d47da0bf11e4a16500059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="NUMBER" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3281d47ea0bf11e4b5d700059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="MESSAGE" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3281d47fa0bf11e4bbfe00059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="LOG_NO" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3281d480a0bf11e4c60700059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="LOG_MSG_NO" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3281d481a0bf11e49fa500059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="MESSAGE_V1" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">3281d482a0bf11e4c7c400059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="MESSAGE_V2" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">328203b9a0bf11e4a84f00059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="MESSAGE_V3" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">328203baa0bf11e48fca00059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="MESSAGE_V4" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">328203bba0bf11e489d200059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="PARAMETER" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">82315a7da0bf11e4985200059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="ROW" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">82315a7ea0bf11e490c400059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="FIELD" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">82315a7fa0bf11e4925800059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="SYSTEM" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">82315a80a0bf11e4851d00059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Consulta_Vehiculos_Request">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">f63b5dc0a0b111e4a8bd00000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Vehiculos">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">46cc555ba0bb11e4913e00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="VHVIN" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">5e86eec5a0bb11e4aace00059a3c7800</xsd:appinfo>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_Consulta_Vehiculos_Request">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Consulta_Vehiculos_Request" element="p1:MT_Consulta_Vehiculos_Request" />
+  </wsdl:message>
+  <wsdl:message name="MT_Consulta_Vehiculos_Response">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Consulta_Vehiculos_Response" element="p1:MT_Consulta_Vehiculos_Response" />
+  </wsdl:message>
+  <wsdl:portType name="SI_Consulta_Vehiculos">
+    <wsdl:documentation />
+    <wsdl:operation name="Consulta_Vehiculos">
+      <wsdl:documentation />
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_Consulta_Vehiculos" />
+      </wsp:Policy>
+      <wsdl:input message="p1:MT_Consulta_Vehiculos_Request" />
+      <wsdl:output message="p1:MT_Consulta_Vehiculos_Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_Consulta_VehiculosBinding" type="p1:SI_Consulta_Vehiculos">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <wsdl:operation name="Consulta_Vehiculos">
+      <operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <wsdl:input>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:input>
+      <wsdl:output>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SI_Consulta_VehiculosService">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_Consulta_VehiculosBinding">
+      <address location="http://sk-po-prd.sk.cl:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BC_SKB_SPIGA&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Consulta_Vehiculos&amp;interfaceNamespace=urn%3Askb.cl%2Fconsulta_vehiculos_sap" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_Consulta_VehiculosBinding">
+      <address location="https://sk-po-prd.sk.cl:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BC_SKB_SPIGA&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Consulta_Vehiculos&amp;interfaceNamespace=urn%3Askb.cl%2Fconsulta_vehiculos_sap" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:p1="urn:skb.cl:consulta_estado_pedido_venta" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" name="SI_Consulta_Estado_Pedido_Venta_Out" targetNamespace="urn:skb.cl:consulta_estado_pedido_venta" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsp:UsingPolicy wsdl:required="true" />
+  <wsp:Policy wsu:Id="OP_SI_Consulta_Estado_Pedido_Venta_Out" />
+  <wsdl:types>
+    <xsd:schema xmlns="urn:skb.cl:consulta_estado_pedido_venta" targetNamespace="urn:skb.cl:consulta_estado_pedido_venta" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="MT_Consulta_Estado_Pedido_Venta_Request" type="p1:DT_Consulta_Estado_Pedido_Venta_Request" />
+      <xsd:element name="MT_Consulta_Estado_Pedido_Venta_Response" type="p1:DT_Consulta_Estado_Pedido_Venta_Response" />
+      <xsd:complexType name="DT_Consulta_Estado_Pedido_Venta_Request">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">68470ea03f9211e5855e00000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="IT_VBELN" type="p1:DT_Rango">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">f2864f1d3f9211e5ada400059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="IT_AUART" type="p1:DT_Rango">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">f2864f1e3f9211e583de00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Consulta_Estado_Pedido_Venta_Response">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">e7a5a56d29aa11e5c6b500000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="E_ESTADOS" type="p1:DT_Estados" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="E_ERROR" type="p1:DT_Errores" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Rango">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">7ae5658c29a811e596a000000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="SIGN" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">d976e77a29a811e5ab4a00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Sign</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="OPTION" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">d976e77b29a811e5864400059a3c7800</xsd:appinfo>
+              <xsd:documentation>Option</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="LOW" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">d976e77c29a811e5920900059a3c7800</xsd:appinfo>
+              <xsd:documentation>Low</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="HIGH" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">d976e77d29a811e5b39a00059a3c7800</xsd:appinfo>
+              <xsd:documentation>High</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Estados">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">9f1168ee29a911e59ffe00000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="VBELN" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d189229aa11e5947400059a3c7800</xsd:appinfo>
+              <xsd:documentation>Número de documento comercial</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="RFSTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d189329aa11e5ba7b00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status de la cabecera del documento de referencia</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="RFGSK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d189429aa11e5c57f00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status de referencia total de todas las posiciones</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="BESTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d189529aa11e5b48100059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status de confirmación</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="LFSTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d189629aa11e5a1ff00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status de entrega</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="LFGSK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d189729aa11e5aaca00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status de entrega total de todas las posiciones</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="WBSTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286329aa11e58be600059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status total de movimiento de mercancías</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="FKSTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286429aa11e583ce00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status de factura</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="FKSAK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286529aa11e5824400059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status de factura para facturas por pedido</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="BUCHK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286629aa11e5a2cd00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Status de contabilidad de factura</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_RFSTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286729aa11e5b10700059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_RFGSK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286829aa11e5cb4600059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_BESTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286929aa11e5b41e00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_LFSTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286a29aa11e58e2e00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_LFGSK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286b29aa11e5bd1f00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_WBSTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286c29aa11e5abf400059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_FKSTK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d286d29aa11e5cea600059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_FKSAK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d697d29aa11e5905900059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DDTEXT_BUCHK" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">984d697e29aa11e5ba7200059a3c7800</xsd:appinfo>
+              <xsd:documentation>Texto breve p.valores fijos</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Errores">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">c6f93de129aa11e5899800000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="E_TYPE" type="xsd:string" />
+          <xsd:element name="E_CODE" type="xsd:string" />
+          <xsd:element name="E_NUMBER" type="xsd:string" />
+          <xsd:element name="E_MESSAGE" type="xsd:string" />
+          <xsd:element name="E_LOG_NO" type="xsd:string" />
+          <xsd:element name="E_LOG_MSG_NO" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V1" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V2" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V3" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V4" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_Consulta_Estado_Pedido_Venta_Request">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Consulta_Estado_Pedido_Venta_Request" element="p1:MT_Consulta_Estado_Pedido_Venta_Request" />
+  </wsdl:message>
+  <wsdl:message name="MT_Consulta_Estado_Pedido_Venta_Response">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Consulta_Estado_Pedido_Venta_Response" element="p1:MT_Consulta_Estado_Pedido_Venta_Response" />
+  </wsdl:message>
+  <wsdl:portType name="SI_Consulta_Estado_Pedido_Venta_Out">
+    <wsdl:documentation />
+    <wsdl:operation name="SI_Consulta_Estado_Pedido_Venta_Out">
+      <wsdl:documentation />
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_SI_Consulta_Estado_Pedido_Venta_Out" />
+      </wsp:Policy>
+      <wsdl:input message="p1:MT_Consulta_Estado_Pedido_Venta_Request" />
+      <wsdl:output message="p1:MT_Consulta_Estado_Pedido_Venta_Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_Consulta_Estado_Pedido_Venta_OutBinding" type="p1:SI_Consulta_Estado_Pedido_Venta_Out">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <wsdl:operation name="SI_Consulta_Estado_Pedido_Venta_Out">
+      <operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <wsdl:input>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:input>
+      <wsdl:output>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SI_Consulta_Estado_Pedido_Venta_OutService">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_Consulta_Estado_Pedido_Venta_OutBinding">
+      <address location="http://skpidev.sk.cl:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBRPTOS_PE_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Consulta_Estado_Pedido_Venta_Out&amp;interfaceNamespace=urn%3Askb.cl%3Aconsulta_estado_pedido_venta" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_Consulta_Estado_Pedido_Venta_OutBinding">
+      <address location="https://skpidev.sk.cl:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBRPTOS_PE_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Consulta_Estado_Pedido_Venta_Out&amp;interfaceNamespace=urn%3Askb.cl%3Aconsulta_estado_pedido_venta" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

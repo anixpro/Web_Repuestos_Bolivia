@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:p1="urn:skb.cl:generacion_cotizacion_interna" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" name="SI_Generacion_Cotizacion_Interna_Out" targetNamespace="urn:skb.cl:generacion_cotizacion_interna" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation />
+  <wsp:UsingPolicy wsdl:required="true" />
+  <wsp:Policy wsu:Id="OP_SI_Generacion_Cotizacion_Interna_Out" />
+  <wsdl:types>
+    <xsd:schema xmlns="urn:skb.cl:generacion_cotizacion_interna" targetNamespace="urn:skb.cl:generacion_cotizacion_interna" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="MT_Generacion_Cotizacion_Interna_Request" type="p1:DT_Generacion_Cotizacion_Interna_Request" />
+      <xsd:element name="MT_Generacion_Cotizacion_Interna_Response" type="p1:DT_Generacion_Cotizacion_Interna_Response" />
+      <xsd:complexType name="DT_Errores">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">349962b6299f11e5c9db00000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="E_TYPE" type="xsd:string" />
+          <xsd:element name="E_CODE" type="xsd:string" />
+          <xsd:element name="E_NUMBER" type="xsd:string" />
+          <xsd:element name="E_MESSAGE" type="xsd:string" />
+          <xsd:element name="E_LOG_NO" type="xsd:string" />
+          <xsd:element name="E_LOG_MSG_NO" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V1" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V2" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V3" type="xsd:string" />
+          <xsd:element name="E_MESSAGE_V4" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Generacion_Cotizacion_Interna_Response">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">509b58f2299f11e5aaf400000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="E_VBELN" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">af095966299f11e587d700059a3c7800</xsd:appinfo>
+              <xsd:documentation>Número de documento comercial</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="E_ERROR" type="p1:DT_Errores" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_Generacion_Cotizacion_Interna_Request">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">6b2c86bf299e11e5967200000089eebe</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="I_AUART" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c985b5eb299e11e59b9300059a3c7800</xsd:appinfo>
+              <xsd:documentation>Clase de documento de ventas</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_VKORG" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c985b5ec299e11e5cf3900059a3c7800</xsd:appinfo>
+              <xsd:documentation>Organización de ventas</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_VTWEG" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c985f692299e11e5cfc800059a3c7800</xsd:appinfo>
+              <xsd:documentation>Canal de distribución</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_SPART" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c985f693299e11e5cec400059a3c7800</xsd:appinfo>
+              <xsd:documentation>Sector</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_BNDDT" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c985f694299e11e59cab00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Plazo vinculante oferta p.prestación servicios (válido a)</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_KUNNR" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c985f695299e11e5b7c000059a3c7800</xsd:appinfo>
+              <xsd:documentation>Número de deudor</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_KUNNR2" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c985f696299e11e5a97d00059a3c7800</xsd:appinfo>
+              <xsd:documentation>Número de deudor</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="I_TEXTO" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c985f697299e11e5a6f600059a3c7800</xsd:appinfo>
+              <xsd:documentation>Descripción</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="T_MATERIALES">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c9860a77299e11e59a7c00059a3c7800</xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="I_MATNR" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">c985f698299e11e5909500059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Número de material</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="I_KWMENG" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">c985f699299e11e5b87000059a3c7800</xsd:appinfo>
+                    <xsd:documentation>Cantidad de pedido acumulada (en unidades de venta)</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_Generacion_Cotizacion_Interna_Request">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Generacion_Cotizacion_Interna_Request" element="p1:MT_Generacion_Cotizacion_Interna_Request" />
+  </wsdl:message>
+  <wsdl:message name="MT_Generacion_Cotizacion_Interna_Response">
+    <wsdl:documentation />
+    <wsdl:part name="MT_Generacion_Cotizacion_Interna_Response" element="p1:MT_Generacion_Cotizacion_Interna_Response" />
+  </wsdl:message>
+  <wsdl:portType name="SI_Generacion_Cotizacion_Interna_Out">
+    <wsdl:documentation />
+    <wsdl:operation name="SI_Generacion_Cotizacion_Interna_Out">
+      <wsdl:documentation />
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_SI_Generacion_Cotizacion_Interna_Out" />
+      </wsp:Policy>
+      <wsdl:input message="p1:MT_Generacion_Cotizacion_Interna_Request" />
+      <wsdl:output message="p1:MT_Generacion_Cotizacion_Interna_Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_Generacion_Cotizacion_Interna_OutBinding" type="p1:SI_Generacion_Cotizacion_Interna_Out">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <wsdl:operation name="SI_Generacion_Cotizacion_Interna_Out">
+      <operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <wsdl:input>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:input>
+      <wsdl:output>
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SI_Generacion_Cotizacion_Interna_OutService">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_Generacion_Cotizacion_Interna_OutBinding">
+      <address location="http://skpidev.sk.cl:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBRPTOS_PE_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Generacion_Cotizacion_Interna_Out&amp;interfaceNamespace=urn%3Askb.cl%3Ageneracion_cotizacion_interna" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_Generacion_Cotizacion_Interna_OutBinding">
+      <address location="https://skpidev.sk.cl:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BS_SKB_WEBRPTOS_PE_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_Generacion_Cotizacion_Interna_Out&amp;interfaceNamespace=urn%3Askb.cl%3Ageneracion_cotizacion_interna" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

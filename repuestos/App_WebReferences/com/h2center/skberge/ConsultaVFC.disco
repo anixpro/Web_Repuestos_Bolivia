@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://skberge.h2center.com/WS/ConsultaVFC.asmx?wsdl" docRef="http://skberge.h2center.com/WS/ConsultaVFC.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://skberge.h2center.com/WS/ConsultaVFC.asmx" xmlns:q1="http://www.humano2.cl/" binding="q1:ConsultaVFCSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://skberge.h2center.com/WS/ConsultaVFC.asmx" xmlns:q2="http://www.humano2.cl/" binding="q2:ConsultaVFCSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

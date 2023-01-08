@@ -1,0 +1,150 @@
+--RELACIONES
+--PERSONA/CONCESIONARIO/CARGO
+select persona.nombre,sucursal.nombreSucursal as DealerEmpresa,concesionario.tipo,sucursal.shipCode,sucursal.regionSucursal,sucursal.provinciaSucursal,personaPermisos.cargo 
+from personaPermisos,persona,concesionario,sucursal
+where personaPermisos.rut = persona.rut 
+and sucursal.nombreConcesionario = concesionario.nombreConcesionario
+and sucursal.shipCode = persona.shipCode
+
+--CONCESIONARIOS/ZONAS
+select concesionario.nombreConcesionario,concesionario.tipo,zona.sector
+from concesionario, zona
+where zona.sector='norte' and zona.zona = concesionario.zona
+
+
+select concesionario.nombreConcesionario,concesionario.tipo,zona.sector
+from concesionario, zona
+where zona.sector='centro' and zona.zona = concesionario.zona
+
+
+select concesionario.nombreConcesionario,concesionario.tipo,zona.sector
+from concesionario, zona
+where zona.sector='sur' and zona.zona = concesionario.zona
+
+--MARCAS DE CONCESIONARIO POR ZONA
+select concesionario.nombreConcesionario,marca.nombreMarca,zona.sector
+from concesionario, zona,concesionarioMarca,marca
+where zona.sector='sur' and zona.zona = concesionario.zona
+and concesionario.nombreConcesionario = concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca = marca.nombreMarca
+group by concesionario.nombreConcesionario,marca.nombreMarca,zona.sector
+--MARCAS DE CONCESIONARIO POR ZONA
+
+--MARCA/CONCESIONARIO
+--SSANGYONG
+select concesionario.nombreConcesionario,marca.nombreMarca
+from concesionario,marca,concesionarioMarca
+where concesionario.nombreConcesionario =concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca =marca.nombreMarca
+and marca.nombreMarca='SSANGYONG'
+
+--MITSUBISHI
+select concesionario.nombreConcesionario,marca.nombreMarca
+from concesionario,marca,concesionarioMarca
+where concesionario.nombreConcesionario =concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca =marca.nombreMarca
+and marca.nombreMarca='MITSUBISHI'
+
+--FIAT
+select concesionario.nombreConcesionario,marca.nombreMarca
+from concesionario,marca,concesionarioMarca
+where concesionario.nombreConcesionario =concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca =marca.nombreMarca
+and marca.nombreMarca='FIAT'
+
+--CHRYSLER
+select concesionario.nombreConcesionario,marca.nombreMarca
+from concesionario,marca,concesionarioMarca
+where concesionario.nombreConcesionario =concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca =marca.nombreMarca
+and marca.nombreMarca='CHRYSLER'
+
+--CHERY
+select concesionario.nombreConcesionario,marca.nombreMarca
+from concesionario,marca,concesionarioMarca
+where concesionario.nombreConcesionario =concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca =marca.nombreMarca
+and marca.nombreMarca='CHERY'
+
+--MG
+select concesionario.nombreConcesionario,marca.nombreMarca
+from concesionario,marca,concesionarioMarca
+where concesionario.nombreConcesionario =concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca =marca.nombreMarca
+and marca.nombreMarca='MG'
+
+--TATA
+select concesionario.nombreConcesionario,marca.nombreMarca
+from concesionario,marca,concesionarioMarca
+where concesionario.nombreConcesionario =concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca =marca.nombreMarca
+and marca.nombreMarca='TATA'
+
+--CONCESIONARIO/MARCA
+select concesionario.nombreConcesionario,marca.nombreMarca
+from concesionario,marca,concesionarioMarca
+where concesionario.nombreConcesionario =concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca =marca.nombreMarca
+and concesionario.nombreConcesionario ='RODAR'
+
+RODAR, REPUESTOS EXPRESS, CARTONI EXPRESS, CALLEGARI LTDA, AUTOMOTRIZ VAL LTDA, CARTONI, HERNANDEZ MOTORES 
+LE-BLANC LTDA, EXPOAUTOS, JOSE VERGARA, SK COMERCIAL, AUTOSUMMIT, JOSE ETEROVIC, G.M.B., VEGA ARTUS, AVENTURA MOTORS
+ROSSELOT LTDA, RENTAL S.A., PALD, FELIPE NOGUERA, MARCELO FRONZA, MARCO RATTI, SERVITAL, LA FORESTA
+PATRICIO GRACIA, PIAMONTE S.A., GOMA, AUTOFRANCE, CORDILLERA, AUTOMOTRIZ VARONA, NALLAR, PATAGONIA, SIGLO XXI
+COMERCO, NOVICIADO, TRANSWORLD, QUILIN, NOACK LTDA, APC, AUTOIMPACTO, DIFOR CHILE S.A., JORGE OSORIO, KORNER
+PINTURAS AUTOMOTRICES, BAUER, BRUNO FRITSCH, MARCO RATTI SUR
+
+--TRIMESTRES
+
+select sum(compras) as primerTrimestre from  indicador where mes<4
+
+select sum(compras) as segundoTrimestre from  indicador where mes between 4 and 6
+
+select sum(compras) as tercerTrimestre from  indicador where mes between 7 and 9
+
+select sum(compras) as cuartoTrimestre from  indicador where mes between 10 and 12
+--TRIMESTRES
+
+-- MARCA PARA LOS CONCESIONARIOS SEGUN MARCA DE EXCEL EN CONCESIONARIOMARCA
+select nombreMarca from concesionarioMarca where idConcesionarioMarca between 185 and 212 group by nombreMarca
+-- MARCA PARA LOS CONCESIONARIOS SEGUN MARCA DE EXCEL EN CONCESIONARIOMARCA
+
+
+
+--INDICADOR POR MARCA
+SELECT concesionarioMarca.nombreMarca,concesionarioMarca.nombreConcesionario,indicador.ano,indicador.mes,indicador.compras,indicador.metas
+FROM  concesionarioMarca,indicador 
+WHERE concesionarioMarca.idConcesionarioMarca = indicador.idConcesionarioMarca 
+AND concesionarioMarca.nombreMarca=LTRIM('CHRYSLER')
+
+--INDICADOR POR CONCESIONARIO
+SELECT concesionarioMarca.nombreMarca,concesionarioMarca.nombreConcesionario,indicador.ano,indicador.mes,indicador.compras,indicador.metas
+FROM  concesionarioMarca,indicador 
+WHERE concesionarioMarca.idConcesionarioMarca = indicador.idConcesionarioMarca 
+AND concesionarioMarca.nombreConcesionario=LTRIM('RODAR')
+
+--INDICADOR SEGUN MARCA Y SU CORRESPONDIENTE CONCESIONARIO
+SELECT concesionarioMarca.nombreMarca,concesionarioMarca.nombreConcesionario,indicador.ano,indicador.mes,indicador.compras,indicador.metas
+FROM  concesionarioMarca,indicador 
+WHERE concesionarioMarca.idConcesionarioMarca = indicador.idConcesionarioMarca 
+AND concesionarioMarca.nombreMarca=LTRIM('CHRYSLER')
+AND concesionarioMarca.nombreConcesionario=LTRIM('RODAR')
+
+
+--COMPRAS POR TRIMESTRE SEGUN MARCA Y CONCESIONARIO
+SELECT SUM(indicador.compras)
+FROM  concesionarioMarca,indicador 
+WHERE concesionarioMarca.idConcesionarioMarca = indicador.idConcesionarioMarca 
+AND concesionarioMarca.nombreMarca=LTRIM('CHRYSLER')
+AND concesionarioMarca.nombreConcesionario=LTRIM('REPUESTOS EXPRESS')
+AND indicador.mes<4
+
+
+--CONCESIONARIO QUE ME CORRESPONDE (SEGUN RUT)
+select persona.nombre,concesionario.nombreConcesionario,sucursal.nombreSucursal,marca.nombreMarca
+from sucursal,persona,concesionario,concesionarioMarca,marca
+where persona.rut=22222222
+and persona.shipCode=sucursal.shipCode
+and sucursal.nombreConcesionario=concesionario.nombreConcesionario
+and concesionario.nombreConcesionario = concesionarioMarca.nombreConcesionario
+and concesionarioMarca.nombreMarca = marca.nombreMarca

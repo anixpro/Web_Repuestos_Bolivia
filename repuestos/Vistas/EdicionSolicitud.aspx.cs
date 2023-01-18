@@ -1197,7 +1197,6 @@ public partial class Vistas_EdicionSolicitud : System.Web.UI.Page
         catch (Exception ex)
         {
             _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [TRACKING_EDITA_COTIZACION] Message: " + ex.Message + " Inner: " + ex.InnerException + " Stack: " + ex.StackTrace);
-            con.Close();
         }
     }
     protected void CancelarEdicion(object o, EventArgs e)

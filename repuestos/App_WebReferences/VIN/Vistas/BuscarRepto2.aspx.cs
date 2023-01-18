@@ -379,7 +379,6 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
             }
 
         }
-
         else
         {
             if (!_pedido.disponibilidadRepuesto)

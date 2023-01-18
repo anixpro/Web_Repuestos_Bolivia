@@ -2096,7 +2096,7 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
             lblDireccion.Visible = true;
         }
     }
-
+    
     public void CotizarSap()
     {
         int[] cantidades;

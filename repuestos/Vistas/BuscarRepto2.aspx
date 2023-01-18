@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script src="../js/jquery.numeric.js" type="text/javascript"></script>
     
-      <script type="text/javascript">
+    <script type="text/javascript">
 
 
         function KeyBackspace(keyStroke) {
@@ -538,7 +538,7 @@
                                             </table>
                                     </asp:Panel>
                               </div>
-                                    <asp:Panel ID="pnlFrecuencia" runat="server" Visible="false">
+                            <asp:Panel ID="pnlFrecuencia" runat="server" Visible="false">
                                         <center>
                                             <FONT size="4" color="red"><b>Repuesto sin stock;  genere una cotización automática para asegurar precio indicado más abajo.<br /></b></FONT>
                                             <asp:TextBox runat="server" ID="txtVin" placeholder="Ingrese Vin" MaxLength="17"></asp:TextBox><br />
@@ -627,6 +627,12 @@
                                         ReadOnly="true">
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:BoundField>
+                                    <asp:TemplateField HeaderText="Tiene Stock" FooterStyle-Font-Bold="True">
+                                        <ItemTemplate>
+                                            <%# determinaStock(Eval("stock").ToString(), Eval("cantidad").ToString()) %>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    </asp:TemplateField>
                                     <asp:BoundField DataField="GRUPO" ItemStyle-HorizontalAlign="Center" HeaderText="Grupo" ReadOnly="True">
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:BoundField>
@@ -672,7 +678,7 @@
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:BoundField>
                                     <asp:BoundField FooterStyle-CssClass="invi" ItemStyle-CssClass="invi" HeaderStyle-CssClass="invi"
-                                        DataField="T_KBETR1" ItemStyle-HorizontalAlign="Center" HeaderText="Precio Concesionario"
+                                        DataField="T_KBETR1" ItemStyle-HorizontalAlign="Center" HeaderText="Precio Concesionarioooo"
                                         ReadOnly="True" DataFormatString="{0:c}">
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:BoundField>
@@ -685,9 +691,12 @@
                                         ReadOnly="True">
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:BoundField>
-                                     <asp:BoundField ItemStyle-HorizontalAlign="Center" HeaderText="Tiene Stock" ReadOnly="True">
+                                    <asp:TemplateField HeaderText="Tiene Stock" FooterStyle-Font-Bold="True">
+                                        <ItemTemplate>
+                                            <%# determinaStock(Eval("stock").ToString(), Eval("cantidad").ToString()) %>
+                                        </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                    </asp:BoundField>
+                                    </asp:TemplateField>
                                      <asp:BoundField DataField="GRUPO" ItemStyle-HorizontalAlign="Center" HeaderText="Grupo" ReadOnly="True">
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:BoundField>

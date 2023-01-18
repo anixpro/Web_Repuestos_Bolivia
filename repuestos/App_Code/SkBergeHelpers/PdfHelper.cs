@@ -790,21 +790,21 @@ public class PdfHelper
 
 
         //Se crea la tabla que contendra los datos de los repuestos consultados
-        PdfPTable table = new PdfPTable(5);
+        PdfPTable table = new PdfPTable(6);
         PdfPCell titulo = new PdfPCell(new Phrase("Detalle Cotización",new Font(Font.NORMAL, 12f, Font.NORMAL)));
-        //PdfPCell cod = new PdfPCell(new Phrase("Código", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL)));
+        PdfPCell cod = new PdfPCell(new Phrase("Código", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL)));
         PdfPCell marc = new PdfPCell(new Phrase("Marca", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL)));
         PdfPCell cant = new PdfPCell(new Phrase("Cantidad", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL)));
         PdfPCell descrip = new PdfPCell(new Phrase("Descripcion", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL)));
         PdfPCell precioUnit = new PdfPCell(new Phrase("Precio Lista(PLS)", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL)));
         PdfPCell precioTot = new PdfPCell(new Phrase("Total", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL)));
 
-        titulo.Colspan = 5;
+        titulo.Colspan = 6;
         titulo.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
 
         //Agrego los titulos de las columnas en celdas
         table.AddCell(titulo);
-        //table.AddCell(cod);
+        table.AddCell(cod);
         table.AddCell(marc);
         table.AddCell(cant);
         table.AddCell(descrip);
@@ -826,7 +826,7 @@ public class PdfHelper
         DataSet dsL = _controlBD.ObtenerDatosFiltrados("select * from COTIZACION_COMUN_REPUESTO where idCotizacionComun = '" + idCot + "'");
         foreach (DataRow campo in dsL.Tables[0].Rows)
         {
-            //PdfPCell _cod = new PdfPCell(new Phrase(codigo, new Font(Font.FontFamily.COURIER, 9f, Font.NORMAL)));
+            PdfPCell _cod = new PdfPCell(new Phrase(campo["codigo"].ToString(), new Font(Font.FontFamily.COURIER, 9f, Font.NORMAL)));
             PdfPCell _marca = new PdfPCell(new Phrase(campo["marca"].ToString(), new Font(Font.FontFamily.COURIER, 9f, Font.NORMAL)));
             PdfPCell _cant = new PdfPCell(new Phrase(campo["cantidad"].ToString(), new Font(Font.FontFamily.COURIER, 9f, Font.NORMAL)));
             PdfPCell _descrip = new PdfPCell(new Phrase(campo["descripcion"].ToString(), new Font(Font.FontFamily.COURIER, 8f, Font.NORMAL)));
@@ -834,7 +834,7 @@ public class PdfHelper
             PdfPCell _total = new PdfPCell(new Phrase("$" + campo["total"].ToString(), new Font(Font.FontFamily.COURIER, 9f, Font.NORMAL)));
 
 
-            //table.AddCell(_cod);
+            table.AddCell(_cod);
             table.AddCell(_marca);
             table.AddCell(_cant);
             table.AddCell(_descrip);
@@ -853,7 +853,7 @@ public class PdfHelper
         }
 
         PdfPCell granTotal = new PdfPCell(new Phrase("Total Neto: $" + suma, new Font(Font.NORMAL, 10f, Font.NORMAL)));
-        granTotal.Colspan = 5;
+        granTotal.Colspan = 6;
         granTotal.HorizontalAlignment = 2;
         table.AddCell(granTotal);
                 

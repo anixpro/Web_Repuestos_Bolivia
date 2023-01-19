@@ -2246,14 +2246,7 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
     {
         try
         {
-            /*int _stock2 = _sapApi.GetCurrentStockByProduct(_pedido.ResultBusqueda.Codigo, 
-                _consultaRep.GrupoMaterial, 
-                _consultaRep.DestinaMercacia, 
-                txtNombre.Text, 
-                ComboMarcas.SelectedItem.Text);*/
-            int _stock2 = _pedido.stockSap_Origen;
-
-            if (_stock2 > 0)
+            if (_pedido.stockSap_Origen > 0)
             {
                 return "Sí";
             }

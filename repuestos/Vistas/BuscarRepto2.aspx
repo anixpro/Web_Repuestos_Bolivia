@@ -629,7 +629,7 @@
                                     </asp:BoundField>
                                     <asp:TemplateField HeaderText="Tiene Stock" FooterStyle-Font-Bold="True">
                                         <ItemTemplate>
-                                            <%# determinaStock2(Eval("stock").ToString()) %>
+                                            <%# determinaStock2() %>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:TemplateField>
@@ -693,7 +693,7 @@
                                     </asp:BoundField>
                                     <asp:TemplateField HeaderText="Tiene Stock" FooterStyle-Font-Bold="True">
                                         <ItemTemplate>
-                                            <%# determinaStock2(Eval("stock").ToString()) %>
+                                           <%# determinaStock2() %>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:TemplateField>

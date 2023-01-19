@@ -12,6 +12,7 @@ using log4net;
 using log4net.Config;
 using System.Data.SqlClient;
 using System.Net;
+using ExcelLibrary.BinaryFileFormat;
 
 public partial class Vistas_buscarRepto : System.Web.UI.Page
 {
@@ -2241,13 +2242,18 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         }
     }
 
-    protected String determinaStock2(String stock)
+    protected String determinaStock2()
     {
         try
         {
-            int _stock = int.Parse(stock);
+            /*int _stock2 = _sapApi.GetCurrentStockByProduct(_pedido.ResultBusqueda.Codigo, 
+                _consultaRep.GrupoMaterial, 
+                _consultaRep.DestinaMercacia, 
+                txtNombre.Text, 
+                ComboMarcas.SelectedItem.Text);*/
+            int _stock2 = _pedido.stockSap_Origen;
 
-            if (_stock > 0)
+            if (_stock2 > 0)
             {
                 return "Sí";
             }

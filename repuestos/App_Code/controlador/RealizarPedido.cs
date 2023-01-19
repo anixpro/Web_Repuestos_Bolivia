@@ -43,6 +43,9 @@ public class RealizarPedido
     public Boolean disponibilidadRepuesto { get; set; }
     public Boolean disponibilidadRepuestoSap { get; set; }
     public Boolean disponibilidadVFC { get; set; }
+
+    public int stockSap_Origen { get; set; }
+
     // Datos de autenticacion al WS
     private List<string> _cadenaReemplazo;
     private List<string> _errores;
@@ -193,6 +196,7 @@ public class RealizarPedido
                     _resultBusqueda.Descripcion = WsDatos.EZ_MAKTX;
                     _resultBusqueda.Codigo = WsDatos.EZ_MFRPN;
                     _resultBusqueda.Stock = _sapApi.GetCurrentStockByProduct(_resultBusqueda.Codigo, _consultaRep.GrupoMaterial, _consultaRep.DestinaMercacia, nombre, marca);
+                    stockSap_Origen = _resultBusqueda.Stock;
                     MVGR1 = WsDatos.EZ_MVGR1;
 
                     //decimalPosition = ResultBusqueda.PrecioLista.IndexOf(".");

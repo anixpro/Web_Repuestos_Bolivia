@@ -211,9 +211,6 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         GridViewListaRep.DataBind();
         GridViewTodosPreferidos.Visible = false;
 
-
-
-
         //Validar que se escoja una marca de la lista
         if (ComboMarcas.SelectedValue == "-1")
         {
@@ -375,9 +372,7 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
 
                 //Repuesto no Existe en SAP Realiza VFC
                 VFCbusqueda.Visible = true;
-
             }
-
         }
         else
         {
@@ -508,8 +503,6 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                 txtCantidad.Text = "";
                 txtNombre.Text = "";
                 ultimaDescripcion.Value = "";
-
-
             }
             else
             {
@@ -2027,8 +2020,6 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
             }
         }
     }
-
-
 
     protected void btnUdpCarro_Click(object sender, EventArgs e)
     {

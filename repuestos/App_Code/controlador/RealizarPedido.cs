@@ -514,6 +514,8 @@ public class RealizarPedido
                         _resultBusqueda.Descripcion = WsDatos.EZ_MAKTX;
                         _resultBusqueda.Codigo = WsDatos.EZ_MFRPN;
                         _resultBusqueda.Stock = _sapApi.GetCurrentStockByProduct(_resultBusqueda.Codigo, _consultaRep.GrupoMaterial, _consultaRep.DestinaMercacia, nombre, marca);
+                        stockSap_Origen = _resultBusqueda.Stock;
+
                         MVGR1 = WsDatos.EZ_MVGR1;
 
                         // REQ - PRECIO FIJOS DE REPUESTOS -  MARZO 2022

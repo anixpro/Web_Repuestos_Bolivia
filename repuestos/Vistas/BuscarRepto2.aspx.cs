@@ -2241,6 +2241,27 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         }
     }
 
+    protected String determinaStock2(String stock)
+    {
+        try
+        {
+            int _stock = int.Parse(stock);
+
+            if (_stock > 0)
+            {
+                return "Sí";
+            }
+            else
+            {
+                return "No";
+            }
+        }
+        catch (Exception)
+        {
+            return "Indef.";
+        }
+    }
+
     protected void btnVFCsi_Click(object sender, EventArgs e)
     {
         String marca = ultimaMarca.Value;

@@ -26,6 +26,9 @@ public partial class Vistas_Devoluciones : System.Web.UI.Page
     //public static string url;
     public static string DetalleSolicitud;
 
+    // Logger que dejará información de seguimiento en /doc/logWebReptos2.log
+    private static readonly ILog logger = log4net.LogManager.GetLogger(typeof(Vistas_Devoluciones));
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -438,6 +441,7 @@ public partial class Vistas_Devoluciones : System.Web.UI.Page
         }
         catch (Exception ex)
         {
+            logger.Error("En [BotonBuscar] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
             _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [DEVREC_Consulta_Factura] Message: " + ex.Message + " Inner: " + ex.InnerException);
         }
     }
@@ -483,6 +487,7 @@ public partial class Vistas_Devoluciones : System.Web.UI.Page
         catch (Exception ex)
         {
             msjesError.InnerText = "Se ha generado un error favor contacte a administrador.";
+            logger.Error("En [rdDevolucion_CheckedChanged] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
             msjesError.Visible = true;
             _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [DEVREC_chkchange_Devolucion] Message: " + ex.Message + " Inner: " + ex.InnerException);
         }
@@ -532,6 +537,7 @@ public partial class Vistas_Devoluciones : System.Web.UI.Page
         catch (Exception ex)
         {
             msjesError.InnerText = "Se ha generado un error favor contacte a administrador.";
+            logger.Error("En [rdReclamo_ChekedChanged] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
             msjesError.Visible = true;
             _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [DEVREC_chkchange_Reclamo] Message: " + ex.Message + " Inner: " + ex.InnerException);
 
@@ -796,6 +802,7 @@ public partial class Vistas_Devoluciones : System.Web.UI.Page
         catch (Exception ex)
         {
             msjesError.InnerText = "Se ha generado un error favor contacte a administrador.";
+            logger.Error("En [SinStock] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
             msjesError.Visible = true;
             _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [DEVREC_btnSolicitar] Message: " + ex.Message + " Inner: " + ex.InnerException);
         }

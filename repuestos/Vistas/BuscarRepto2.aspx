@@ -351,6 +351,13 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                <td><asp:Label runat="server" Text="Motivo Pedido : "></asp:Label></td>
+                                                     <td colspan="3">
+                                                            <asp:DropDownList runat="server" ID="ddlmotivodepedidoCotizacion" AutoPostBack="true" OnSelectedIndexChanged="ddlmotivodepedidoCotizacion_SelectedIndexChanged">
+                                                            </asp:DropDownList>
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <td><asp:Label runat="server" Text="Vin : "></asp:Label></td>
                                                     <td>
                                                         <asp:TextBox runat="server" id="txtVin2" maxlength="17"></asp:TextBox>
@@ -523,6 +530,15 @@
                                                                     ReadOnly="true">
                                                                     <ItemStyle HorizontalAlign="Center" />
                                                                 </asp:BoundField>
+                                                                 <asp:BoundField DataField="Motivo" ItemStyle-HorizontalAlign="Center" HeaderText="Motivo"
+                                                                    ReadOnly="true">
+                                                                    <ItemStyle HorizontalAlign="Center" />
+                                                                </asp:BoundField>
+                                                                <asp:BoundField DataField="Motivo" FooterStyle-CssClass="invi" ItemStyle-CssClass="invi"
+                                                                    HeaderStyle-CssClass="invi" ItemStyle-HorizontalAlign="Center" HeaderText="Motivo"
+                                                                    ReadOnly="true">
+                                                                    <ItemStyle HorizontalAlign="Center" />
+                                                                </asp:BoundField>
                                                                 <asp:ButtonField ButtonType="Image" HeaderText="Eliminar" ItemStyle-HorizontalAlign="Center"
                                                                     CommandName="quitar" Visible="true" ImageUrl="~/img/quitar.png" />
                                                             </Columns>
@@ -545,7 +561,14 @@
                                             <asp:Button ID="btnFrecuencia" runat="server" Text="Generar Cotización" 
                                                 onclick="btnFrecuencia_Click" />
                                         </center>
-                                    </asp:Panel>
+                            </asp:Panel>
+                            <asp:Panel ID="pnlir" runat="server" Visible="false">
+                            <center>
+                                <asp:HiddenField id="hdnCotizacion" runat="server"></asp:HiddenField>
+                                <b>¿Desea dirigirse a confirmar la cotización?.<br /></b>
+                                <asp:Button id="btnIr" runat="server" Text="Ir" OnClick="Unnamed1_Click"></asp:Button>
+                            </center>
+                            </asp:Panel>
                             <!-- GridView con los resultados de todos los preferidos-->
                             <asp:GridView ID="GridViewTodosPreferidos" runat="server" AutoGenerateColumns="False"
                                 EmptyDataText="La búsqueda no arrojó resultados" ShowFooter="True" BackColor="White"
@@ -636,7 +659,7 @@
                                     <asp:BoundField DataField="GRUPO" ItemStyle-HorizontalAlign="Center" HeaderText="Grupo" ReadOnly="True">
                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                     </asp:BoundField>
-                                    <asp:CommandField SelectText="" ShowSelectButton="True" FooterStyle-HorizontalAlign="Center"
+                                     <asp:CommandField SelectText="" ShowSelectButton="True" FooterStyle-HorizontalAlign="Center" 
                                         ButtonType="Image" SelectImageUrl="~/img/cart.png" />
                                 </Columns>
                             </asp:GridView>

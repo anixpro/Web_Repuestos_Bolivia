@@ -563,7 +563,12 @@ public partial class Vistas_cotizar : System.Web.UI.Page
             _consultaRep.TextoRep = "";
             int cantidad = int.Parse(dr["cantidad"].ToString());
 
-            if (!_pedido.BuscarRepuesto(_consultaRep, idSession, cantidad, "", marca))
+            string outchg = "";
+            string rep_orig = "";
+            int frec = 0;
+
+
+            if (!_pedido.BuscarRepuesto(_consultaRep, idSession, cantidad, "", marca, out frec))
             {
                 MessageBox.Show("No hubo resultados en la búsqueda");
             }

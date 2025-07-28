@@ -26,6 +26,7 @@ using System.Drawing;
 using System.Security.Policy;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Threading;
 
 public partial class Vistas_EdicionSolicitud : System.Web.UI.Page
 {
@@ -322,6 +323,7 @@ public partial class Vistas_EdicionSolicitud : System.Web.UI.Page
         }
         if (e.CommandName == "editar")
         {
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             int indice = Convert.ToInt32(e.CommandArgument);
             GridViewRow selectRow = gvListSolicitud.Rows[indice];
             Label numero = selectRow.Cells[1].FindControl("numeroSolicitud") as Label;

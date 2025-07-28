@@ -74,15 +74,6 @@
                     </EditItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Tipo">
-                    <ItemTemplate>
-                        <asp:Label ID="lblTipo" runat="server" Text='<%# Eval("TIPO") %>'></asp:Label>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                            <asp:TextBox ID="txtTipo" runat="server" Text='<%# Eval("TIPO") %>' EnableViewState="true"></asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateField>
-
                 <asp:CommandField ShowEditButton="False" />
             </Columns>
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

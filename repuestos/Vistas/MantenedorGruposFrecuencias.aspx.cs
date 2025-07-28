@@ -25,7 +25,7 @@ public partial class Vistas_MantenedorGruposFrecuencias : System.Web.UI.Page
 
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
-        LlenaFrecuencias(txtCodigo.Text);
+        ConsultaFrecuencia(txtCodigo.Text);
     }
 
     private void LlenaFrecuencias(string codigo)
@@ -40,6 +40,37 @@ public partial class Vistas_MantenedorGruposFrecuencias : System.Web.UI.Page
             cmd.Connection = con;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "webr_obtiene_frecuencias";
+            cmd.CommandTimeout = 10;
+            cmd.Parameters.Add("@i_codigo", SqlDbType.VarChar, 15).Value = txtCodigo.Text;
+            cmd.Parameters.Add("@o_nro_error", SqlDbType.Int, 2).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("@o_msg_error", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgvFrecuencias.DataSource = dt;
+            dgvFrecuencias.DataBind();
+
+            con.Close();
+        }
+        catch (Exception ex)
+        {
+            _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [Se presento un error al ingresar] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
+            con.Close();
+        }
+    }
+
+    private void ConsultaFrecuencia(string codigo)
+    {
+        try
+        {
+            con = new SqlConnection();
+            cmd = new SqlCommand();
+
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["skbergeConnectionString"].ConnectionString;
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "webr_sku_frecuencias";
             cmd.CommandTimeout = 10;
             cmd.Parameters.Add("@i_codigo", SqlDbType.VarChar, 15).Value = txtCodigo.Text;
             cmd.Parameters.Add("@o_nro_error", SqlDbType.Int, 2).Direction = ParameterDirection.Output;

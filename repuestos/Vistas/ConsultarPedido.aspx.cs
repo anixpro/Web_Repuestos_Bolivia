@@ -633,7 +633,11 @@ public partial class Vistas_ConsultarPedido : System.Web.UI.Page
             _consul.CanalDistribucion = _sapApi.CanalDeDistribucionPedido;
             _consul.TextoRep = "";
 
-            if (!_pedido.BuscarRepuesto(_consul, idSession, int.Parse(dr["cantidad"].ToString()), "", marca))
+            string outchg = "";
+            string rep_ori = "";
+            int frec = 0;
+
+            if (!_pedido.BuscarRepuesto(_consul, idSession, int.Parse(dr["cantidad"].ToString()), "", marca, out frec))
             {
                 MessageBox.Show("No hubo resultados en la búsqueda");
             }

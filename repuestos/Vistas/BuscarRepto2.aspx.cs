@@ -231,9 +231,16 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
 
     private void BuscarRepuesto(object o, EventArgs e)
     {
+        pnlFrecuencia.Visible = false;
         GridViewListaRep.DataSource = null;
         GridViewListaRep.DataBind();
         GridViewTodosPreferidos.Visible = false;
+        //Oculta paneles de cotizacion 2.0
+        tipoSolicitud.Visible = false;
+        valoresPorVia.Visible = false;
+        pnlSolicitud.Visible = false;
+        CargarMotivoPedidoCotizacion();
+
 
         //VALIDAR DONDE CREAR COTIZACION AUTOMATICA
         // REQ - Cotización automatica Marzo 2022
@@ -355,10 +362,15 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         _consultaRep.TextoRep = txtNombre.Text.ToUpper();
         _consultaRep.CantidadRep = int.Parse(txtCantidad.Text);
 
+        string changemarca = "";
+        string rep_original = "";
+        int activofrec = 0;
+        Session["Frecuencia"] = "0";
+
         // Se envía los datos al método BuscarRepuestos del controlador
         // Se verifica si el método que busca repuestos encontro algo
         // sino encuentra nada despliega un msj de error
-        if (!_pedido.BuscarRepuesto(_consultaRep, Session["idSession"].ToString(), int.Parse(txtCantidad.Text.Trim()), txtNombre.Text, marca))
+        if (!_pedido.BuscarRepuesto(_consultaRep, Session["idSession"].ToString(), int.Parse(txtCantidad.Text.Trim()), txtNombre.Text, marca, out activofrec))
         {
             //CODIGO NO EXISTE EN SAP
             VFCbusqueda.Visible = true;
@@ -482,12 +494,67 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
             int _nReg = 0;
             int _nReg2 = 0;
 
+            _nReg = 0;
+
+            DataSet dsValidaCarroNornal = _controlBD.ObtenerDatosFiltrados(" SELECT COUNT(*) AS n_reg FROM carro WHERE idSession = '" + Session["idSession"].ToString() + "' ");
+            foreach (DataRow drValidaCarroNormal in dsValidaCarroNornal.Tables[0].Rows)
+            {
+                _nReg = Convert.ToInt32(drValidaCarroNormal["n_reg"]);
+            }
+
+
+            _nReg2 = 0;
+
+            DataSet dsValidaCarro2 = _controlBD.ObtenerDatosFiltrados(" SELECT COUNT(*) AS n_reg FROM t_SolicitudCotizacion_TMP WHERE sesion = '" + Session["idSession"].ToString() + "' ");
+            foreach (DataRow drValidaCarro in dsValidaCarro2.Tables[0].Rows)
+            {
+                _nReg2 = Convert.ToInt32(drValidaCarro["n_reg"]);
+            }
+
+            if (_nReg2 > 0)
+            {
+
+                if (_pedido.disponibilidadRepuesto) //tiene stock y precios
+                {
+                    msjesError.InnerText = "ATENCION: Repuesto '" + txtCodigo.Text + "' tiene stock. Favor realizar una nueva cotización para este producto (en un nuevo carro de compra).";
+                    btnCotizar2.Enabled = false;
+                }
+
+                if (!_pedido.disponibilidadRepuesto) //tiene stock, pero NO precios
+                {
+                    msjesError.InnerText = "ATENCION: Repuesto '" + txtCodigo.Text + "' no tiene stock. Favor realizar una nueva cotización para este producto (en un nuevo carro de compra).";
+                    btnCotizar2.Enabled = false;
+                }
+
+
+                VFCbusqueda.Visible = false;
+                GridViewListaRep.Visible = false;
+
+                msjesError.Visible = true;
+
+                valoresPorVia.Visible = true;
+                pnlSolicitud.Visible = true;
+                tipoSolicitud.Visible = true;
+                //dgvSolicitud.Visible = true;
+                GridViewListaRep.Visible = false;
+                GridViewCarro.Visible = false;
+                GridViewReemplazos.Visible = false;
+                btnAgregar.Enabled = false;
+            }
+
+
             if (!_pedido.disponibilidadRepuesto)
             {
                 msjesError.InnerText = _pedido.mensajeError;
                 msjesError.Visible = true;
             }
 
+            if (!_pedido.disponibilidadRepuesto)
+            {
+                msjesError.InnerText = _pedido.mensajeError;
+                msjesError.Visible = true;
+            }
+            //***********************************************************************************************************
             //agregado por Anibal para Cotizacion Automatica
             if (_pedido.disponibilidadVFC) //si no tiene stock ni precio
             {
@@ -616,6 +683,114 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                 }
             }
             //fin bloque cotizacion automatica
+            //*****************************************************************************************
+            //material Frecuencia
+
+            Session["Frecuencia"] = Convert.ToString(activofrec);
+
+            GridViewListaRep.DataSource = _controlBD.ObtenerDatosFiltrados("select * from LISTA_BUSQUEDA_TMP where ID_SESSION = '" + Session["idSession"].ToString() + "'");
+
+            if (activofrec == 1)
+            {
+                string Precio = "";
+                for (int i = 0; i < GridViewListaRep.Rows.Count; i++)
+                {
+                    GridViewRow row = GridViewListaRep.Rows[i];
+                    Precio = row.Cells[6].Text;
+                }
+
+                if (Precio == "*S/P")
+                {
+                    pnlFrecuencia.Visible = false;
+                }
+                else
+                {
+                    if (ComboMarcas.SelectedItem.Text != "MOBIL-COPEC")
+                    {
+                        //pnlFrecuencia.Visible = true;
+                        //msjesError.Visible = false;
+
+                        _nReg = 0;
+                        _nReg2 = 0;
+
+                        _nReg = 0;
+
+                        dsValidaCarroNornal = _controlBD.ObtenerDatosFiltrados(" SELECT COUNT(*) AS n_reg FROM carro WHERE idSession = '" + Session["idSession"].ToString() + "' ");
+                        foreach (DataRow drValidaCarroNormal in dsValidaCarroNornal.Tables[0].Rows)
+                        {
+                            _nReg = Convert.ToInt32(drValidaCarroNormal["n_reg"]);
+                        }
+
+
+                        _nReg2 = 0;
+
+                        dsValidaCarro2 = _controlBD.ObtenerDatosFiltrados(" SELECT COUNT(*) AS n_reg FROM t_SolicitudCotizacion_TMP WHERE sesion = '" + Session["idSession"].ToString() + "' ");
+                        foreach (DataRow drValidaCarro in dsValidaCarro2.Tables[0].Rows)
+                        {
+                            _nReg2 = Convert.ToInt32(drValidaCarro["n_reg"]);
+                        }
+
+                        if (_nReg > 0 || _nReg2 > 0)
+                        {
+                            msjesError.InnerText = "ATENCION: Repuesto '" + txtCodigo.Text + "' no tiene stock. Favor realizar una nueva cotización para este producto (en un nuevo carro de compra).";
+                            msjesError.Visible = true;
+                            btnCotizar2.Enabled = false;
+                            GridViewListaRep.Visible = false;
+                        }
+                        else
+                        {
+                            pnlFrecuencia.Visible = true;
+                            msjesError.Visible = false;
+                        }
+                    }
+                }
+            }
+
+
+            try
+            {
+                //Muestra el resultado de la busqueda
+                if (ComboMarcas.SelectedItem.Text == "MOBIL-COPEC")
+                {
+                    msjesError.InnerText = "ATENCION: Recuerde validar que las cantidades ingresadas correspondan a la unidad de venta del SKU.";
+                    msjesError.Visible = true;
+                }
+
+                GridViewListaRep.DataSourceID = null;
+                GridViewListaRep.PagerSettings.Mode = PagerButtons.NumericFirstLast;
+                GridViewListaRep.DataBind();
+                Session["Tracking"] = "NO";
+
+                if (changemarca == "SI")
+                {
+                    //string prefijoMarca = _sapApi.GetPrefijoMarcaByGrupoMateriales(_consultaRep.GrupoMaterial);
+                    //string prefijoMaterial = prefijoMarca.Substring(0, 2);
+                    string grupoMaterial = "";
+
+
+                    DataSet dsMarca = _controlBD.ObtenerDatosFiltrados(" SELECT repuesto_destino FROM dbo.repuesto_homologo WHERE repuesto_origen LIKE '%" + txtCodigo.Text + "%' ");
+                    foreach (DataRow dr in dsMarca.Tables[0].Rows)
+                    {
+                        grupoMaterial = dr["repuesto_destino"].ToString().Substring(0, 2);
+                    }
+
+
+                    ComboMarcas.Enabled = true;
+                    ComboMarcas.SelectedItem.Text = _sapApi.GetMarcaPorPrefijo(grupoMaterial);//"MITSUBISHI";
+                    ComboMarcas.Enabled = false;
+                    Session["Tracking"] = changemarca;
+                    Session["RepOriginal"] = rep_original;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                msjesError.InnerText = "Hubo un error con la Base de datos. Favor notificar al administrador. Rogamos disculpar las molestias";
+                msjesError.Visible = true;
+                _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [BuscaRepto_BuscarRepuesto] Message: " + ex.Message + " Inner: " + ex.InnerException + " Stack: " + ex.StackTrace);
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "RewindScroll", "window.scrollTo(0,0)", true);
+                return;
+            }
 
             //Consulto si mi repuesto encontro algo
             string busqueda = _sapApi.EncontreMaterial(Session["idSession"].ToString(), _consultaRep.CodRepuesto);
@@ -894,7 +1069,7 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
 
             precioC = double.Parse(GridViewListaRep.SelectedRow.Cells[5].Text);
 
-            precioL = double.Parse(GridViewListaRep.SelectedRow.Cells[4].Text, System.Globalization.CultureInfo.InvariantCulture);
+            precioL = double.Parse(GridViewListaRep.SelectedRow.Cells[4].Text);
 
         }
 
@@ -1049,7 +1224,7 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
 
             if (diferencia > 0)
             {
-
+                
                 precioCF = System.Convert.ToString(precioC);
                 totalCF = System.Convert.ToString(totalC);
                 precioLF = System.Convert.ToString(precioL);
@@ -1063,9 +1238,11 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                                         "  " + diferencia + ", " + stock + " , " + "convert(float,replace('" + precioCF + "',',','.'))" + " , " + "convert(float,replace('" + totalCF + "',',','.'))" + ",  " +
                                         "  " + "convert(float,replace('" + precioLF + "',',','.'))" + " , " + "convert(float,replace('" + totalLF + "',',','.'))" + ")");
 
+                DataSet CantidadesParaMensaje = _controlBD.ObtenerDatosFiltrados("select * from no_stock where idSession = '" + idSession + "'");//solo temporaral se agrega para obtener cantidades y no se vea el modulo VFC
+
                 //Se llena GridViewCarro con los datos de la tabla carro
                 try
-                {
+                {                 
                     GridViewNoStock.DataSource = _controlBD.ObtenerDatosFiltrados("select * from no_stock where idSession = '" + idSession + "'");
                     GridViewNoStock.DataBind();
                 }
@@ -1094,11 +1271,19 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                     PanelSoloHNoStock.Visible = false;
                 }
 
-                PanelNoStock.Visible = true;
+                foreach (DataRow i in CantidadesParaMensaje.Tables[0].Rows)
+                {
+                    string StockDisponible = i["cantidad"].ToString();
+                    string Diferencia = i["stock"].ToString();
+
+                    msjesError.InnerText = "El Stock disponible es de " + Diferencia + " favor por los " +  StockDisponible + " generar cotizacion correspondiente";
+                    msjesError.Visible = true;
+                }
+                //PanelNoStock.Visible = true;
 
                 if (GridViewCarro.Rows.Count == 0)
                 {
-                    PanelSoloHNoStock.Visible = true;
+                    //PanelSoloHNoStock.Visible = true;
                 }
                 else
                 {
@@ -1764,6 +1949,18 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         }
     }
 
+    private void CargarMotivoPedidoCotizacion()
+    {
+
+        DropDownList ddlmotivodepedido = (DropDownList)PanelCotizarSap.FindControl("ddlmotivodepedido");
+
+        ddlmotivodepedidoCotizacion.Items.Clear();
+        ddlmotivodepedidoCotizacion.Items.Add(new ListItem("Seleccionar", "-1"));
+        foreach (string pedido in _controlBD.TipoPedido(_marca))
+        {
+            ddlmotivodepedidoCotizacion.Items.Add(pedido);
+        }
+    }
 
 
     #region Calcula el gran total de una columna sin nada
@@ -2617,8 +2814,16 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                     ((System.Web.UI.WebControls.TableRow)(((System.Web.UI.WebControls.GridViewRowEventArgs)(e)).Row)).Cells[4].Text = "--";
                     ((System.Web.UI.WebControls.TableRow)(((System.Web.UI.WebControls.GridViewRowEventArgs)(e)).Row)).Cells[5].Text = "--";
                     ((System.Web.UI.WebControls.TableRow)(((System.Web.UI.WebControls.GridViewRowEventArgs)(e)).Row)).Cells[8].Text = "--";
+                    ((System.Web.UI.WebControls.TableRow)(((System.Web.UI.WebControls.GridViewRowEventArgs)(e)).Row)).Cells[9].Enabled = false;
                     //Bloque se descomenta el 21Dic2021
                 }
+
+                if (pnlFrecuencia.Visible == true)
+                {
+                    ((System.Web.UI.WebControls.TableRow)(((System.Web.UI.WebControls.GridViewRowEventArgs)(e)).Row)).Cells[11].Enabled = false;
+                    //((System.Web.UI.WebControls.TableRow)(((System.Web.UI.WebControls.GridViewRowEventArgs)(e)).Row)).BackColor= Color.FromName("#999999");
+                }
+
                 //else
                 //{
                 //    ((System.Web.UI.WebControls.TableRow)(((System.Web.UI.WebControls.GridViewRowEventArgs)(e)).Row)).Cells[9].Text = "Si";
@@ -2730,12 +2935,65 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         }
     }
 
+    public Boolean validaArchivoAdicionalCotizacion()
+    {
+        int _valor = 0;
+
+        DataSet ds = _controlBD.ObtenerDatosFiltrados(" SELECT mp_documentacion FROM Motivo_Pedido WHERE mp_Marca = '" + ComboMarcas.SelectedItem.ToString() + "' AND RTRIM(LTRIM(MP_Descripcion)) = '" + ddlmotivodepedidoCotizacion.SelectedItem.ToString() + "' ");
+        if (ds != null)
+        { //bloque que verifica referencia estalecida 
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                _valor = Convert.ToInt32(dr["mp_documentacion"]);
+            }
+
+        }
+
+        if (_valor == 1)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public Boolean validaDatosAdicionales()
     {
         uplFile.Visible = false;
         int _valor = 0;
 
         DataSet ds = _controlBD.ObtenerDatosFiltrados(" SELECT mp_informacion FROM Motivo_Pedido WHERE mp_Marca = '" + ComboMarcas.SelectedItem.ToString() + "' AND RTRIM(LTRIM(MP_Descripcion)) = '" + ddlmotivodepedido.SelectedItem.ToString() + "' ");
+
+        if (ds != null)
+        { //bloque que verifica referencia estalecida 
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                _valor = Convert.ToInt32(dr["mp_informacion"]);
+            }
+
+        }
+
+
+        if (_valor == 1)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public Boolean validaDatosAdicionalesCotizacion()
+    {
+        uplFile.Visible = false;
+        int _valor = 0;
+
+        DataSet ds = _controlBD.ObtenerDatosFiltrados(" SELECT mp_informacion FROM Motivo_Pedido WHERE mp_Marca = '" + ComboMarcas.SelectedItem.ToString() + "' AND RTRIM(LTRIM(MP_Descripcion)) = '" + ddlmotivodepedidoCotizacion.SelectedItem.ToString() + "' ");
 
         if (ds != null)
         { //bloque que verifica referencia estalecida 
@@ -2882,6 +3140,130 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         }
     }
 
+    protected void ddlmotivodepedidoCotizacion_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlmotivodepedidoCotizacion.SelectedValue.ToString() != "-1")
+        {
+            bool _archivoAdicional = validaArchivoAdicionalCotizacion();
+            bool _datosAdicionales = validaDatosAdicionalesCotizacion();
+
+            if (_archivoAdicional)
+            {
+                uplFile.Visible = true;
+            }
+
+            if (_datosAdicionales)
+            {
+                ddlCompania.SelectedValue = "-1";
+                ddlTipoSustento.SelectedValue = "-1";
+                txtNroChasis.Text = "";
+                txtNroSiniestro.Text = "";
+                txtNroOt.Text = "";
+                txtTaller.Text = "";
+                txtNroSustento.Text = "";
+                txtRuc.Text = "";
+
+
+                ddlCompania.Enabled = false;
+                ddlTipoSustento.Enabled = false;
+                txtNroChasis.Enabled = false;
+                txtNroSiniestro.Enabled = false;
+                txtNroOt.Enabled = false;
+                txtTaller.Enabled = false;
+                txtNroSustento.Enabled = false;
+                txtRuc.Enabled = false;
+
+                int _idMotivo = 0;
+                string _query = " SELECT ID_Motivo_pedido FROM Motivo_Pedido WHERE mp_Marca = '" + ComboMarcas.SelectedItem.Text + "' AND LTRIM(RTRIM((MP_Descripcion))) = '" + ddlmotivodepedido.SelectedItem.Text.Trim() + "' ";
+
+                DataSet ds = _controlBD.ObtenerDatosFiltrados(_query);
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    _idMotivo = Convert.ToInt32(dr["ID_Motivo_pedido"]);
+                }
+
+
+                int _id = 0;
+                bool _habilitado = false;
+
+                DataSet dsMotivos = _controlBD.ObtenerDatosFiltrados(" SELECT " +
+                                                                        "   IAD.id, IAD.descripcion, IADD.habilitado " +
+                                                                        " FROM " +
+                                                                        "    dbo.info_ad_datos_detalle IADD, " +
+                                                                        "    dbo.info_ad_datos IAD " +
+                                                                        " WHERE " +
+                                                                        "    IAD.id = IADD.id_info_ad " +
+                                                                        " AND " +
+                                                                        "    IADD.id_motivo = '" + _idMotivo + "' " +
+                                                                        " AND " +
+                                                                        "    IADD.marca = '" + ComboMarcas.SelectedItem.Text + "' ");
+                if (dsMotivos.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow drMotivos in dsMotivos.Tables[0].Rows)
+                    {
+                        _id = Convert.ToInt32(drMotivos["id"]);
+                        _habilitado = Convert.ToBoolean(drMotivos["habilitado"]);
+
+                        switch (_id)
+                        {
+                            case 1:
+                                if (_habilitado) ddlCompania.Enabled = true;
+                                break;
+                            case 2:
+                                if (_habilitado) ddlTipoSustento.Enabled = true;
+                                break;
+                            case 3:
+                                if (_habilitado) txtNroChasis.Enabled = true;
+                                break;
+                            case 4:
+                                if (_habilitado) txtNroSiniestro.Enabled = true;
+                                break;
+                            case 5:
+                                if (_habilitado) txtNroOt.Enabled = true;
+                                break;
+                            case 6:
+                                if (_habilitado) txtTaller.Enabled = true;
+                                break;
+                            case 7:
+                                if (_habilitado) txtNroSustento.Enabled = true;
+                                break;
+                            case 8:
+                                if (_habilitado) txtRuc.Enabled = true;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    ddlCompania.Enabled = false;
+                    ddlTipoSustento.Enabled = false;
+                    txtNroChasis.Enabled = false;
+                    txtNroSiniestro.Enabled = false;
+                    txtNroOt.Enabled = false;
+                    txtTaller.Enabled = false;
+                    txtNroSustento.Enabled = false;
+                }
+
+            }
+            else
+            {
+                ddlCompania.Enabled = false;
+                ddlTipoSustento.Enabled = false;
+                txtNroChasis.Enabled = false;
+                txtNroSiniestro.Enabled = false;
+                txtNroOt.Enabled = false;
+                txtTaller.Enabled = false;
+                txtNroSustento.Enabled = false;
+            }
+        }
+        else
+        {
+            uplFile.Visible = false;
+        }
+    }
+
     protected void btnCotizar2_Click(object sender, EventArgs e)
     {
         ServicePointManager.ServerCertificateValidationCallback = (snder, cert, chain, error) => true;
@@ -2894,6 +3276,14 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         if (ddlTipoSolicitud.SelectedValue == "0")
         {
             msjesError.InnerText = "Debes seleccionar un tipo de solicitud.";
+            msjesError.Visible = true;
+            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "RewindScroll", "window.scrollTo(0,0)", true);
+            return;
+        }
+
+        if (ddlmotivodepedidoCotizacion.SelectedValue == "0")
+        {
+            msjesError.InnerText = "Debes seleccionar un Motivo de solicitud.";
             msjesError.Visible = true;
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "RewindScroll", "window.scrollTo(0,0)", true);
             return;
@@ -2975,6 +3365,7 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
         tipoSolicitud.Visible = true;
         valoresPorVia.Visible = true;
         pnlSolicitud.Visible = true;
+        ddlmotivodepedidoCotizacion.Visible = true;
     }
 
 
@@ -3182,6 +3573,20 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
             return;
         }
 
+        string motivo = "";
+
+        //Validar que se escoja un Motivo de pedido
+        if (ddlmotivodepedidoCotizacion.SelectedValue == "-1")
+        {
+            msjesError.InnerText = "Debes seleccionar un Motivo de Pedido de la lista, por favor";
+            msjesError.Visible = true;
+            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "RewindScroll", "window.scrollTo(0,0)", true);
+            return;
+        }
+        else
+        {
+            motivo = ddlmotivodepedidoCotizacion.SelectedItem.Text;
+        }
 
 
         string query = "";
@@ -3225,6 +3630,8 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
             btnCrearSolicitud.Visible = true;
 
 
+
+
             if (ComboMarcas.Enabled == true)
             {
                 query = "insert into t_Cotiza (fecha_cotiza,rut_cotiza, sesion,vin, detalle, tipo_solicitud) Values(GETDATE()," + "'" + rut + "'" + "," + "'" + sesion + "'" + "," + "'" + txtVin2.Text + "'" + "," + "''" + "," + "'FO'" + ")";
@@ -3236,7 +3643,7 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                 try
                 {
                     //aviso.Visible = true;
-                    dgvSolicitud.DataSource = _ControlBD.ObtenerDatosFiltrados("SELECT tmp.numeroSolicitud, CONVERT(VARCHAR,tmp.fecha,103) + ' ' + CONVERT(nvarchar(10), GETDATE(), 108) as fecha , tmp.marca, tmp.codRepto, tmp.descripcion, tmp.cantidad, tmp.usuario, tmp.concesionario, tmp.tipo, tmp.vin, tmp.envio, tmp.dias FROM t_SolicitudCotizacion_TMP tmp FULL JOIN t_Cotiza co ON tmp.numeroSolicitud = co.id_cotiza WHERE tmp.numeroSolicitud = co.id_cotiza AND tmp.sesion = '" + sesion + "'");
+                    dgvSolicitud.DataSource = _ControlBD.ObtenerDatosFiltrados("SELECT tmp.numeroSolicitud, CONVERT(VARCHAR,tmp.fecha,103) + ' ' + CONVERT(nvarchar(10), GETDATE(), 108) as fecha , tmp.marca, tmp.codRepto, tmp.descripcion, tmp.cantidad, tmp.usuario, tmp.concesionario, tmp.tipo, tmp.vin, tmp.envio, tmp.dias,(SELECT MP_Descripcion FROM Motivo_Pedido WHERE mp_Marca = tmp.marca AND LTRIM(RTRIM(MP_codigo)) = LTRIM(RTRIM(tmp.motivo)) AND MP_Flag = '1') as motivo FROM t_SolicitudCotizacion_TMP tmp FULL JOIN t_Cotiza co ON tmp.numeroSolicitud = co.id_cotiza WHERE tmp.numeroSolicitud = co.id_cotiza AND tmp.sesion = '" + sesion + "'");
                     dgvSolicitud.DataBind();
                 }
                 catch (Exception ex)
@@ -3250,6 +3657,12 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
             }
             else
             {
+
+                string querycod, unidad, queryMotivo;
+                //Obtiene codigo del motivo
+                queryMotivo = "SELECT MP_codigo FROM Motivo_Pedido WHERE mp_Marca = '" + ComboMarcas.SelectedValue + "' AND MP_Descripcion = '" + ddlmotivodepedidoCotizacion.SelectedValue + "' ";
+                motivo = _ControlBD.consultarCodigoMotivoMarca(queryMotivo);
+
                 query = "SELECT numeroSolicitud FROM t_SolicitudCotizacion_TMP WHERE sesion = '" + sesion + "'"; //Cambio 1
                 string resol = Convert.ToString(_ControlBD.Existencia(query));
                 if (resol == "")
@@ -3257,13 +3670,13 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                     query = "insert into t_Cotiza (fecha_cotiza,rut_cotiza, sesion,vin, detalle, tipo_solicitud) Values(GETDATE()," + "'" + rut + "'" + "," + "'" + sesion + "'" + "," + "'" + txtVin2.Text + "'" + "," + "''" + "," + "'FO'" + ")";
                     _ControlBD.EjecutaQuery(query);
 
-                    query = "exec sp_CreaSolicitudCotizacion_TMP_SA " + "'" + rut + "'" + "," + "'" + ComboMarcas.SelectedValue + "'" + "," + "'" + txtCodigo.Text + "'" + "," + "'" + lblCodigoCotizado.Text + "'" + "," + "'" + txtCantidad.Text + "'" + "," + "'" + ddlTipoSolicitud.SelectedValue + "'" + "," + "'" + sesion + "'" + "," + "'" + txtVin2.Text + "'" + "," + "'" + _solicitudTipoTransporte + "'" + "," + "'" + _solicitudDias + "'" + "," + "'" + _precioSolicitud + "' ";
+                    query = "exec sp_CreaSolicitudCotizacion_TMP_SA " + "'" + rut + "'" + "," + "'" + ComboMarcas.SelectedValue + "'" + "," + "'" + txtCodigo.Text + "'" + "," + "'" + lblCodigoCotizado.Text + "'" + "," + "'" + txtCantidad.Text + "'" + "," + "'" + ddlTipoSolicitud.SelectedValue + "'" + "," + "'" + sesion + "'" + "," + "'" + txtVin2.Text + "'" + "," + "'" + _solicitudTipoTransporte + "'" + "," + "'" + _solicitudDias + "'" + "," + "'" + _precioSolicitud + "'"+","+"'"+motivo+"'";
                     _ControlBD.EjecutaQuery(query);
 
                     try
                     {
                         //aviso.Visible = true;
-                        dgvSolicitud.DataSource = _ControlBD.ObtenerDatosFiltrados("SELECT tmp.numeroSolicitud, CONVERT(VARCHAR,tmp.fecha,103) + ' ' + CONVERT(nvarchar(10), GETDATE(), 108) as fecha , tmp.marca, tmp.codRepto, tmp.descripcion, tmp.cantidad, tmp.usuario, tmp.concesionario, tmp.tipo, tmp.vin, tmp.envio, tmp.dias FROM t_SolicitudCotizacion_TMP tmp FULL JOIN t_Cotiza co ON tmp.numeroSolicitud = co.id_cotiza WHERE tmp.numeroSolicitud = co.id_cotiza AND tmp.sesion = '" + sesion + "'");
+                        dgvSolicitud.DataSource = _ControlBD.ObtenerDatosFiltrados("SELECT tmp.numeroSolicitud, CONVERT(VARCHAR,tmp.fecha,103) + ' ' + CONVERT(nvarchar(10), GETDATE(), 108) as fecha , tmp.marca, tmp.codRepto, tmp.descripcion, tmp.cantidad, tmp.usuario, tmp.concesionario, tmp.tipo, tmp.vin, tmp.envio, tmp.dias,(SELECT MP_Descripcion FROM Motivo_Pedido WHERE mp_Marca = tmp.marca AND LTRIM(RTRIM(MP_codigo)) = LTRIM(RTRIM(tmp.motivo)) AND MP_Flag = '1') as motivo FROM t_SolicitudCotizacion_TMP tmp FULL JOIN t_Cotiza co ON tmp.numeroSolicitud = co.id_cotiza WHERE tmp.numeroSolicitud = co.id_cotiza AND tmp.sesion = '" + sesion + "'");
                         dgvSolicitud.DataBind();
                     }
                     catch (Exception ex)
@@ -3284,7 +3697,11 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                 }
                 else
                 {
-                    query = "exec sp_CreaSolicitudCotizacion_TMP_SA " + "'" + rut + "'" + "," + "'" + ComboMarcas.SelectedValue + "'" + "," + "'" + txtCodigo.Text + "'" + "," + "'" + lblCodigoCotizado.Text + "'" + "," + "'" + txtCantidad.Text + "'" + "," + "'" + ddlTipoSolicitud.SelectedValue + "'" + "," + "'" + sesion + "'" + "," + "'" + txtVin2.Text + "'" + "," + "'" + _solicitudTipoTransporte + "'" + "," + "'" + _solicitudDias + "'" + "," + "'" + _precioSolicitud + "' ";
+                    //Obtiene codigo del motivo
+                    queryMotivo = "SELECT MP_codigo FROM Motivo_Pedido WHERE mp_Marca = '" + ComboMarcas.SelectedValue + "' AND MP_Descripcion = '" + ddlmotivodepedidoCotizacion.SelectedValue + "' ";
+                    motivo = _ControlBD.consultarCodigoMotivoMarca(queryMotivo);
+
+                    query = "exec sp_CreaSolicitudCotizacion_TMP_SA " + "'" + rut + "'" + "," + "'" + ComboMarcas.SelectedValue + "'" + "," + "'" + txtCodigo.Text + "'" + "," + "'" + lblCodigoCotizado.Text + "'" + "," + "'" + txtCantidad.Text + "'" + "," + "'" + ddlTipoSolicitud.SelectedValue + "'" + "," + "'" + sesion + "'" + "," + "'" + txtVin2.Text + "'" + "," + "'" + _solicitudTipoTransporte + "'" + "," + "'" + _solicitudDias + "'" + "," + "'" + _precioSolicitud + "'"+","+"'" + motivo + "'";
                     _ControlBD.EjecutaQuery(query);
 
                     try
@@ -3292,7 +3709,7 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                         //aviso.Visible = true;
                         //cambio 3
                         string queryConsulta;
-                        queryConsulta = "SELECT tmp.numeroSolicitud, CONVERT(VARCHAR,tmp.fecha,103) + ' ' + CONVERT(nvarchar(10), GETDATE(), 108) as fecha , tmp.marca, tmp.codRepto, tmp.descripcion, tmp.cantidad, tmp.usuario, tmp.concesionario, tmp.tipo, tmp.vin, tmp.envio, tmp.dias FROM t_SolicitudCotizacion_TMP tmp FULL JOIN t_Cotiza co ON tmp.numeroSolicitud = co.id_cotiza WHERE tmp.numeroSolicitud = co.id_cotiza AND tmp.sesion = '" + sesion + "'";
+                        queryConsulta = "SELECT tmp.numeroSolicitud, CONVERT(VARCHAR,tmp.fecha,103) + ' ' + CONVERT(nvarchar(10), GETDATE(), 108) as fecha , tmp.marca, tmp.codRepto, tmp.descripcion, tmp.cantidad, tmp.usuario, tmp.concesionario, tmp.tipo, tmp.vin, tmp.envio, tmp.dias,(SELECT MP_Descripcion FROM Motivo_Pedido WHERE mp_Marca = tmp.marca AND LTRIM(RTRIM(MP_codigo)) = LTRIM(RTRIM(tmp.motivo)) AND MP_Flag = '1') as motivo FROM t_SolicitudCotizacion_TMP tmp FULL JOIN t_Cotiza co ON tmp.numeroSolicitud = co.id_cotiza WHERE tmp.numeroSolicitud = co.id_cotiza AND tmp.sesion = '" + sesion + "'";
                         dgvSolicitud.DataSource = _ControlBD.ObtenerDatosFiltrados(queryConsulta);
                         dgvSolicitud.DataBind();
                     }
@@ -3427,12 +3844,105 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
 
     protected void btnFrecuencia_Click(object sender, EventArgs e)
     {
+        msjesError.Visible = false;
 
+        hdnCotizacion.Value = "";
+
+        pnlir.Visible = false;
+
+        int coderror = 0;
+        string msgerror = "";
+        //INSERTO DATOS A COTIZACION.
+        string precio = "";
+        string codrep = "";
+        string catidad = txtCantidad.Text;
+        string marca = ComboMarcas.SelectedItem.ToString();
+        string descrep = "";
+
+        string vin = txtVin.Text;
+
+        if (vin == "")
+        {
+            msjesError.InnerText = "Debe igresar un vin";
+            msjesError.Visible = true;
+            return;
+        }
+
+        if (vin.Length < 17)
+        {
+            msjesError.InnerText = "El numero de VIN, debe tener 17 caracteres";
+            msjesError.Visible = true;
+            return;
+        }
+
+        if (vin.Length > 17)
+        {
+            msjesError.InnerText = "Debe igresar un vin valido";
+            msjesError.Visible = true;
+            return;
+        }
+
+        for (int i = 0; i < GridViewListaRep.Rows.Count; i++)
+        {
+            GridViewRow row = GridViewListaRep.Rows[i];
+            precio = row.Cells[4].Text;
+            codrep = row.Cells[1].Text;
+            descrep = row.Cells[2].Text;
+        }
+
+        string numerocotiza = "";
+
+        con = new SqlConnection();
+        cmd = new SqlCommand();
+        con.ConnectionString = ConfigurationManager.ConnectionStrings["skbergeConnectionString"].ConnectionString;
+        con.Open();
+        cmd.Connection = con;
+        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        cmd.CommandText = "FRNC_GENERA_COTIZACION";
+        cmd.CommandTimeout = 10;
+        cmd.Parameters.Add("@i_identificador", SqlDbType.Int).Value = 1;
+        cmd.Parameters.Add("@i_usuario", SqlDbType.VarChar).Value = Session["rut"].ToString();
+        cmd.Parameters.Add("@i_session", SqlDbType.VarChar).Value = Session["idSession"].ToString();
+        cmd.Parameters.Add("@i_marca", SqlDbType.VarChar).Value = marca;
+        cmd.Parameters.Add("@i_codrep", SqlDbType.VarChar).Value = codrep;
+        cmd.Parameters.Add("@i_descrep", SqlDbType.VarChar).Value = descrep;
+        cmd.Parameters.Add("@i_cantidad", SqlDbType.Int).Value = Convert.ToUInt64(catidad);
+        cmd.Parameters.Add("@i_preciounitario", SqlDbType.Decimal).Value =  precio.Replace(',','.');
+        cmd.Parameters.Add("@i_vin", SqlDbType.VarChar).Value = vin;
+        cmd.Parameters.Add("@o_nrocotiza", SqlDbType.VarChar, 20).Direction = ParameterDirection.Output;
+        cmd.Parameters.Add("@o_nro_error", SqlDbType.Int, 2).Direction = ParameterDirection.Output;
+        cmd.Parameters.Add("@o_msg_error", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+        cmd.ExecuteNonQuery();
+
+        if (System.Convert.ToInt32(cmd.Parameters["@o_nro_error"].Value) != 0)
+        {
+            coderror = Convert.ToInt32(cmd.Parameters["@o_nro_error"].Value);
+            msgerror = cmd.Parameters["@o_msg_error"].Value.ToString();
+        }
+        else
+        {
+            pnlFrecuencia.Visible = false;
+            pnlir.Visible = true;
+            numerocotiza = cmd.Parameters["@o_nrocotiza"].Value.ToString();
+
+            msjesError.InnerText = "Se generó cotización " + numerocotiza + " Para generar VFC Reserva, confirme su cotización.";
+            msjesError.Visible = true;
+
+            hdnCotizacion.Value = numerocotiza;
+        }
+
+        con.Close();
     }
 
     protected void eliminaDeSolicitud(object sender, GridViewCommandEventArgs e)
     {
 
+    }
+
+    protected void Unnamed1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("SolConsultaCotizacion.aspx?cotizacion=" + hdnCotizacion.Value);
+        //Response.Redirect("SolConsultaCotizacion.aspx?txtdesde=" + DateTime.Today.ToString("dd/MM/yyyy") + "&txthasta=" + DateTime.Today.ToString("dd/MM/yyyy") + "&txtVin=" + txtVin.Text + "&txtEstado=A", false);
     }
 }
 

@@ -118,7 +118,9 @@ public partial class Vistas_Boletines : System.Web.UI.Page
             // se restringen los formatos
             if (extension == ".pdf")
             {
-                subirDoc.SaveAs(Server.MapPath("~/doc/boletines/") + fileName);
+                String pathDocu = Server.MapPath("~/doc/boletines/");
+                subirDoc.SaveAs(pathDocu + fileName);
+                //subirDoc.SaveAs(Server.MapPath("~/doc/boletines/") + fileName);
                 string rutaDoc = "../doc/boletines/" + subirDoc.FileName.ToString();
                 _controlBd.InsertarBoletin(txtTitulo.Text, txtDescripcion.Text, rutaDoc);
                 lblValidaDoc.Visible = false;

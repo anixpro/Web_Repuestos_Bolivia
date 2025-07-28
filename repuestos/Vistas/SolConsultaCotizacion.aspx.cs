@@ -477,57 +477,45 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
     }
     public void BuscaCotizaciones(int identificador, string marca, string numsoli, string fecdesde, string fechasta, string codre, string vin, string estadoSol, string concesionario, string local)
     {
-        DataTable dt = new DataTable();
+        string usuarioRut = Session["rut"].ToString();
+        int? nro_error = null;
+        string msg_error = null;
 
-        gvListSolicitud.DataSource = dt;
-        gvListSolicitud.DataBind();
-        //NUEVO METODO FILTROS POROSTEGUI
-        con = new SqlConnection();
-        cmd = new SqlCommand();
         try
         {
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["skbergeConnectionString"].ConnectionString;
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "webr_obtiene_cotizacion";
-            cmd.CommandTimeout = 10;
-            cmd.Parameters.Add("@i_identificador", SqlDbType.Int).Value = identificador;
-            cmd.Parameters.Add("@i_usuario", SqlDbType.VarChar).Value = Session["rut"].ToString();
-            cmd.Parameters.Add("@i_marca", SqlDbType.VarChar).Value = marca;
-            cmd.Parameters.Add("@i_nro_solicitud", SqlDbType.VarChar).Value = numsoli;
-            cmd.Parameters.Add("@i_fecha_desde", SqlDbType.VarChar).Value = fecdesde;
-            cmd.Parameters.Add("@i_fecha_hasta", SqlDbType.VarChar).Value = fechasta;
-            cmd.Parameters.Add("@i_cod_repuesto", SqlDbType.VarChar).Value = codre;
-            cmd.Parameters.Add("@i_vin", SqlDbType.VarChar).Value = vin;
-            cmd.Parameters.Add("@i_estado", SqlDbType.VarChar).Value = estadoSol;
-            cmd.Parameters.Add("@i_concesionario", SqlDbType.VarChar).Value = "";
-            cmd.Parameters.Add("@i_local", SqlDbType.VarChar).Value = local;
-            cmd.Parameters.Add("@i_clasificacion", SqlDbType.VarChar).Value = "";
-            cmd.Parameters.Add("@o_nro_error", SqlDbType.Int, 2).Direction = ParameterDirection.Output;
-            cmd.Parameters.Add("@o_msg_error", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-            gvListSolicitud.EmptyDataText = "No se Encontraron Datos";
-            gvListSolicitud.DataSource = cmd.ExecuteReader();
-            gvListSolicitud.DataBind();
-            con.Close();
 
-            if (System.Convert.ToInt32(cmd.Parameters["@o_nro_error"].Value) != 0)
+            RepuestosModelDataContext ctx = new RepuestosModelDataContext();
+            var lista = from i in ctx.webr_obtiene_cotizacion_consulta(identificador,
+                                                                usuarioRut,
+                                                                marca,
+                                                                numsoli,
+                                                                fecdesde,
+                                                                fechasta,
+                                                                codre,
+                                                                vin,
+                                                                estadoSol,
+                                                                "",
+                                                                "",
+                                                                ref nro_error,
+                                                                ref msg_error)
+                        select i;
+
+            if (lista != null)
             {
-                string mensaje = cmd.Parameters["@o_msg_error"].Value.ToString();
-            }
-            else
-            {
+                gvListSolicitud.DataSource = lista;
+                gvListSolicitud.DataBind();
                 PanelListado.Visible = true;
                 btnExportExell.Visible = true;
             }
+
         }
         catch (Exception ex)
         {
             _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [Se presento un error al ingresar] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
-            con.Close();
+            //con.Close();
         }
     }
-    
+
     protected void editLinea(object sender, GridViewCommandEventArgs e)
     {
         string query, query2, query3, query4;
@@ -803,7 +791,7 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [Se presento un error al ingresar] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
+            //_mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [Se presento un error al ingresar] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
             con.Close();
         }
 
@@ -849,7 +837,7 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
         new XDeclaration("1.0", "utf-8", "yes"),
         new XComment("Lista de Registros"),
         new XElement("registros",
-                            new XElement("registro",
+                                new XElement("registro",
                                 new XElement("cantidad", cantidad),
                                 new XElement("codigo", codigo),
                                 new XElement("detalle", detalle),
@@ -858,8 +846,8 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
                                 new XElement("creador", creador),
                                 new XElement("mailcreador", MailSolicitante),
                                 new XElement("descripcionUsuario", descripcionUsuario),
-                                new XElement("dealer", dealer),
-                                new XElement("direccion", direccion),
+                                new XElement("dealer", new XCData(dealer)),
+                                new XElement("direccion",direccion),
                                 new XElement("tipoPedido", TipoPedido),
                                 new XElement("file", ""),
                                 new XElement("opcionvfc", ""),
@@ -880,6 +868,7 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
                             )
                     )
                );
+        
         return miXML.ToString();
 
     }//fin metodoescribeXml
@@ -1116,6 +1105,8 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
                 Label vin = selectRow.Cells[5].FindControl("vin") as Label;
                 Label envio = selectRow.Cells[5].FindControl("envio") as Label;
                 Label desc = selectRow.Cells[5].FindControl("desc") as Label;
+                string decodificado = WebUtility.HtmlDecode(desc.Text);// se agrega para remplazar Ñ y tildes en textos UTF8
+                decodificado = WebUtility.HtmlDecode(decodificado);// se agrega para remplazar Ñ y tildes en textos UTF8
                 Label marcadet = selectRow.Cells[5].FindControl("marcadet") as Label;
                 Label dias = selectRow.Cells[5].FindControl("dias") as Label;
 
@@ -1133,13 +1124,16 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
 
                 Label tipo = selectRow.Cells[9].FindControl("tipo") as Label;
 
-                _sql = (" SELECT MAX(fecha) AS fecha FROM t_SolicitudCotizacion WHERE numeroSolicitud = '" + num.Text  + "' ");
+                //_sql = (" SELECT MAX(Convert(varchar,fecha,105)) AS fecha FROM t_SolicitudCotizacion WHERE numeroSolicitud = '" + num.Text  + "' ");
+                _sql = (" SELECT MAX(Convert(varchar,fecha,105)) AS fecha FROM t_SolicitudCotizacion WHERE numeroSolicitud = '" + num.Text  + "' ");
                 DataSet ds2 = _ControlBD.ObtenerDatosFiltrados(_sql);
 
                 foreach (DataRow dr2 in ds2.Tables[0].Rows){
-                    _fecha = _fechaSistema.ToShortDateString();
-                    _fechaSolicitud = Convert.ToDateTime(dr2["fecha"]);
-                    _diferencia = Convert.ToDateTime(_fecha) - _fechaSolicitud;
+                    string Fecha = dr2["fecha"].ToString();
+                    _fechaSolicitud = DateTime.ParseExact(Fecha, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                    //string FechaSolicitudFormato =   _fechaSolicitud.ToString("dd/MM/yyyy");
+                    //DateTime FechaDateTime = Convert.ToDateTime(FechaSolicitudFormato, CultureInfo.InvariantCulture);
+                    _diferencia = _fechaSistema - _fechaSolicitud;
 
                     _dias = _diferencia.Days;
 
@@ -1186,6 +1180,8 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
 
                 //*** Mejora Urgente 27/09 ALan Cañete Obtencion Dealer para creacion VFC ***//
                 string dealer = Util.limpiaPalabras(Util.obtieneNombreConcesionarioPorRUTCualquierUsuario(Session["rut"].ToString()));
+                string Delerdecodificado = WebUtility.HtmlDecode(dealer);// se agrega para remplazar Ñ y tildes en textos UTF8
+                Delerdecodificado = WebUtility.HtmlDecode(Delerdecodificado);// se agrega para remplazar Ñ y tildes en textos UTF8
 
                 string marca = marcadet.Text;
                 marca = _sapApi.GetCmpCod(marca);
@@ -1299,11 +1295,11 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
                         String datosXml = "";
                         String xmlCreado = crearXml(canti.Text,
                                                     codigo,
-                                                    Util.limpiaPalabras(desc.Text),
+                                                    Util.limpiaPalabras(decodificado),
                                                     marca,
                                                     Util.limpiaPalabras(Session["rut"].ToString()),
                                                     Util.limpiaPalabras(_sapApi.GetNombreUsuario(Session["rut"].ToString())),
-                                                    dealer,
+                                                    Delerdecodificado,
                                                     flagIdDealer,//direccion
                                                     tipo.Text, //Tipo Pedido
                                                     num.Text,
@@ -1388,13 +1384,13 @@ public partial class Vistas_SolConsultaCotizacion : System.Web.UI.Page
                             _ControlBD.EjecutaQuery(@"insert into VFC(num_VFC,id_pedido,rut_user,fecha_creacion,
                                            codigo_rep,marca,cantidad,detalle_rep,cod_vin, Id_cotiza,tipo_Vfc,criticidad,obs_criticidad)
                                             values('" + numResp.Trim() + "','000000','" + Session["rut"].ToString() + "' , GETDATE(), " +
-                                                " '" + codigo + "' , '" + marca + "' , " + canti.Text + " , '" + desc.Text + "','" + vin.Text + "'," + id + "," + tipovfc + "," + criticidad + ",'" + obsCriticidad + "' )");
+                                                " '" + codigo + "' , '" + marca + "' , " + canti.Text + " , '" + decodificado + "','" + vin.Text + "'," + id + "," + tipovfc + "," + criticidad + ",'" + obsCriticidad + "' )");
 
                             //detalleSolicitudMail += z + ". " + " | VFC | " + numResp + " | " + marca + " | " + codigo + " | " + canti.Text + " | " + desc.Text + " | " + vin.Text + " | " + msjCriticoMail + "| <br/>";
 
                             if (criticidad == 1)
                             {
-                                detalleSolicitudMail += z + ". " + " | VFC | " + numResp + " | " + marca + " | " + codigo + " | " + canti.Text + " | " + desc.Text + " | " + vin.Text + " | " + msjCriticoMail + "| <br/>";
+                                detalleSolicitudMail += z + ". " + " | VFC | " + numResp + " | " + marca + " | " + codigo + " | " + canti.Text + " | " + decodificado + " | " + vin.Text + " | " + msjCriticoMail + "| <br/>";
                                 z++;
                             }
                         }

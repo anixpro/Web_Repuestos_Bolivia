@@ -9,6 +9,7 @@ using log4net.Config;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 
 /// <summary>
@@ -16,7 +17,6 @@ using System.Text.RegularExpressions;
 /// </summary>
 public partial class index : System.Web.UI.Page
 {
-    // Permite hacer seguimiento de las personas
     private ControlPersona controlPersona;
 
     // Objeto persona
@@ -55,8 +55,8 @@ public partial class index : System.Web.UI.Page
         //contador de dias 
 
         DateTime inicio = Convert.ToDateTime(DateTime.Now);
-        DateTime termino = Convert.ToDateTime("15-10-2015");
-        
+        DateTime termino =Convert.ToDateTime("10/15/2015", CultureInfo.InvariantCulture);
+       
 
         TimeSpan diferencia;
 
@@ -222,6 +222,7 @@ public partial class index : System.Web.UI.Page
                     {
                         ip = "1.1.1.1.1.1";
                     }
+
 
 
                     _controlBD.InsertarDatos(@"insert into Log_Conexion_Usu(Ip,Nom_Usuario,Usuario,Concesionario,FechaConexion,SinLlave)

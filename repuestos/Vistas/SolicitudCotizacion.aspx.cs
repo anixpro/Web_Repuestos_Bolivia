@@ -11,6 +11,7 @@ using System.IO;
 using log4net;
 using log4net.Config;
 using System.Data.SqlClient;
+using System.Globalization;
 
 public partial class Vistas_SolicitudCotizacion : System.Web.UI.Page
 {
@@ -225,7 +226,8 @@ public partial class Vistas_SolicitudCotizacion : System.Web.UI.Page
         _consultaRep.CanalDistribucion = _sapApi.CanalDeDistribucionPedido;
         _consultaRep.TextoRep = txtdescripcion.Text.ToUpper();
         _consultaRep.CantidadRep = int.Parse(txtCantidad.Text);
-        Boolean stoc;
+
+        /*Boolean stoc;
         stoc = Convert.ToBoolean(_pedido.BuscarRepuestoSolicitud(_consultaRep, Session["idSession"].ToString(), int.Parse(txtCantidad.Text.Trim()), txtdescripcion.Text, marca));
         if (stoc == true)
         {
@@ -241,6 +243,7 @@ public partial class Vistas_SolicitudCotizacion : System.Web.UI.Page
             mjsError.Style["background-color"] = "red";
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "RewindScroll", "window.scrollTo(0,0)", true);
         }
+        */
 
         //Validaciones de los campos
         if (gvSolicitud.Rows.Count >= 14)
@@ -584,7 +587,7 @@ public partial class Vistas_SolicitudCotizacion : System.Web.UI.Page
                 foreach (GridViewRow gvRow in gvSolicitud.Rows)
                 {
                     numero = gvRow.Cells[1].Text;
-                    fecha = Convert.ToDateTime(gvRow.Cells[3].Text);
+                    //fecha = DateTime.ParseExact(gvRow.Cells[3].Text,"dd/MM/yyyy",CultureInfo.InvariantCulture);
                     marca = gvRow.Cells[5].Text;
                     cod = gvRow.Cells[7].Text;
                     descr = gvRow.Cells[9].Text;
@@ -606,7 +609,7 @@ public partial class Vistas_SolicitudCotizacion : System.Web.UI.Page
                     motivo = _ControlBD.consultarCodigoMotivoMarca(queryMotivo);
 
                     query = "INSERT INTO t_SolicitudCotizacion(numeroSolicitud, fecha, marca, codRepto, descripcion, cantidad, usuario, concesionario, precio_Solicitud, tipo, vin, envio,sesion,dias,Estado, motivo)";
-                    query = query + " VALUES ('" + numero + "', '" + localDate + "', '" + marca + "', '" + cod + "', '" + descr + "', '" + can + "', '" + user + "', '" + conce + "', '" + precio + "', '" + tipo + "', '" + vin + "', '" + envio + "', '" + ses + "','" + dia + "','" + estado + "','" + motivo + "')";
+                    query = query + " VALUES ('" + numero + "',convert(date,'" + localDate + "',103), '" + marca + "', '" + cod + "', '" + descr + "', '" + can + "', '" + user + "', '" + conce + "', '" + precio + "', '" + tipo + "', '" + vin + "', '" + envio + "', '" + ses + "','" + dia + "','" + estado + "','" + motivo + "')";
                     _ControlBD.EjecutaQuery(query);
 
                     motivo = "";
@@ -636,9 +639,8 @@ public partial class Vistas_SolicitudCotizacion : System.Web.UI.Page
         catch (Exception ex)
         {
             mjsError.InnerText = "Hubo un error al crear la Solicitud de Cotizacion" + ex.Message;
+            logger.Error("Error al Crear La Solicitud de Cotizacion. Message: " + ex.Message + ".Inner:" + ex.Message + ". Stack: " + ex.StackTrace);
             mjsError.Visible = true;
-
-            //logger.Error("Error al Crear La Solicitud de Cotizacion. Message: " + ex.Message + ".Inner:" + ex.Message + ". Stack: " + ex.StackTrace);
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "RewindScroll", "window.scrollTo(0,0)", true);
             _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [Error Crea Solicitud Cotización] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
             return;

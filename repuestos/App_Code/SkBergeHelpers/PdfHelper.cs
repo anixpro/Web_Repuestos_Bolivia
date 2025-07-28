@@ -661,7 +661,7 @@ public class PdfHelper
             dia = campo["dias"].ToString();
 
             _controlBD.InsertarDatos(@"insert into t_SolicitudComunPDFSP(numeroSolicitud, fecha, marca, codRepto, descripcion, cantidad, usuario, concesionario, tipo, vin, envio, sesion, precio, dias)
-                values('" + numero + "','" + fecha + "','" + marca + "','" + cod + "','" + descripcion + "','" + cantidad + "','" + usuario + "','" + conce + "', '" + tipo + "' , '" + vin + "','" + envio + "','" + sesion + "','" + precio + "','" + dia + "')");
+                values('" + numero + "', convert(date,'" + fecha + "',103),'" + marca + "','" + cod + "','" + descripcion + "','" + cantidad + "','" + usuario + "','" + conce + "', '" + tipo + "' , '" + vin + "','" + envio + "','" + sesion + "','" + precio + "','" + dia + "')");
         }
     }
 

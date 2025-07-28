@@ -80,12 +80,13 @@ public class RealizarPedido
     /// </summary>
     /// <param name="_consultaRep"></param>
     /// <returns></returns>
-    public bool BuscarRepuesto(ConsultaRepuesto _consultaRep, string idSession, int cantidad, string nombre, string marca)
+    public bool BuscarRepuesto(ConsultaRepuesto _consultaRep, string idSession, int cantidad, string nombre, string marca, out int activofrec)
     {
 
 
         _controlBd.InsertarDatos("delete from LISTA_BUSQUEDA_TMP where ID_SESSION = '" + idSession + "'");
         _controlBd.InsertarDatos("delete from LISTA_REEMPLAZO_TMP where ID_SESSION = '" + idSession + "'");
+        activofrec = 0;
 
         if (ambiente == "ERP")
         {
@@ -187,17 +188,17 @@ public class RealizarPedido
                 {
 
                     //String a = WsDatos.EZ_MVGR1;
-                    _resultBusqueda.Marca = marca.ToUpper();
+                    _resultBusqueda.Marca = "CHERY";
 
-                    _resultBusqueda.Cantidad = _consultaRep.CantidadRep.ToString();
-                    _resultBusqueda.PrecioLista = WsDatos.EZ_KBETR1;
-                    _resultBusqueda.PrecioConce = WsDatos.EZ_KBETR2;
-                    _resultBusqueda.GrupoMat = WsDatos.EZ_KONDM;
-                    _resultBusqueda.Descripcion = WsDatos.EZ_MAKTX;
-                    _resultBusqueda.Codigo = WsDatos.EZ_MFRPN;
-                    _resultBusqueda.Stock = _sapApi.GetCurrentStockByProduct(_resultBusqueda.Codigo, _consultaRep.GrupoMaterial, _consultaRep.DestinaMercacia, nombre, marca);
+                    _resultBusqueda.Cantidad = "1";
+                    _resultBusqueda.PrecioLista = "1000";
+                    _resultBusqueda.PrecioConce = "1000";
+                    _resultBusqueda.GrupoMat = "Z2";
+                    _resultBusqueda.Descripcion = "ALTERNADOR MOTOR";
+                    _resultBusqueda.Codigo = "x22333";
+                    _resultBusqueda.Stock =  _sapApi.GetCurrentStockByProduct(_resultBusqueda.Codigo, _consultaRep.GrupoMaterial, _consultaRep.DestinaMercacia, nombre, marca);
                     stockSap_Origen = _resultBusqueda.Stock;
-                    MVGR1 = WsDatos.EZ_MVGR1;
+                    MVGR1 = "1"; //REPERESENTACION DE LA MARCA;
 
                     //decimalPosition = ResultBusqueda.PrecioLista.IndexOf(".");
                     //decimalPosition = ResultBusqueda.PrecioConce.IndexOf(".");
@@ -211,8 +212,8 @@ public class RealizarPedido
                     precio1 = ResultBusqueda.PrecioLista;
                     precio2 = ResultBusqueda.PrecioConce;
                     // }
-                    totalConce = double.Parse(precio2, System.Globalization.CultureInfo.InvariantCulture) * int.Parse(_resultBusqueda.Cantidad);
-                    totalLista = double.Parse(precio1, System.Globalization.CultureInfo.InvariantCulture) * int.Parse(_resultBusqueda.Cantidad);//descomentar
+                    totalConce = double.Parse(precio2) * int.Parse(_resultBusqueda.Cantidad);
+                    totalLista = double.Parse(precio1) * int.Parse(_resultBusqueda.Cantidad);//descomentar
                     //Nueva Funcionalidad Porcentaje
                     /*string porce;
                     string[] deml;
@@ -312,8 +313,8 @@ public class RealizarPedido
                     String final = Convert.ToString(porce) + "%";
 
 
-                    double totalLista_F = (double.Parse(precio1, System.Globalization.CultureInfo.InvariantCulture) * porce) / 100;
-                    double totalConce_F = double.Parse(precio1, System.Globalization.CultureInfo.InvariantCulture) - totalLista_F;
+                    double totalLista_F = (double.Parse(precio1) * porce) / 100;
+                    double totalConce_F = double.Parse(precio1) - totalLista_F;
                     //END FUNCIONALIDAD PORCENTAJE
 
                     String MVGR1_F = _controlBd.ObtieneGrupoMateriales(MVGR1);
@@ -519,7 +520,6 @@ public class RealizarPedido
                         MVGR1 = WsDatos.EZ_MVGR1;
 
                         // REQ - PRECIO FIJOS DE REPUESTOS -  MARZO 2022
-                        int activofrec = 0;
                         //Inicio Frecuencia A y B
                         if (_resultBusqueda.Stock == 0 && activo_frecuencia == 1)
                         {
@@ -573,11 +573,11 @@ public class RealizarPedido
                         }
 
                         _controlBd.InsertarDatos(@"insert into LISTA_BUSQUEDA_TMP(ID_SESSION,MARCA,CANTIDAD,PRECIO_LISTA,PRECION_CONCE,GRUPO_MAT,DESCRIP,CODIGO,STOCK,TOTAL_C,TOTAL_L, DESCUENTO,GRUPO)
-                                  values ('" + idSession + "', '" + _resultBusqueda.Marca + "' , '" + cantidad + "' , '" + precio1 + "' , '" + Math.Round(totalConce_F, 2) + "' , '" + _resultBusqueda.GrupoMat + "' , '" + _resultBusqueda.Descripcion + "' , '" + _resultBusqueda.Codigo.Substring(3) + "','" + ResultBusqueda.Stock + "' , '" + totalConce + "', '" + totalLista + "','" + final + "'," + "'" + MVGR1_F + "')");
+                                  values ('" + idSession + "', '" + _resultBusqueda.Marca + "' , '" + cantidad + "' , '" + precio1 + "' , '" + totalConce_F + "' , '" + _resultBusqueda.GrupoMat + "' , '" + _resultBusqueda.Descripcion + "' , '" + _resultBusqueda.Codigo.Substring(3) + "','" + ResultBusqueda.Stock + "' , '" + totalConce + "', '" + totalLista + "','" + final + "'," + "'" + MVGR1_F + "')");
                     }
                 }
 
-             
+
                 //Se crea un DataTable para mostrar los datos de la consulta del repuesto
                 if (_erq.WsResponseConsultaRepuesto != null)
                 {
@@ -669,7 +669,6 @@ public class RealizarPedido
     }
 
 
-
     /// <summary>
     /// Método que inserta una cotizacion en sap
     /// </summary>
@@ -749,6 +748,10 @@ public class RealizarPedido
             {
                 Centro = "BX02";
             }
+            if (_crearCotizacion.OrgVentas == "BP14")
+            {
+                Centro = "BP21";
+            }
             #endregion
 
             //ERQ.DT_Web_Ingreso_CotizacionItemI_MATERIALES[] DtWebIngresoCotizacionItemMateriales = new ERQ.DT_Web_Ingreso_CotizacionItemI_MATERIALES[_crearCotizacion.Codigo.Count];
@@ -768,7 +771,7 @@ public class RealizarPedido
                 DtWebIngresoCotizacionItemMateriales[i].MATERIAL = codigo;// "KPR29110A4200";
                 DtWebIngresoCotizacionItemMateriales[i].TARGET_QTY = _crearCotizacion.Cantidad[i];
                 DtWebIngresoCotizacionItemMateriales[i].PLANT = Centro; //Centro "BR02"
-                DtWebIngresoCotizacionItemMateriales[i].STORE_LOC = "3200";//almacen
+                DtWebIngresoCotizacionItemMateriales[i].STORE_LOC = "3200";//almacen -----> desmarcar
                 DtWebIngresoCotizacionItemMateriales[i].SALES_UNIT = "ST"; //Unidad de Medida para la cantidad Prevista
                 //DtWebIngresoCotizacionItemMateriales[i].PROFIT_CTR = "";//Centro Beneficio (BP09, necesita incorporarlo al momento de crear los pedidos, para el resto no es necesario ingrasarñp)
                 //_erq.WsCreaPedido_1.MATERIAL = DtWebIngresoCotizacionItemMateriales;
@@ -948,6 +951,10 @@ public class RealizarPedido
             if (_crearCotizacion.OrgVentas == "BP07")
             {
                 Centro = "BX02";
+            }
+            if (_crearCotizacion.OrgVentas == "BP14")
+            {
+                Centro = "BP21";
             }
             #endregion
 

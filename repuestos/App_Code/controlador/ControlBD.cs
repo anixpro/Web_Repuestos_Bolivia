@@ -14,6 +14,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using log4net;
 using log4net.Config;
+using System.Globalization;
+using System.Threading;
 
 /// <summary>
 /// Clase ControlBD, esta clase controla todas las transacciones SQL, de los contenidos editables del sitio.
@@ -173,6 +175,7 @@ public class ControlBD
     /// <returns></returns>
     public DataSet ObtenerDatosFiltrados(string query)
     {
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
         DataSet _dSet = new DataSet();
         SqlConnection _conection = new SqlConnection();
         SqlCommand _comando = new SqlCommand();
@@ -514,6 +517,7 @@ public class ControlBD
     public Boolean InsertarDatos(string query)
     {
         Boolean returnValue = true;
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
         //Utilizando la cláusula using te aseguras de que liberarás los recursos una vez hayas terminado
         //de utilizar la conexión a la base de datos
         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["skbergeConnectionString"].ConnectionString))

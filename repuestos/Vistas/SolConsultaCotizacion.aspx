@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-CodeFile="SolConsultaCotizacion.aspx.cs" Inherits="Vistas_SolConsultaCotizacion" %>
+CodeFile="SolConsultaCotizacion.aspx.cs" Inherits="Vistas_SolConsultaCotizacion"%>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit.HTMLEditor"

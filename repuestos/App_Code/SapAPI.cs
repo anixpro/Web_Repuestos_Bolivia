@@ -1084,4 +1084,26 @@ public class SapAPI
         }
         return ccs;
     }
+
+
+    public string GetMarcaPorPrefijo(string prefijo)
+    {
+        string grupoMaterial = "";
+        DataSet ds = _controlBD.ObtenerDatosFiltrados(" SELECT TOP 1 nombreMarca, GRUPO_MATERIAL " +
+                                                        "FROM " +
+                                                        "dbo.marca, " +
+                                                        "dbo.GRUPO_MATERIALES " +
+                                                        "WHERE " +
+                                                        "(abreviado LIKE '" + prefijo + "%') " +
+                                                        "AND " +
+                                                        "nombreMarca = MARCA " +
+                                                        "AND " +
+                                                        "GRUPO_MATERIAL<> '' ");
+        foreach (DataRow dr in ds.Tables[0].Rows)
+        {
+            grupoMaterial = dr["nombreMarca"].ToString();
+        }
+
+        return grupoMaterial;
+    }
 }

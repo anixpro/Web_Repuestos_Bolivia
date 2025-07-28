@@ -109,6 +109,7 @@ public static class Util
             palabra = palabra.Replace('Í', 'I');
             palabra = palabra.Replace('Ó', 'O');
             palabra = palabra.Replace('Ú', 'U');
+            palabra = palabra.Replace('&', 'Y');
         }
         catch (Exception)
         {

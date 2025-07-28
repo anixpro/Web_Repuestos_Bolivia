@@ -157,7 +157,12 @@ public class Persona
                 _permisos = int.Parse(dr[1].ToString());
                 _rut = (dr[4].ToString());
                 dr.Close();
-                con.Close();
+                try
+                {
+                    con.Close();
+                }
+                catch (Exception exc) { }
+                
                 if (cantidadDePermisos == 1)
                 {
                     return 2;

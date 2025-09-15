@@ -1,4 +1,4 @@
-﻿<%@ Page Title="::SKBergé - Repuestos::" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AgregarLinkInteres.aspx.cs" Inherits="Vistas_AgregarLinkInteres" %>
+﻿<%@ Page Title="::Astara - Repuestos::" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AgregarLinkInteres.aspx.cs" Inherits="Vistas_AgregarLinkInteres" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 <script language="javascript" type="text/javascript">

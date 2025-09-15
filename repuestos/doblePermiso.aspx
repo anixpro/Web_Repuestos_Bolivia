@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head id="Head1" runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>..::SKBERGÉ::..</title>
+    <title>..::ASTARA::..</title>
     <link href="css/Estilo.css" rel="stylesheet" type="text/css" />
     <script type='text/javascript' src='js/jquery-1.6.2.min.js'></script>
 <script language="javascript" type="text/javascript">

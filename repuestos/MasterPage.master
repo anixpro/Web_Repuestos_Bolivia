@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <head runat='server'>
-    <title>::SKBERGÉ AUTOMOTRIZ::</title>
+    <title>::ASTARA AUTOMOTRIZ::</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href='css/Slider.css' rel='stylesheet' type='text/css' />
     <link href='css/Estilo.css' rel='stylesheet' type='text/css' />
@@ -125,14 +125,6 @@
                                     <img alt='>' src='../img/mnu_right.gif'/>
                                 </a>
                             </li>
-                            <li class='opcionMenu' title='<b><u>Promociones</u></b><br/>Acá podrás encontrar increíbles promociones de repuestos de tus marcas'>
-                                <a class='simplelink' href='Promociones.aspx'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='*' src='../img/promociones.gif'/>
-                                    <span class='menuEnLineaA'>Promociones</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
                             <li class='opcionMenu'>
                                 <img alt='<' src='../img/mnu_left.gif'/>
                                 <img class='menuEnLineaIconos' alt='*' src='../img/mantencion.gif'/>
@@ -157,61 +149,7 @@
                                             </p>
                                             Permite agregar, modificar y eliminar usuarios
                                         </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='MantTipoTransporte.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/marcas.png'/>
-                                                <strong>Tipos de Transporte</strong>
-                                            </p>
-                                            Permite administrar los tipos de transporte
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='MantMotivopedido.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/marcas.png'/>
-                                                <strong>Motivos de Pedido</strong>
-                                            </p>
-                                            Permite administrar los motivos de pedido
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='MantMotivoDR.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/marcas.png'/>
-                                                <strong>Motivos DR</strong>
-                                            </p>
-                                            Permite administrar los motivos dr
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='MantPlazosImportacion.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/launch.gif'/>
-                                                <strong>Plazos Importación</strong>
-                                            </p>
-                                            Permite modificar los plazos de importación
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='MantenedorVigenciaCotizacion.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/listaSolicitudes.png'/>
-                                                <strong>Validez Cotización</strong>
-                                            </p>
-                                            Permite modificar los días de validez de las cotizaciones.
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='MantenedorCorreosVFC_Criticidad.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/event_email.gif'/>
-                                                <strong>Correos VFC Criticidad</strong>
-                                            </p>
-                                        Permite crear y modificar correos de VFC para criticidad.
-                                        </a>
-                                    </li>   
+                                    </li>                                  
                                     <li class='menuEnLineaLiLi'>
                                         <a href='mantenedorConcesionario.aspx'>
                                             <p>
@@ -229,52 +167,7 @@
                                             </p>
                                             Permite agregar, modificar y eliminar Marcas
                                         </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='AdminPromos.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/tag_blue.png'/>
-                                                <strong>Promociones</strong>
-                                            </p>
-                                            Permite agregar y eliminar Promociones
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='MerchandisingAdmin.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/merchandisingAdmin.png'/>
-                                                <strong>Merchandising</strong>
-                                            </p>
-                                            Permite agregar Merchandising
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='EditorAccesorio.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/accesorio.png'/>
-                                                <strong>Accesorios</strong>
-                                            </p>
-                                            Permite agregar Accesorios
-                                        </a>
-                                    </li>
-									<li class='menuEnLineaLiLi'>
-                                        <a href='EditorAccesorioCantidad.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/bancoRepuestos.png'/>
-                                                <strong>Control de Cantidad</strong>
-                                            </p>
-                                            Permite asociar una cantidad minima de adquisicion para un repuesto.
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Indicadores.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/mnu_statistics_button.gif'/>
-                                                <strong>Indicadores</strong>
-                                            </p>
-                                            Permite cargar indicadores en formato Ms. Excel
-                                        </a>
-                                    </li>
+                                    </li>                                  
                                     <li class='menuEnLineaLiLi'>
                                         <a href='MantenedorGrupoMaterial_Web.aspx'>
                                             <p>
@@ -284,112 +177,16 @@
                                             Permite Activar/Desactivar Grupos de Materiales SAP como tambien agregar
                                         </a>
                                     </li>
-
                                     <li class='menuEnLineaLiLi'>
-                                        <a href='MantenedorGruposFrecuencias.aspx'>
+                                        <a href='MantenedorClasePedido.aspx'>
                                             <p>
-                                                <img alt='*' src='../img/marcas.png'/>
-                                                <strong>Grupos Técnicos y Frecuencias</strong>                                                
-                                                                                           
-                                            </p>   Permite la habilitación de grupos técnicos y/o frecuencias.  
+                                                <img alt='*' src='../img/seguimiento.png'/>
+                                                <strong>Clase Pedido</strong>
+                                            </p>
+                                            Permite crear clases de pedido
                                         </a>
                                     </li>
-
-
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='mantenedorFob.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/peso_2.png'/>
-                                                <strong>Valores FOB</strong>
-                                                <!--  -->
-                                            </p>  Carga masiva y mantención de valores.
-                                        </a>
-                                    </li>
-
-
-
-
                                 </ul>
-                            </li>
-                            <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/mnu_statistics_button.gif'/>
-                                <a class='menuEnLineaA' href='Indicadores2.aspx'>Indicadores</a>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Noticias</u></b><br/>Acá podrás encontrar noticias de las más de 20 marcas con que SKBergé opera'>
-                                <a href='PaginaNoticia.aspx' class='simplelink'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='*' src='../img/noticias.gif'/>
-                                    <span class='menuEnLineaA'>Noticias</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Accesorios</u></b><br/ >Acá podrás encontrar increíbles acceosrios de marcas'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/accesorioss.gif'/>
-                                <span class='menuEnLineaA'>Accesorios</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-	                                <li class='menuEnLineaLiLi'>
-		                                <a href='Accesorio.aspx'>
-			                                <p>
-				                                <img alt='*' src='../img/accesorio.png'/>
-				                                <strong>Accesorios</strong>
-			                                </p>
-			                                <div class='menuEnLineaDescripcion'>
-				                                Consultar accesorios por modelo y marca
-			                                </div>
-		                                </a>
-	                                </li>
-	                                <li class='menuEnLineaLiLi'>
-		                                <a href='Merchandising.aspx'>
-			                                <p>
-				                                <img alt='*' src='../img/merchandising.png'/>
-				                                <strong>Merchandising</strong>
-			                                </p>
-			                                <div class='menuEnLineaDescripcion'>
-				                                Consultar merchandising por marcas
-			                                </div>
-		                                </a>
-	                                </li>
-                                    <li class='menuEnLineaLiLi'>
-		                                <a href='BancoRepuestos.aspx'>
-			                                <p>
-				                                <img alt='*' src='../img/bancoRepuestos.png'/>
-				                                <strong>Banco de Repuestos</strong>
-			                                </p>
-			                                <div class='menuEnLineaDescripcion'>
-				                                Consultar banco de repuestos
-			                                </div>
-		                                </a>
-	                                </li>
-                                </ul>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Boletines</u></b><br/ >Acá podrás consultar los últimos boletines. Tambien podrás buscar antiguos por fecha'>
-                                <a href='Boletines.aspx' class='simplelink'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                    <span class='menuEnLineaA'>Boletines</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Enlaces</u></b><br/ >Acá podrás encontrar enlaces a sitios relacionados con nuestro centro'>
-                                <a href='LinkInteres.aspx' class='simplelink'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='|' src='../img/links.gif'/>
-                                    <span class='menuEnLineaA'>Links</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Cotizar</u></b><br/ >Acá podrás buscar repuestos para generar cotizaciones'>
-                            <a href='buscarrepto.aspx' class='simplelink'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/cotizar-pedir.png'/>
-                                <span class='menuEnLineaA'>Cotizar</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
                             </li>
                             <li class='opcionMenu' title='<b><u>Pedidos</u></b><br/ >Acá podrás buscar repuestos para generar Pedidos'>
                             <a href='buscarrepto2.aspx' class='simplelink'>
@@ -398,113 +195,6 @@
                                 <span class='menuEnLineaA'>Pedidos</span>
                                 <img alt='>' src='../img/mnu_right.gif'/>
                             </a>
-                            </li>
-                            <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/cotizar-pedir.png'/>
-                                <span class='menuEnLineaA simplelink'>Solicitud de cotizaciones</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='SolicitudCotizacion.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Solicitud de Cotizacion</strong>
-                                            </p>
-                                            Realizar solictudes de cotizacion para materiales sin Stock
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='EdicionSolicitud.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Editar Solicitudes</strong>
-                                            </p>
-                                            Edicion y asignacion de precio a las solicitudes de cotizacion
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                            <li class='opcionMenu' title='<b><u>Seguimiento de VFC</u></b><br/ >Acá podrás consultar las solicitudes de reserva y vfc, y seguir su estado'>
-                                <a class='simplelink' href='ListarSolicitudes.aspx'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='|' src='../img/listaSolicitudes.png'/>
-                                    <span class='menuEnLineaA'>Seguimiento de VFC</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                <span class='menuEnLineaA simplelink'>Procedimientos</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_CDR.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>CDR</strong>
-                                            </p>
-                                            Horario de Trabajo de Nuestro Centro Distribucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_Concesionario.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/Boletines.gif'/>
-                                                <strong>Supervisor</strong>
-                                        </p>
-                                            Puedes realizar procedimientos como Reclamos y Devolucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devoluciones.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/Boletines.gif'/>
-                                                <strong>Devoluciones</strong>
-                                        </p>
-                                            Puedes realizar procedimientos como Reclamos y Devolucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_CDR_Reclamos.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Reclamos</strong>
-                                            </p>
-                                            Solicitudes de Reclamos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_Comercial.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Comercial (JEFE)</strong>
-                                            </p>
-                                            Horario de Trabajo de Nuestro Centro Distribucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_Comercial_Control.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Comercial Control(JEFE)</strong>
-                                            </p>
-                                            Horario de Trabajo de Nuestro Centro Distribucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_CDR_Control.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Control CDR(JEFE)</strong>
-                                            </p>
-                                            Solicitudes de Reclamos
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li class='opcionMenu'>
                                 <img alt='<' src='../img/mnu_left.gif'/>
@@ -522,380 +212,44 @@
                                             </p>
                                         </a>
                                     </li>   
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='TrackingExportExcel.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/SeguimientoExcel.png'/>
-                                                <strong>Tracking</strong>
-                                            </p>
-                                            Seguimiento para consultas, agregar carro, solicitud y pedido.
-                                        </a>
-                                    </li>
+
                                 </ul>
                             </li> 
                         </ul>");
                         break;
-                    case 2: //Gerente 
+                       case 3: //Operador
                         Response.Write(@"
-                        <ul class='sf-menu'>
-                        <li class='opcionMenu'>
-                            <img alt='<' src='../img/mnu_left.gif'/>
-                            <img class='menuEnLineaIconos' alt='|' src='../img/mnu_statistics_button.gif'/>
-                            <a class='menuEnLineaA' href='Indicadores2.aspx'>Indicadores</a>
-                            <img alt='>' src='../img/mnu_right.gif'/>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Casa Matriz</u></b><br/ >Acá podrás encontrar información acerca de nosotros'>
-                            <a class='simplelink' href='CasaMatriz.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/casa.gif'/>
-                                <span class='menuEnLineaA'>Casa Matriz</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Mantenedor</u></b><br/ >Acá podrás buscar Cambiar tu informacion como concesionario'>
-                            <a class='simplelink' href='mantenedorConcesionario.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/mantencion.gif'/>
-                                <span class='menuEnLineaA'>Mantenedor</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Promociones</u></b><br/ >Acá podrás encontrar increíbles promociones de repuestos de tus marcas'>
-                            <a class='simplelink' href='Promociones.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/promociones.gif'/>
-                                <span class='menuEnLineaA'>Promociones</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Accesorios</u></b><br/ >Acá podrás encontrar increíbles accesorios de marcas'>
-                            <img alt='<' src='../img/mnu_left.gif'/>
-                            <img class='menuEnLineaIconos' alt='*' src='../img/accesorioss.gif'/>
-                            <span class='menuEnLineaA'>Accesorios</span>
-                            <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                            <img alt='>' src='../img/mnu_right.gif'/>
-                            <ul class='subMenu'>
-	                            <li class='menuEnLineaLiLi'>
-		                            <a href='Accesorio.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/accesorio.png'/>
-				                            <strong>Accesorios</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar accesorios por modelo y marca
-			                            </div>
-		                            </a>
-	                            </li>
-	                            <li class='menuEnLineaLiLi'>
-		                            <a href='Merchandising.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/merchandising.png'/>
-				                            <strong>Merchandising</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar merchandising por marcas
-			                            </div>
-		                            </a>
-	                            </li>
-                                <li class='menuEnLineaLiLi'>
-		                            <a href='BancoRepuestos.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/bancoRepuestos.png'/>
-				                            <strong>Banco de Repuestos</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar banco de repuestos
-			                            </div>
-		                            </a>
-	                            </li>
-                            </ul>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Boletines</u></b><br/ >Acá podrás consultar los últimos boletines. Tambien podrás buscar antiguos por fecha'>
-                            <a href='Boletines.aspx' class='simplelink'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                <span class='boletinesSinLeer'>" + Util.obtieneCantidadDeBoletinesSinLeerPorRut(Session["rut"].ToString()) + @"</span>
-                                <span class='menuEnLineaA'>Boletines</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Enlaces</u></b><br/ >Acá podrás encontrar enlaces a sitios relacionados con nuestro centro'>
-                            <a href='LinkInteres.aspx' class='simplelink'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/links.gif'/>
-                                <span class='menuEnLineaA'>Links</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Pedidos</u></b><br/ >Acá podrás buscar repuestos para generar Pedidos'>
-                            <a href='buscarrepto2.aspx' class='simplelink'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/cotizar-pedir.png'/>
-                                <span class='menuEnLineaA'>Pedidos</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Noticias</u></b><br/ >Acá podrás encontrar noticias de las más de 20 marcas con que SKBergé opera'>
-                            <a class='simplelink' href='PaginaNoticia.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/noticias.gif'/>
-                                <span class='menuEnLineaA'>Noticias</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Solicitud Cotizacion</u></b><br/ >Solicitud de Cotizacion de Repuestos'>
-                            <a class='simplelink' href='SolicitudCotizacion.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/cotizar-pedir.png'/>
-                                <span class='menuEnLineaA'>Solicitudes</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Seguimiento de VFC</u></b><br/ >Acá podrás consultar las solicitudes de reserva y vfc, y seguir su estado'>
-                            <a class='simplelink' href='ListarSolicitudes.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/listaSolicitudes.png'/>
-                                <span class='menuEnLineaA'>Seguimiento de VFC</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                <span class='menuEnLineaA simplelink'>Procedimientos</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='HorarioCDR.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Horario CDR</strong>
-                                            </p>
-                                            Horario de Trabajo de Nuestro Centro Distribucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Reclamos.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/Boletines.gif'/>
-                                                <strong>Reclamos</strong>
-                                            </p>
-                                            Puedes realizar procedimientos como Reclamos y Devolucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devoluciones.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/Boletines.gif'/>
-                                                <strong>Devoluciones</strong>
-                                            </p>
-                                            Puedes realizar procedimientos como Reclamos y Devolucion de Repuestos
-                                        </a>
-                                    </li>
-                                </ul>
-                          </li>
-                    </ul>");
-                        break;
-                    case 3: //Operador
-                        Response.Write(@"
-                    <ul class='sf-menu'>
-                        <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/cotizar-pedir.png'/>
-                                <span class='menuEnLineaA'>Realiza Pedido</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            <ul class='subMenu'>
-                                <li class='menuEnLineaLiLi'>
-                                    <a class='simplelink' href='buscarrepto2.aspx'>
-                                        <p>
-                                        <img alt='*' src='../img/buscarRepuestos.png'/>
-                                        <b>Buscar</b>
-                                        </p>
-                                        Permite buscar repuestos y realizar pedidos
-                                    </a>
-                                </li>
-                                <li class='menuEnLineaLiLi'>
-                                    <a class='simplelink' href='consultarpedido.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/verPedidoAnterior.png'/>
-                                            <b>Consultar estado</b>
-                                        </p>
-                                        Permite conocer estado de pedidos realizados
-                                    </a>
+                        <div class='menu-container'>
+                            <ul class='sf-menu'>
+                                <li class='opcionMenu'>
+                                    <img alt='<' src='../img/mnu_left.gif'/>
+                                    <img class='menuEnLineaIconos' alt='|' src='../img/cotizar-pedir.png'/>
+                                    <span class='menuEnLineaA'>Realiza Pedido</span>
+                                    <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
+                                    <img alt='>' src='../img/mnu_right.gif'/>
+                                    <ul class='subMenu'>
+                                        <li class='menuEnLineaLiLi'>
+                                            <a class='simplelink' href='buscarrepto2.aspx'>
+                                                <p>
+                                                <img alt='*' src='../img/buscarRepuestos.png'/>
+                                                <b>Buscar</b>
+                                                </p>
+                                                Permite buscar repuestos y realizar pedidos
+                                            </a>
+                                        </li>
+                                        <li class='menuEnLineaLiLi'>
+                                            <a class='simplelink' href='consultarpedido.aspx'>
+                                                <p>
+                                                    <img alt='*' src='../img/verPedidoAnterior.png'/>
+                                                    <b>Consultar estado</b>
+                                                </p>
+                                                Permite conocer estado de pedidos realizados
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
-                        </li>
-                       
-                        <li class='opcionMenu' title='<b><u>Solicitud Cotizacion</u></b><br/ >Solicitud de Cotizacion de Repuestos'>
-                            <a class='simplelink' href='SolicitudCotizacion.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/cotizar-pedir.png'/>
-                                <span class='menuEnLineaA'>Solicitudes</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Seguimiento de VFC</u></b><br/ >Acá podrás consultar las solicitudes de reserva y vfc, y seguir su estado'>
-                            <a class='simplelink' href='ListarSolicitudes.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/listaSolicitudes.png'/>
-                                <span class='menuEnLineaA'>Seguimiento de VFC</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                <span class='menuEnLineaA simplelink'>Procedimientos</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devoluciones.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/Boletines.gif'/>
-                                                <strong>Devoluciones</strong>
-                                        </p>
-                                            Puedes realizar procedimientos como Reclamos y Devolucion de Repuestos
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                    </ul>");
-                        break;
-                    case 4: //Cotizador 
-                        Response.Write(@"
-                    <ul class='sf-menu'>
-                        <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/cotizar-pedir.png'/>
-                                <span class='menuEnLineaA'>Realiza Pedido</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            <ul class='subMenu'>
-                                <li class='menuEnLineaLiLi'>
-                                    <a class='simplelink' href='buscarrepto2.aspx'>
-                                        <p>
-                                        <img alt='*' src='../img/buscarRepuestos.png'/>
-                                        <b>Buscar</b>
-                                        </p>
-                                        Permite buscar repuestos y realizar pedidos
-                                    </a>
-                                </li>
-                                <li class='menuEnLineaLiLi'>
-                                    <a class='simplelink' href='consultarpedido.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/verPedidoAnterior.png'/>
-                                            <b>Consultar estado</b>
-                                        </p>
-                                        Permite conocer estado de pedidos realizados
-                                    </a>
-                                </li>
-                                <li class='menuEnLineaLiLi'>
-                                    <a class='simplelink' href='SolicitudLlave.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/llave.png'/>
-                                            <b>Solicitud llaves code</b>
-                                        </p>
-                                        Permite realizar solicitud de llaves code
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Seguimiento de VFC</u></b><br/ >Acá podrás consultar las solicitudes de reserva y vfc, y seguir su estado'>
-                            <a class='simplelink' href='ListarSolicitudes.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/listaSolicitudes.png'/>
-                                <span class='menuEnLineaA'>Seguimiento de VFC</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-
-                        <li class='opcionMenu' title='<b><u>Casa Matriz</u></b><br/ >Acá podrás encontrar información acerca de nosotros'>
-                            <a class='simplelink' href='CasaMatriz.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/casa.gif'/>
-                                <span class='menuEnLineaA'>Casa Matriz</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Promociones</u></b><br/ >Acá podrás encontrar increíbles promociones de repuestos de tus marcas'>
-                            <a href='Promociones.aspx' class='simplelink'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/promociones.gif'/>
-                                <span class='menuEnLineaA'>Promociones</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Accesorios</u></b><br/ >Acá podrás encontrar increíbles accesorios de marcas'>
-                            <img alt='<' src='../img/mnu_left.gif'/>
-                            <img class='menuEnLineaIconos' alt='*' src='../img/accesorioss.gif'/>
-                            <span class='menuEnLineaA'>Accesorios</span>
-                            <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                            <img alt='>' src='../img/mnu_right.gif'/>
-                            <ul class='subMenu'>
-	                            <li class='menuEnLineaLiLi'>
-		                            <a href='Accesorio.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/accesorio.png'/>
-				                            <strong>Accesorios</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar accesorios por modelo y marca
-			                            </div>
-		                            </a>
-	                            </li>
-	                            <li class='menuEnLineaLiLi'>
-		                            <a href='Merchandising.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/merchandising.png'/>
-				                            <strong>Merchandising</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar merchandising por marcas
-			                            </div>
-		                            </a>
-	                            </li>
-                                <li class='menuEnLineaLiLi'>
-                                    <a href='BancoRepuestos.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/bancoRepuestos.png'/>
-				                            <strong>Banco de Repuestos</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar banco de repuestos
-			                            </div>
-		                            </a>
-	                            </li>
-                            </ul>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Enlaces</u></b><br/ >Acá podrás encontrar enlaces a sitios relacionados con nuestro centro'>
-                            <a href='LinkInteres.aspx' class='simplelink'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/links.gif'/>
-                                <span class='menuEnLineaA'>Links</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>                
-                        <li class='opcionMenu' title='<b><u>Noticias</u></b><br/ >Acá podrás encontrar noticias de las más de 20 marcas con que SKBergé opera'>
-                            <a class='simplelink' href='PaginaNoticia.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/noticias.gif'/>
-                                <span class='menuEnLineaA'>Noticias</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Solicitud Cotizacion</u></b><br/ >Solicitud de Cotizacion de Repuestos'>
-                            <a class='simplelink' href='SolicitudCotizacion.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/cotizar-pedir.png'/>
-                                <span class='menuEnLineaA'>Solicitudes</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                    </ul>");
-
+                        </div>");
                         break;
                     //Supervisor
                     case 5:
@@ -924,73 +278,6 @@
                                     <img alt='>' src='../img/mnu_right.gif'/>
                                 </a>
                             </li>
-                            <li class='opcionMenu' title='<b><u>Promociones</u></b><br/ >Acá podrás encontrar increíbles promociones de repuestos de tus marcas'>
-                                <a class='simplelink' href='Promociones.aspx'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='*' src='../img/promociones.gif'/>
-                                    <span class='menuEnLineaA'>Promociones</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                        <li class='opcionMenu' title='<b><u>Accesorios</u></b><br/ >Acá podrás encontrar increíbles acceosrios de marcas'>
-                            <img alt='<' src='../img/mnu_left.gif'/>
-                            <img class='menuEnLineaIconos' alt='*' src='../img/accesorioss.gif'/>
-                            <span class='menuEnLineaA'>Accesorios</span>
-                            <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                            <img alt='>' src='../img/mnu_right.gif'/>
-                            <ul class='subMenu'>
-	                            <li class='menuEnLineaLiLi'>
-		                            <a href='Accesorio.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/accesorio.png'/>
-				                            <strong>Accesorios</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar accesorios por modelo y marca
-			                            </div>
-		                            </a>
-	                            </li>
-	                            <li class='menuEnLineaLiLi'>
-		                            <a href='Merchandising.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/merchandising.png'/>
-				                            <strong>Merchandising</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar merchandising por marcas
-			                            </div>
-		                            </a>
-	                            </li>
-                                <li class='menuEnLineaLiLi'>
-                                    <a href='BancoRepuestos.aspx'>
-			                            <p>
-				                            <img alt='*' src='../img/bancoRepuestos.png'/>
-				                            <strong>Banco de Repuestos</strong>
-			                            </p>
-			                            <div class='menuEnLineaDescripcion'>
-				                            Consultar banco de repuestos
-			                            </div>
-		                            </a>
-	                            </li>
-                            </ul>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Boletines</u></b><br/ >Acá podrás consultar los últimos boletines. Tambien podrás buscar antiguos por fecha'>
-                            <a href='Boletines.aspx' class='simplelink'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                <span class='boletinesSinLeer'>" + Util.obtieneCantidadDeBoletinesSinLeerPorRut(Session["rut"].ToString()) + @"</span>
-                                <span class='menuEnLineaA'>Boletines</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Enlaces</u></b><br/ >Acá podrás encontrar enlaces a sitios relacionados con nuestro centro'>
-                            <a href='LinkInteres.aspx' class='simplelink'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/links.gif'/>
-                                <span class='menuEnLineaA'>Links</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
                         <li class='opcionMenu' title='<b><u>Pedidos</u></b><br/ >Acá podrás buscar repuestos para generar Pedidos'>
                             <a href='buscarrepto2.aspx' class='simplelink'>
                                 <img alt='<' src='../img/mnu_left.gif'/>
@@ -999,248 +286,7 @@
                                 <img alt='>' src='../img/mnu_right.gif'/>
                             </a>
                         </li>
-                        <li class='opcionMenu' title='<b><u>Noticias</u></b><br/ >Acá podrás encontrar noticias de las más de 20 marcas con que SKBergé opera'>
-                            <a class='simplelink' href='PaginaNoticia.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/noticias.gif'/>
-                                <span class='menuEnLineaA'>Noticias</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu' title='<b><u>Seguimiento de VFC</u></b><br/ >Acá podrás consultar las solicitudes de reserva y vfc, y seguir su estado'>
-                            <a class='simplelink' href='ListarSolicitudes.aspx'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/listaSolicitudes.png'/>
-                                <span class='menuEnLineaA'>Seguimiento de VFC</span>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </a>
-                        </li>
-                        <li class='opcionMenu'>
-                            <img alt='<' src='../img/mnu_left.gif'/>
-                            <img class='menuEnLineaIconos' alt='*' src='../img/cotizar-pedir.png'/>
-                            <span class='menuEnLineaA simplelink'>Solicitud de cotizaciones</span>
-                            <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                            <img alt='>' src='../img/mnu_right.gif'/>
-                            <ul class='subMenu'>
-                                <li class='menuEnLineaLiLi'>
-                                    <a href='SolicitudCotizacion.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/casa.gif'/>
-                                            <strong>Solicitud de Cotizacion</strong>
-                                        </p>
-                                        Realizar solictudes de cotizacion para materiales sin Stock
-                                    </a>
-                                </li>
-                                <li class='menuEnLineaLiLi'>
-                                    <a href='EdicionSolicitud.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/casa.gif'/>
-                                            <strong>Editar Solicitudes</strong>
-                                        </p>
-                                        Edicion y asignacion de precio a las solicitudes de cotizacion
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> 
-                        <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                <span class='menuEnLineaA simplelink'>Procedimientos</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_Concesionario.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/Boletines.gif'/>
-                                                <strong>Supervisor</strong>
-                                        </p>
-                                            Puedes realizar procedimientos como Reclamos y Devolucion de Repuestos
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                     </ul>");
-                        break;
-
-                    case 6: //Administrador Noticias
-                        Response.Write(@"
-                        <ul class='sf-menu'>
-                            <li class='opcionMenu' title='<b>Casa Matriz</b><br/>Acá podrás encontrar información acerca de nosotros'>
-                                <a class='simplelink' href='CasaMatriz.aspx'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='*' src='../img/casa.gif'/>
-                                    <span class='menuEnLineaA'>Casa Matriz</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Promociones</u></b><br/>Acá podrás encontrar increíbles promociones de repuestos de tus marcas'>
-                                <a class='simplelink' href='Promociones.aspx'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='*' src='../img/promociones.gif'/>
-                                    <span class='menuEnLineaA'>Promociones</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Noticias</u></b><br/>Acá podrás encontrar noticias de las más de 20 marcas con que SKBergé opera'>
-                                <a href='PaginaNoticia.aspx' class='simplelink'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='*' src='../img/noticias.gif'/>
-                                    <span class='menuEnLineaA'>Noticias</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Accesorios</u></b><br/ >Acá podrás encontrar increíbles acceosrios de marcas'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/accesorioss.gif'/>
-                                <span class='menuEnLineaA'>Accesorios</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-	                                <li class='menuEnLineaLiLi'>
-		                                <a href='Accesorio.aspx'>
-			                                <p>
-				                                <img alt='*' src='../img/accesorio.png'/>
-				                                <strong>Accesorios</strong>
-			                                </p>
-			                                <div class='menuEnLineaDescripcion'>
-				                                Consultar accesorios por modelo y marca
-			                                </div>
-		                                </a>
-	                                </li>
-	                                <li class='menuEnLineaLiLi'>
-		                                <a href='Merchandising.aspx'>
-			                                <p>
-				                                <img alt='*' src='../img/merchandising.png'/>
-				                                <strong>Merchandising</strong>
-			                                </p>
-			                                <div class='menuEnLineaDescripcion'>
-				                                Consultar merchandising por marcas
-			                                </div>
-		                                </a>
-	                                </li>
-                                    <li class='menuEnLineaLiLi'>
-		                                <a href='BancoRepuestos.aspx'>
-			                                <p>
-				                                <img alt='*' src='../img/bancoRepuestos.png'/>
-				                                <strong>Banco de Repuestos</strong>
-			                                </p>
-			                                <div class='menuEnLineaDescripcion'>
-				                                Consultar banco de repuestos
-			                                </div>
-		                                </a>
-	                                </li>
-                                </ul>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Boletines</u></b><br/ >Acá podrás consultar los últimos boletines. Tambien podrás buscar antiguos por fecha'>
-                                <a href='Boletines.aspx' class='simplelink'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                    <span class='menuEnLineaA'>Boletines</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Enlaces</u></b><br/ >Acá podrás encontrar enlaces a sitios relacionados con nuestro centro'>
-                                <a href='LinkInteres.aspx' class='simplelink'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='|' src='../img/links.gif'/>
-                                    <span class='menuEnLineaA'>Links</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Pedidos</u></b><br/ >Acá podrás buscar repuestos para generar Pedidos'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='|' src='../img/cotizar-pedir.png'/>
-                                <a href='buscarrepto2.aspx' class='menuEnLineaA'>Pedidos</a>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                            </li>
-                            <li class='opcionMenu' title='<b><u>Seguimiento de VFC</u></b><br/ >Acá podrás consultar las solicitudes de reserva y vfc, y seguir su estado'>
-                                <a class='simplelink' href='ListarSolicitudes.aspx'>
-                                    <img alt='<' src='../img/mnu_left.gif'/>
-                                    <img class='menuEnLineaIconos' alt='|' src='../img/listaSolicitudes.png'/>
-                                    <span class='menuEnLineaA'>Seguimiento de VFC</span>
-                                    <img alt='>' src='../img/mnu_right.gif'/>
-                                </a>
-                            </li>
-                            <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                <span class='menuEnLineaA simplelink'>Procedimientos</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='HorarioCDR.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Horario CDR</strong>
-                                            </p>
-                                            Horario de Trabajo de Nuestro Centro Distribucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Reclamos.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/Boletines.gif'/>
-                                                <strong>Reclamos</strong>
-                                        </p>
-                                            Puedes realizar procedimientos como Reclamos y Devolucion de Repuestos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devoluciones.aspx'>
-                                        <p>
-                                            <img alt='*' src='../img/Boletines.gif'/>
-                                                <strong>Devoluciones</strong>
-                                        </p>
-                                            Puedes realizar procedimientos como Reclamos y Devolucion de Repuestos
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>");
-                        break;
-
-                    case 7: //CDR
-                        Response.Write(@"<br />
-                        <ul class='sf-menu'>
-                            <li class='opcionMenu'>
-                                <img alt='<' src='../img/mnu_left.gif'/>
-                                <img class='menuEnLineaIconos' alt='*' src='../img/boletines.gif'/>
-                                <span class='menuEnLineaA simplelink'>Procedimientos</span>
-                                <img class='menuEnLineaFlechitas' alt='!' src='../img/mnu_arrow.gif'/>
-                                <img alt='>' src='../img/mnu_right.gif'/>
-                                <ul class='subMenu'>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_CDR.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Devoluciones</strong>
-                                            </p>
-                                            Solicitudes de Devolución
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_CDR_Reclamos.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Reclamos</strong>
-                                            </p>
-                                            Solicitudes de Reclamos
-                                        </a>
-                                    </li>
-                                    <li class='menuEnLineaLiLi'>
-                                        <a href='Devolucion_CDR_Control.aspx'>
-                                            <p>
-                                                <img alt='*' src='../img/casa.gif'/>
-                                                <strong>Control CDR(JEFE)</strong>
-                                            </p>
-                                            Solicitudes de Reclamos
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul><br/>");
                         break;
                     default:
                         break;
@@ -1252,20 +298,22 @@
         <div class='main'>
             <asp:ContentPlaceHolder ID='MainContent' runat='server' />
         </div>
-        <div class='sidebar'>
-        
-            <div id="informacionGeneral" class='informacionGeneral' runat="server">
+         <div id="informacionGeneral" class='informacionGeneral' runat="server">
                 <center>
                 <img alt="Horarios" src='../img/HORARIOS_CDR.jpg' width='267' height='215' border='0'
                     usemap='#Map' />
                 </center>
-            </div>
-            <center>
+                            <center>
                 <asp:Button ID="ImageButton4" runat="server" Text="Editar contenido" CssClass="button"
                     PostBackUrl="~/Vistas/EditorContenido.aspx?tipo=11" UseSubmitBehavior="False" />
             </center>
+            </div>
+<%--        <div class='sidebar'>--%>
+        
+
+
             
-        </div>
+    <%--    </div>--%>
         <div class='clear'>
         </div>
     </div>
@@ -1275,7 +323,7 @@
         </div>
         <div id='imagenesAbajo'>
             <div align='center'>
-               <img alt="Marcas SKBergé" src='../img/LOGOS_MARCAS.jpg' width='344' height='38' border='0'
+               <img alt="Marcas Astara" src='../img/LOGOS_MARCAS.jpg' width='344' height='38' border='0'
                     usemap='#Map' /> <!--
                 <map name='Map' id='Map'>
                     <area alt="1" shape='rect' coords='830,6,872,54' href='http://www.tata-motors.cl'

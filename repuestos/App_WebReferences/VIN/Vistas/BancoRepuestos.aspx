@@ -47,11 +47,11 @@
                         En esta sección, operarios y cotizadores podrán subir repuestos que deseen vender a otros concesionarios. Para buscar respuestos haga clic en las marcas del panel de la derecha
                     </p>
                     <p>
-                        SKBergé <b>NO se hará responsable</b> por los anuncios ni por los repuestos vendidos
+                        Astara <b>NO se hará responsable</b> por los anuncios ni por los repuestos vendidos
                     </p>
                     <p>
                         Departamento de Repuestos<br />
-                        SKBergé Automotriz
+                        Astara Automotriz
                     </p>
                 </center>
             </asp:panel>
@@ -251,7 +251,7 @@
                     </p>
                     <p>
                         Atte.<br />
-                        El equipo de SKBergé
+                        El equipo de Astara
                     </p>
                     <fieldset>
                     <legend>Formulario ingreso de repuesto al banco</legend>

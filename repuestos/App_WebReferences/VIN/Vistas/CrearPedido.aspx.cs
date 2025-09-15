@@ -91,7 +91,7 @@ public partial class Vistas_crearPedido : System.Web.UI.Page
                 cont++;                    
             }
 
-            textoCorreo = "Usted ha confirmado un pedido de repuestos a SKBergé con el código de seguimiento N°" + _pedido.ResultPedido.NumPedido;
+            textoCorreo = "Usted ha confirmado un pedido de repuestos a Astara con el código de seguimiento N°" + _pedido.ResultPedido.NumPedido;
             textoCorreo += "\nConcesionario: " + _sapApi.GetNombreDealer(Session["rut"].ToString());
             textoCorreo += "\nDireccion sucursal: " + _sapApi.GetDireccionSucursalByShipCode(_sapApi.GetShipCodeOfPedido(_pedido.ResultPedido.NumPedido));
             textoCorreo += "\nMonto total del pedido: $" + _sapApi.GetTotalNeto(numCoti);

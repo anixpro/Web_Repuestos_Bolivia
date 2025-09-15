@@ -132,7 +132,7 @@ public partial class Vistas_Mantenedor : System.Web.UI.Page
 					throw new Exception("No se pudo insertar usuario, contacte al administrador");
 				}
 			}
-            String mensaje = "Estimado " + txtNombre.Text + ", ha sido registrado en la web de repuestos de SKBergé con los siguientes datos:\n";
+            String mensaje = "Estimado " + txtNombre.Text + ", ha sido registrado en la web de repuestos de Astara con los siguientes datos:\n";
             controlPersona.mail(txtNombre.Text, txtRut.Text, contrasena.Text, txtEmail.Text, mensaje);
             msjesError.Visible = true;
             msjesError.InnerText = "El usuario: " + txtNombre.Text + ", ha sido creado con éxito";

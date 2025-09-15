@@ -197,6 +197,7 @@ public partial class index : System.Web.UI.Page
                     Session["permisos"] = controlPersona.permisosPersona();
                     Session["rut"] = controlPersona.rutPersona();
                     Session["NoSucursal"] = "";
+                    Session["IdPersona"] = controlPersona.IdPersona();
 
 
                     //insert logueo conexion usuario

@@ -19,7 +19,7 @@ public partial class Vistas_cotizar : System.Web.UI.Page
     RealizarPedido _pedido = new RealizarPedido();
     DataSet dsRegistrosSinStock;
     PdfHelper _pdf;
-    string tipoPed = "", canalDis = "", direccion = "", MtvoPed = "";
+    string tipoPed = "", canalDis = "", direccion = "", MtvoPed = "", ClasePedido=""; 
 
     // Logger que dejará información de seguimiento en /doc/logWebReptos2.log
     private static readonly ILog logger = log4net.LogManager.GetLogger(typeof(Vistas_cotizar));
@@ -39,6 +39,9 @@ public partial class Vistas_cotizar : System.Web.UI.Page
 
         //Motivo Pedido
         MtvoPed = Request.QueryString["MtvoPed"];
+
+        //Clase Pedido
+        ClasePedido = Request.QueryString["ClasePedido"];
 
         // Se muestran los resumenes de productos sin stock
         //VerListasResumenes();
@@ -80,7 +83,7 @@ public partial class Vistas_cotizar : System.Web.UI.Page
             marcaRep = campos["marca"].ToString();
             prefMarca = _sapApi.GetPrefijoMarcaByGrupoMateriales(campos["grupoMat"].ToString(), campos["marca"].ToString()); //Se agrega Marca
             _creaCotizacion.Cantidad.Add(campos["cantidad"].ToString()); //(cantidades[x].ToString());
-            _creaCotizacion.Codigo.Add(prefMarca.Trim() + campos["codigo"].ToString());
+            _creaCotizacion.Codigo.Add(campos["codigo"].ToString());
 
             _controlBD.InsertarDatos(@"insert into MATERIALES_PEDIDO(id_pedido,marca,codigo,descripcion,strGrupoMateriales,cantidad,stock,valor,total)
                 values('" + Session["idSession"].ToString() + "','" + campos["marca"].ToString() + "','" + campos["codigo"].ToString() + "', " +
@@ -109,8 +112,8 @@ public partial class Vistas_cotizar : System.Web.UI.Page
         DateTime thisDay2 = DateTime.Today;
         dynamic fechaFutura2 = thisDay.AddDays(ValidezDeLaOferta2).ToString("yyyyMMdd");
 
-        //Obtener datos para cotizar
-        _creaCotizacion.ClaseDocVentas = _sapApi.ClaseDocumentoDeVentas;
+        //Obtener datos para cotizar// modificado por Anibal para requerimiento Bolivia 
+        _creaCotizacion.ClaseDocVentas = ClasePedido;//_sapApi.ClaseDocumentoDeVentas;
 
 
         // Para marcas foraneas, va una X en el campo i_foraneo
@@ -118,17 +121,52 @@ public partial class Vistas_cotizar : System.Web.UI.Page
         Marca marcaVehiculo = _controlMarca.obtenerMarcaPorNombre(marcaRep);
         if (marcaVehiculo == null)
         {
-            throw new Exception("La marca no ha sido ingresada al sistema. Contacte al administrador");
+            msjesError.InnerText = "La marca no ha sido ingresada, Por favor reportar al administrador. Gracias";
+            msjesError.Visible = true;
+            return;
         }
         if (_controlMarca.obtenerMarcaPorNombre(marcaRep).esForaneo)
         {
             _creaCotizacion.ClaseDocVentas = _sapApi.ClaseDocumentoDeVentasForaneo;
         }
 
+        //implentacion para bolivia se busca sector 
+
+        // se busca el sector en tabla marca 
+        DataSet sector = null;
+        string SectorMarca = "";
+        sector = _controlBD.CargaSectorMarca(marcaRep);
+
+        //valida que data set no venga en null o no traiga una tabla cargada
+        if (sector != null && sector.Tables.Count > 0)
+        {
+            foreach (DataRow i in sector.Tables[0].Rows)
+            {
+                //valida que el sector no venga vacio 
+                if (i["sector"].ToString() != "")
+                {
+                    SectorMarca = i["sector"].ToString();
+                }
+                else
+                {
+                    msjesError.InnerText = "Marca no tiene sector creado, Por favor reportar a Astara. Gracias";
+                    msjesError.Visible = true;
+                    return;
+                }
+            }
+        }
+        else
+        {
+            msjesError.InnerText = "Marca no tiene sector creado, Por favor reportar a Astara. Gracias";
+            msjesError.Visible = true;
+            return;
+        }
+
+
         _creaCotizacion.FecValides = fechaFutura;
         _creaCotizacion.CodClienteSap = _sapApi.GetCodigoClienteSapByRut(Session["rut"].ToString());
         _creaCotizacion.CodClienteSap2 = direccion;
-        _creaCotizacion.SpartRep = _sapApi.Sector;
+        _creaCotizacion.SpartRep = SectorMarca;//_sapApi.Sector;
         _creaCotizacion.DescripCotizacion = "";
         _creaCotizacion.OrgVentas = _sapApi.GetVkorgByGrupoMaterial(_sapApi.GetGrupoMaterialesByMarca(marcaRep),marcaRep);
 
@@ -186,8 +224,8 @@ public partial class Vistas_cotizar : System.Web.UI.Page
             }
             else {
                 // Caso en que numero de cotización retorne vacío
-                logger.Error("Error: " + _pedido.ResultCotiza.NumCotizacion + ". Favor reportar a SKBergé. Rogamos disculpar los inconvenientes");
-                msjesError.InnerText = "Error: " + _pedido.ResultCotiza.NumCotizacion + ". Favor reportar a SKBergé. Rogamos disculpar los inconvenientes";
+                logger.Error("Error: " + _pedido.ResultCotiza.NumCotizacion + ". Favor reportar Astara. Rogamos disculpar los inconvenientes");
+                msjesError.InnerText = "Error: " + _pedido.ResultCotiza.NumCotizacion + ". Favor reportar a Astara. Rogamos disculpar los inconvenientes";
                 msjesError.Visible = true;
                 return;
             }
@@ -267,7 +305,7 @@ public partial class Vistas_cotizar : System.Web.UI.Page
         }
         else
         {
-            msjesError.InnerText = "Error grave: " + _pedido.mensajeError + ". Porfavor reportar a SKBergé. Gracias";
+            msjesError.InnerText = "Error grave: " + _pedido.mensajeError + ". Porfavor reportar a Astara. Gracias";
             logger.Error("En [CotizarEnSap] error grave en [Cotizar.aspx]. " + _pedido.mensajeError);
             msjesError.Visible = true;
             //btnGenerarPedido.Enabled = false;
@@ -398,14 +436,14 @@ public partial class Vistas_cotizar : System.Web.UI.Page
         {
             SendMail_helper _mail = new SendMail_helper();
             string para = _sapApi.GetCorreoUsuario(Session["rut"].ToString());
-            string asunto = "SKBERGE: Solicitud de reserva confirmado [NO RESPONDER]";
+            string asunto = "ASTARA: Solicitud de reserva confirmado [NO RESPONDER]";
             // Se envía un correo con los repuestos sin stock solicitados
             String textoCorreo = "";
             // Se traen solo VFCs y reservas solicitados en la sesión
             DataSet dsDetallePed = _controlBD.ObtenerDatosFiltrados("select * from no_stock where idSession = '" + Session["idSession"].ToString() + "' and descarte='n'");
             if (cont > 1)
             {
-                textoCorreo = "Usted ha realizado solicitud (VFCs) de repuestos a SKBergé. Le recordamos que las reservas se despacharán y facturarán una vez arribados los repuestos a nuestra bodega";
+                textoCorreo = "Usted ha realizado solicitud (VFCs) de repuestos a Astara. Le recordamos que las reservas se despacharán y facturarán una vez arribados los repuestos a nuestra bodega";
                 textoCorreo += "\nConcesionario: " + _sapApi.GetNombreDealer(Session["rut"].ToString());
                 textoCorreo += "\nDireccion sucursal: " + _sapApi.GetDireccionSucursalByShipCode(direccion);
                 textoCorreo += "\n\nDetalle del pedido";

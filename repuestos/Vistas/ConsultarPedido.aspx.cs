@@ -90,45 +90,82 @@ public partial class Vistas_ConsultarPedido : System.Web.UI.Page
                 wsConsultaPedido.PreAuthenticate = true;
                 WsResponse = wsConsultaPedido.SI_Consulta_Estado_Pedido_Venta_Out(wsDataConsultaPedido);
 
-                if (WsResponse.E_AUDAT == "00000000")
+                foreach (ERP.DT_Errores errores in WsResponse.E_ERROR)
                 {
-                    msjesError.InnerText = "Error, número de pedido no valido.";
-                    msjesError.Visible = true;
-                    return;
+                    if (errores.E_TYPE == "")
+                    {
+                        if (WsResponse.E_AUDAT == "00000000")
+                        {
+                            msjesError.InnerText = "Error, número de pedido no valido.";
+                            msjesError.Visible = true;
+                            return;
+                        }
+
+
+                        //Se asignan los datos a los campos
+                        //cmpy_code.Text = _sapApi.GetPrefijoMarcaByOrganizacionDeVentas(WsResponse.E_VKORG);
+                        name_text.Text = WsResponse.E_VTEXT.Trim();
+                        porder_num.Text = WsResponse.E_VBELN.Trim();
+                        order_date.Text = string.Format(WsResponse.E_AUDAT, "{0:d}").Trim();
+                        goods_amt.Text = "$" + System.Convert.ToString(System.Convert.ToDouble(WsResponse.E_NETWR.Trim())).ToString();
+                        tax_amt.Text = "$" + System.Convert.ToString(System.Convert.ToDouble(WsResponse.E_KZWI5.Trim())).ToString();
+                        total_amt.Text = "$" + System.Convert.ToString(System.Convert.ToDouble(WsResponse.E_TOTAL.Trim())).ToString();
+                        numCotizacion.Text = _sapApi.GetNumCotizacionPorNpedido(WsResponse.E_VBELN.Trim());
+                        //numOrden.Text = SapApi.GetDataFromPedidoByPedidoId(idPedido, "ID_PEDIDO", "I");
+                        try
+                        {
+                            ERQ.DT_Consulta_Estado_Pedido_Venta_ResponseT_POS[] wsResponseItemPedidos = new ERQ.DT_Consulta_Estado_Pedido_Venta_ResponseT_POS[WsResponse.T_POS.Length];
+                        }
+                        catch (NullReferenceException ex)
+                        {
+                            msjesError.InnerText = "El pedido no se pudo rescatar desde Astara, contacte a su admin, el detalle de este error es el siguiente: " + ex.Message;
+                            msjesError.Visible = true;
+                            logger.Error("NullReferenceException en [ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
+                            _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "NullReferenceException en [ConsultarEstadoPedido_ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
+
+                        }
+                        GridView2.DataSource = WsResponse.T_POS;
+                        GridView2.DataBind();
+
+                        //PanelBusqueda.Visible = false;
+                        PanelInfoPedido.Visible = true;
+                        txtNumCotizacion.Text = "";
+                        txtNumPedido.Text = "";
+
+                        trrHideMe.Visible = false;
+                    }
+                    else
+                    {
+                        msjesError.InnerText = "Error en servicio, favor comunicarse con el administrador de sistemas.";
+                        msjesError.Visible = true;
+
+                        //verifica en que campo viene la descripcion del error desde el servicio para guardarlo en el log
+                        if (errores.E_MESSAGE != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + errores.E_MESSAGE);
+                        }
+                        else if (errores.E_MESSAGE_V1 != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + errores.E_MESSAGE_V1);
+                        }
+                        else if (errores.E_MESSAGE_V2 != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + errores.E_MESSAGE_V2);
+                        }
+                        else if (errores.E_MESSAGE_V3 != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + errores.E_MESSAGE_V3);
+                        }
+                        else if (errores.E_MESSAGE_V4 != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + errores.E_MESSAGE_V1);
+                        }
+                        else
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: no se pudo identificar el error");
+                        }
+                    }
                 }
-
-
-                //Se asignan los datos a los campos
-                cmpy_code.Text = _sapApi.GetPrefijoMarcaByOrganizacionDeVentas(WsResponse.E_VKORG);
-                name_text.Text = WsResponse.E_VTEXT.Trim();
-                porder_num.Text = WsResponse.E_VBELN.Trim();
-                order_date.Text = string.Format(WsResponse.E_AUDAT, "{0:d}").Trim();
-                goods_amt.Text = "$" + System.Convert.ToString(System.Convert.ToDouble(WsResponse.E_NETWR.Trim())).ToString();
-                tax_amt.Text = "$" + System.Convert.ToString(System.Convert.ToDouble(WsResponse.E_KZWI5.Trim())).ToString();
-                total_amt.Text = "$" + System.Convert.ToString(System.Convert.ToDouble(WsResponse.E_TOTAL.Trim())).ToString();
-                numCotizacion.Text = _sapApi.GetNumCotizacionPorNpedido(WsResponse.E_VBELN.Trim());
-                //numOrden.Text = SapApi.GetDataFromPedidoByPedidoId(idPedido, "ID_PEDIDO", "I");
-                try
-                {
-                    ERQ.DT_Consulta_Estado_Pedido_Venta_ResponseT_POS[] wsResponseItemPedidos = new ERQ.DT_Consulta_Estado_Pedido_Venta_ResponseT_POS[WsResponse.T_POS.Length];
-                }
-                catch (NullReferenceException ex)
-                {
-                    msjesError.InnerText = "El pedido no se pudo rescatar desde SKBergé, contacte a su admin, el detalle de este error es el siguiente: " + ex.Message;
-                    msjesError.Visible = true;
-                    logger.Error("NullReferenceException en [ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
-                    _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "NullReferenceException en [ConsultarEstadoPedido_ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
-
-                }
-                GridView2.DataSource = WsResponse.T_POS;
-                GridView2.DataBind();
-
-                //PanelBusqueda.Visible = false;
-                PanelInfoPedido.Visible = true;
-                txtNumCotizacion.Text = "";
-                txtNumPedido.Text = "";
-
-                trrHideMe.Visible = false;
             }
             catch (System.Net.WebException ex)
             {
@@ -137,6 +174,11 @@ public partial class Vistas_ConsultarPedido : System.Web.UI.Page
                 logger.Error("WebException en [ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
                 _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "WebException en [ConsultarEstadoPedido_ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
 
+            }
+            catch (Exception ex)
+            {
+                msjesError.InnerText = "Error: "+ ex.Message+",Favor contactar con soporte Astara";
+                msjesError.Visible = true;
             }
             #endregion
         }
@@ -198,7 +240,7 @@ public partial class Vistas_ConsultarPedido : System.Web.UI.Page
 
 
                 //Se asignan los datos a los campos
-                cmpy_code.Text = _sapApi.GetPrefijoMarcaByOrganizacionDeVentas(WsResponse.E_VKORG);
+                //cmpy_code.Text = _sapApi.GetPrefijoMarcaByOrganizacionDeVentas(WsResponse.E_VKORG);
                 name_text.Text = WsResponse.E_VTEXT.Trim();
                 porder_num.Text = WsResponse.E_VBELN.Trim();
                 order_date.Text = string.Format(WsResponse.E_AUDAT, "{0:d}").Trim();
@@ -213,7 +255,7 @@ public partial class Vistas_ConsultarPedido : System.Web.UI.Page
                 }
                 catch (NullReferenceException ex)
                 {
-                    msjesError.InnerText = "El pedido no se pudo rescatar desde SKBergé, contacte a su admin, el detalle de este error es el siguiente: " + ex.Message;
+                    msjesError.InnerText = "El pedido no se pudo rescatar desde Astara, contacte a su admin, el detalle de este error es el siguiente: " + ex.Message;
                     msjesError.Visible = true;
                     logger.Error("NullReferenceException en [ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
                     _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "NullReferenceException en [ConsultarEstadoPedido_ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);

@@ -25,6 +25,7 @@ public class Persona
     private int _permisos;
     private String _nombre;
     private string _rut;
+    private int _IdPersona;
 
     private MailMessage _correo = new MailMessage();
     private SmtpClient _smtp = new SmtpClient();
@@ -78,6 +79,10 @@ public class Persona
     {
         return _nombre;
     }
+    public int getIdPersona()
+    {
+        return _IdPersona;
+    }
 
     public void setPermisos(int permisos)
     {
@@ -91,6 +96,8 @@ public class Persona
     {
         _nombre = nombre;
     }
+
+
 
     public int login(String usuario, String contrasena)
     {
@@ -127,9 +134,9 @@ public class Persona
         cmd.CommandType = System.Data.CommandType.Text;
         cmd.CommandText = @"DECLARE @largo  int;
                             SET @largo =LEN('"+usuario+"')-3 "
-                            +"SELECT persona.nombre,personaPermisos.cargo, "
-                            +"CAST(DECRYPTBYPASSPHRASE('ENCRIPTADO',persona.contrasena) AS VARCHAR(50)) AS contrasena, SUBSTRING(nombre,0,5)+SUBSTRING(CAST(persona.rut as VARCHAR(12)),@largo,4),persona.rut "
-                            +"FROM persona, personaPermisos "
+                            +"SELECT persona.nombre,personaPermisos.cargo,"
+                            + "CAST(DECRYPTBYPASSPHRASE('ENCRIPTADO',persona.contrasena) AS VARCHAR(50)) AS contrasena, SUBSTRING(nombre,0,5)+SUBSTRING(CAST(persona.rut as VARCHAR(12)),@largo,4),persona.rut,persona.idPersona "
+                            + "FROM persona, personaPermisos "
                             +"WHERE persona.usuario ='"+usuario+"' "
                             +"AND (select CAST(DECRYPTBYPASSPHRASE('ENCRIPTADO',contrasena) AS VARCHAR(50)) "
 			                        +"from persona "
@@ -156,6 +163,7 @@ public class Persona
                 _nombre = dr[0].ToString();
                 _permisos = int.Parse(dr[1].ToString());
                 _rut = (dr[4].ToString());
+                _IdPersona = int.Parse(dr[5].ToString());
                 dr.Close();
                 try
                 {

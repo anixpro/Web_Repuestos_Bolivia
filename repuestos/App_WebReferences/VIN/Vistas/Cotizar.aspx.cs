@@ -177,8 +177,8 @@ public partial class Vistas_cotizar : System.Web.UI.Page
             }
             else {
                 // Caso en que numero de cotización retorne vacío
-                logger.Error("Error: " + _pedido.ResultCotiza.NumCotizacion + ". Favor reportar a SKBergé. Rogamos disculpar los inconvenientes");
-                msjesError.InnerText = "Error: " + _pedido.ResultCotiza.NumCotizacion + ". Favor reportar a SKBergé. Rogamos disculpar los inconvenientes";
+                logger.Error("Error: " + _pedido.ResultCotiza.NumCotizacion + ". Favor reportar a Astara. Rogamos disculpar los inconvenientes");
+                msjesError.InnerText = "Error: " + _pedido.ResultCotiza.NumCotizacion + ". Favor reportar a Astara. Rogamos disculpar los inconvenientes";
                 msjesError.Visible = true;
                 return;
             }
@@ -208,7 +208,7 @@ public partial class Vistas_cotizar : System.Web.UI.Page
         }
         else
         {
-            msjesError.InnerText = "Error grave: " + _pedido.mensajeError + ". Porfavor reportar a SKBergé. Gracias";
+            msjesError.InnerText = "Error grave: " + _pedido.mensajeError + ". Porfavor reportar a Astara. Gracias";
             logger.Error("En [CotizarEnSap] error grave en [Cotizar.aspx]. " + _pedido.mensajeError);
             msjesError.Visible = true;
             //btnGenerarPedido.Enabled = false;
@@ -346,7 +346,7 @@ public partial class Vistas_cotizar : System.Web.UI.Page
             DataSet dsDetallePed = _controlBD.ObtenerDatosFiltrados("select * from no_stock where idSession = '" + Session["idSession"].ToString() + "' and descarte='n'");
             if (cont > 1)
             {
-                textoCorreo = "Usted ha realizado solicitud (VFCs) de repuestos a SKBergé. Le recordamos que las reservas se despacharán y facturarán una vez arribados los repuestos a nuestra bodega";
+                textoCorreo = "Usted ha realizado solicitud (VFCs) de repuestos a Astara. Le recordamos que las reservas se despacharán y facturarán una vez arribados los repuestos a nuestra bodega";
                 textoCorreo += "\nConcesionario: " + _sapApi.GetNombreDealer(Session["rut"].ToString());
                 textoCorreo += "\nDireccion sucursal: " + _sapApi.GetDireccionSucursalByShipCode(direccion);
                 textoCorreo += "\n\nDetalle del pedido";

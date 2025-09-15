@@ -79,7 +79,7 @@ public partial class Vistas_Devoluciones : System.Web.UI.Page
             _SQL.borradatossession(1, Session["rut"].ToString(), Session["idSession"].ToString(), out coderror, out msgerror);
             if (coderror != 0)
             {
-                msjError.InnerText = "Se a producido un error SQL, informe a SkBergé";
+                msjError.InnerText = "Se a producido un error SQL, informe a Astara";
                 msjError.Visible = true;
                 _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [DEVREC_limpiatablas] Message: " + msgerror + " Inner: " + coderror);
                 return;

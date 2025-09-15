@@ -438,7 +438,7 @@ public partial class Vistas_VFCEspecial : System.Web.UI.Page
             // Se envía un correo con los repuestos sin stock solicitados
             
 
-            textoCorreo = "Usted ha realizado solicitud de reserva de repuestos a SKBergé. Le recordamos que las reservas se despacharán y facturarán una vez arribados los repuestos a nuestra bodega";
+            textoCorreo = "Usted ha realizado solicitud de reserva de repuestos a Astara. Le recordamos que las reservas se despacharán y facturarán una vez arribados los repuestos a nuestra bodega";
             textoCorreo += "\nConcesionario: " + _sapApi.GetNombreDealer(Session["rut"].ToString());
             //textoCorreo += "\nDireccion sucursal: " + _sapApi.GetDireccionSucursalByShipCode(direccion);
             textoCorreo += "\nDireccion destino: " + direccionfinal;

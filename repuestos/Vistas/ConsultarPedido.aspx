@@ -77,10 +77,9 @@
                                         <asp:Label ID="Label4" runat="server" Text="Dealer:" Font-Names="Tahoma" Font-Size="8pt"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="cmpy_code" runat="server" Enabled="False" CssClass="InputTextBox"
-                                            Width="50px"></asp:TextBox>
-                                        <asp:TextBox ID="name_text" runat="server" CssClass="InputTextBox" Enabled="False"
-                                            Width="300px"></asp:TextBox>
+                                      <%--  <asp:TextBox ID="cmpy_code" runat="server" Enabled="False" CssClass="InputTextBox"
+                                            Width="50px"></asp:TextBox>--%>
+                                        <asp:TextBox ID="name_text" runat="server" CssClass="InputTextBox" Enabled="False"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trrHideMe">

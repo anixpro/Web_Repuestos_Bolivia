@@ -1028,7 +1028,7 @@ public class SapAPI
         }
         else
         {
-            codrepf = codrep.Substring(3, codrep.Length - 3);
+            codrepf = codrep;
         }
         
 

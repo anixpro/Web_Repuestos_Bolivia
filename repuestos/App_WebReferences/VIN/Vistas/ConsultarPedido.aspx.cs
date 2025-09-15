@@ -114,7 +114,7 @@ public partial class Vistas_ConsultarPedido : System.Web.UI.Page
                 }
                 catch (NullReferenceException ex)
                 {
-                    msjesError.InnerText = "El pedido no se pudo rescatar desde SKBergé, contacte a su admin, el detalle de este error es el siguiente: " + ex.Message;
+                    msjesError.InnerText = "El pedido no se pudo rescatar desde Astara, contacte a su admin, el detalle de este error es el siguiente: " + ex.Message;
                     msjesError.Visible = true;
                     logger.Error("NullReferenceException en [ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
                     _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "NullReferenceException en [ConsultarEstadoPedido_ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
@@ -213,7 +213,7 @@ public partial class Vistas_ConsultarPedido : System.Web.UI.Page
                 }
                 catch (NullReferenceException ex)
                 {
-                    msjesError.InnerText = "El pedido no se pudo rescatar desde SKBergé, contacte a su admin, el detalle de este error es el siguiente: " + ex.Message;
+                    msjesError.InnerText = "El pedido no se pudo rescatar desde Astara, contacte a su admin, el detalle de este error es el siguiente: " + ex.Message;
                     msjesError.Visible = true;
                     logger.Error("NullReferenceException en [ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);
                     _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "NullReferenceException en [ConsultarEstadoPedido_ConsultarEstadoPedido] Message: " + ex.Message + ". Stack: " + ex.StackTrace + ". Inner: " + ex.InnerException);

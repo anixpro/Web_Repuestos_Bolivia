@@ -75,7 +75,7 @@
                             PropertyName="Text" Type="String" />
                     </SelectParameters>
                 </asp:SqlDataSource>
-                Catálogo de Accesorios SKBergé
+                Catálogo de Accesorios Astara
             </div>
             <!-- Acá se despliegan los mensajes de error -->
             <div id="msjesError" runat="server" clientidmode="Static">
@@ -89,7 +89,7 @@
                     <b>Bienvenido al catálogo de accesorios</b>
                     <div id="divConAccesorios" runat="server">
                         <p>
-                            Acá se muestran automóviles equipados con los mejores accesorios que puedes solicitar en SKBergé.
+                            Acá se muestran automóviles equipados con los mejores accesorios que puedes solicitar en Astara.
                         </p>
                         <p>
                             Te presentamos algunos

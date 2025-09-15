@@ -83,28 +83,28 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             int permiso = int.Parse(Session["permisos"].ToString());
             // Si usuario es administrador, no se muestra noticia importante
-            if (permiso != 1)
-            {
-                ImageButton4.Visible = false;
-                // Se comprueba si hay noticias importantes (por lo menos 1)
-                if (Util.obtenerUltimaNoticiaImportante() != "")
-                {
-                    // Se comprueba si es que el usuario leyó noticias urgentes
-                    if (Util.noLeyoNoticiaImportante(Session["rut"].ToString()))
-                    {
-                        idNoticiaImportante.Visible = true;
-                        idNoticiaImportante.InnerHtml = Util.obtenerUltimaNoticiaImportante() +
-                            @"
-                        <div id='divLeiNoticia' class='leiNoticia'>
-                            <center>
-                                <input id='btnLeiNoticia' class='button' type='button' value='Leí la noticia' />
-                                <input type='hidden' id='rutSession' value='" + Session["rut"].ToString() + @"'/>
-                            </center>
-                        </div>
-                    ";
-                    }
-                }
-            }
+            //if (permiso != 1 || permiso != 3)
+            //{
+            //    ImageButton4.Visible = false;
+            //    // Se comprueba si hay noticias importantes (por lo menos 1)
+            //    if (Util.obtenerUltimaNoticiaImportante() != "")
+            //    {
+            //        // Se comprueba si es que el usuario leyó noticias urgentes
+            //        if (Util.noLeyoNoticiaImportante(Session["rut"].ToString()))
+            //        {
+            //            idNoticiaImportante.Visible = true;
+            //            idNoticiaImportante.InnerHtml = Util.obtenerUltimaNoticiaImportante() +
+            //                @"
+            //            <div id='divLeiNoticia' class='leiNoticia'>
+            //                <center>
+            //                    <input id='btnLeiNoticia' class='button' type='button' value='Leí la noticia' />
+            //                    <input type='hidden' id='rutSession' value='" + Session["rut"].ToString() + @"'/>
+            //                </center>
+            //            </div>
+            //        ";
+            //        }
+            //    }
+            //}
 
             switch (permiso)
             {

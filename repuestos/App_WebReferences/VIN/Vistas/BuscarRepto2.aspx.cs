@@ -393,56 +393,6 @@ public partial class Vistas_buscarRepto : System.Web.UI.Page
                VFCbusqueda.Visible = true;
              }
 
-
-            /*int precioLista = 0;
-            int stock = 0;
-            DataSet _dSet = new DataSet();
-            SqlConnection _conection = new SqlConnection();
-            SqlCommand _comando = new SqlCommand();
-            SqlDataAdapter _adapter = new SqlDataAdapter();
-
-            try
-            {
-                _conection.ConnectionString = ConfigurationManager.ConnectionStrings["skbergeConnectionString"].ConnectionString;
-                _conection.Open();
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Error en [UpdateFechasExpiracion]. Message: " + ex.Message + ". Inner: " + ex.InnerException + ". Stack: " + ex.StackTrace);
-            }
-
-            try
-            {
-                if (_conection.State == ConnectionState.Open)
-                {
-                    _comando.Connection = _conection;
-                    _comando.CommandType = CommandType.Text;
-                    _comando.CommandText = "select stock from LISTA_BUSQUEDA_TMP where ID_SESSION = '" + Session["idSession"].ToString() + "'";
-                    _adapter.SelectCommand = _comando;
-                    _adapter.Fill(_dSet);
-                }
-
-                foreach (DataRow campo in _dSet.Tables[0].Rows)
-                {
-                    ListItem ls = new ListItem();
-                    precioLista = int.Parse(campo["PRECIO_LISTA"].ToString());
-                    stock = int.Parse(campo["stock"].ToString());
-                }
-            }
-            catch(Exception ex)
-            {
-                _dSet = null;
-                logger.Error("Error en [obtener stock]. Message: " + ex.Message + ". Inner: " + ex.InnerException + ". Stack: " + ex.StackTrace);
-            }
-            finally
-            {
-                if (_conection.State == ConnectionState.Open)
-                    _conection.Close();
-                _comando = null;
-                _conection = null;
-                _adapter = null;
-            }*/
-
             // Si se encuentran resultados se muestran en una grilla
             // Obtener los datos de la tabla con los resultados de la busqueda
             SqlDataSource1.SelectCommand = "select * from LISTA_BUSQUEDA_TMP where ID_SESSION = '" + Session["idSession"].ToString() + "'";

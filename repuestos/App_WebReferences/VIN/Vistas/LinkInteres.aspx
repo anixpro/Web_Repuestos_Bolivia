@@ -1,4 +1,4 @@
-﻿<%@ Page Title="SKBergé: Links de Interés" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="LinkInteres.aspx.cs" Inherits="Vistas_LinkInteres" %>
+﻿<%@ Page Title="Astara: Links de Interés" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="LinkInteres.aspx.cs" Inherits="Vistas_LinkInteres" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

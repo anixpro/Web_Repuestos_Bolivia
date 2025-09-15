@@ -24,6 +24,35 @@
             }
         }
 
+        $(document).ready(function() {
+        // Para permitir solo números y algunas teclas de control
+        $('#txtCantidad').on('keydown', function(e) {
+            // Permitir: teclas de navegación, backspace, delete, tab
+            if ([8, 9, 13, 27, 46].includes(e.keyCode) || 
+                // Permitir: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                (e.keyCode == 65 && e.ctrlKey === true) || 
+                (e.keyCode == 67 && e.ctrlKey === true) ||
+                (e.keyCode == 86 && e.ctrlKey === true) ||
+                (e.keyCode == 88 && e.ctrlKey === true) ||
+                // Permitir: números del teclado principal y numérico
+                (e.keyCode >= 48 && e.keyCode <= 57) ||
+                (e.keyCode >= 96 && e.keyCode <= 105)) {
+                return;
+            }
+            e.preventDefault();
+        });
+
+        // Validación adicional al pegar texto
+        $('#txtCantidad').on('paste', function(e) {
+            var clipboardData = e.originalEvent.clipboardData || window.clipboardData;
+            var pastedData = clipboardData.getData('text');
+            
+            if (!/^\d+$/.test(pastedData)) {
+                e.preventDefault();
+            }
+        });
+    });
+
 
         var txtVFc;
         var rbVFC;
@@ -932,7 +961,7 @@
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
-                                <tr>
+<%--                                <tr>
                                     <td>
                                         Motivo del Pedido:
                                     </td>
@@ -940,11 +969,19 @@
                                         <asp:DropDownList runat="server" ID="ddlmotivodepedido" AutoPostBack="true" OnSelectedIndexChanged="ddlmotivodepedido_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </td>
+                                </tr>--%>
+                                <tr>
+                                    <td>
+                                        Clase de pedido:
+                                    </td>
+                                    <td>
+                                        <asp:DropDownList runat="server" ID="ddlClasePedido" AutoPostBack="true">
+                                        </asp:DropDownList>
+                                    </td>
                                 </tr>
 
-
                                 <!-- INFORMACION ADICIONAL -->
-                                <tr>
+<%--                                <tr>
                                     <td>
                                         Archivo:
                                     </td>
@@ -958,9 +995,9 @@
                                            </Triggers>
                                         </asp:UpdatePanel>                                    
                                     </td>
-                                </tr>
+                                </tr>--%>
 
-                                <tr>
+<%--                                <tr>
                                     <td>
                                         Nombre compañia:
                                     </td>
@@ -974,9 +1011,9 @@
                                             <asp:ListItem >Qualitas</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
-                                </tr>
+                                </tr>--%>
 
-                                <tr>
+<%--                                <tr>
                                     <td>
                                         Tipo sustento:
                                     </td>
@@ -988,52 +1025,52 @@
                                             <asp:ListItem >Cotización</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
-                                </tr>
+                                </tr>--%>
 
-                                <tr>
+                               <%-- <tr>
                                     <td>
                                         Nro chasis:
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtNroChasis" runat="server" MaxLength="8"></asp:TextBox>
                                     </td>
-                                </tr>
+                                </tr>--%>
 
-                                <tr>
+                                <%--<tr>
                                     <td>
                                         Nro siniestro:
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtNroSiniestro" runat="server" MaxLength="15"></asp:TextBox>
                                     </td>
-                                </tr>
+                                </tr>--%>
                                 
-                                <tr>
+                               <%-- <tr>
                                     <td>
                                         Nro OT:
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtNroOt" runat="server" MaxLength="12"></asp:TextBox>
                                     </td>
-                                </tr>
+                                </tr>--%>
 
-                                <tr>
+                               <%-- <tr>
                                     <td>
                                         Taller:
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtTaller" runat="server" MaxLength="60"></asp:TextBox>
                                     </td>
-                                </tr>
+                                </tr>--%>
 
-                                <tr>
+<%--                                <tr>
                                     <td class="auto-style1">
                                         Nro sustento:
                                     </td>
                                     <td class="auto-style1">
                                         <asp:TextBox ID="txtNroSustento" runat="server" MaxLength="8"></asp:TextBox>
                                     </td>
-                                </tr>
+                                </tr>--%>
 
                                 <tr>
                                     <td>

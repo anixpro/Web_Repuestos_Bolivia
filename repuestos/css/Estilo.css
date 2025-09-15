@@ -244,7 +244,7 @@ first child of the left and right table columns */
 
 .page
 {
-    width: 1123px;
+    width: 1400px;
     background-color: #FFF;
     margin: 20px auto 0px auto; /*border: 1px solid #496077;*/
 }
@@ -255,7 +255,7 @@ first child of the left and right table columns */
     margin: 0px;
     padding: 0px;
     background: #FFFFFF;
-    width: 1112px; /*background-image: url('../img/header1.png');*/
+    width: 1400px; /*background-image: url('../img/header1.png');*/
     background-image: url('../img/bg-beta1.png');
     height: 117px;
 }
@@ -274,7 +274,7 @@ first child of the left and right table columns */
 {
     margin: 0px 0px 0px 40px;
     min-height: 250px;
-    width: 780px;
+    width: 1050px;
     float: left; /*border-style: groove;     border-width : thin;     background-image: url("../img/bg-capa.jpg");     background-repeat: repeat-x;     background-position: center bottom;     border: 1px solid #BADCDE;*/
     overflow: hidden;
 }
@@ -826,11 +826,9 @@ img
     border: 1px solid #BADCDE; /*overflow:auto*/
 }
 
-.costadoDerecho
-{
+.costadoDerecho {
     border-width: thin;
     border-style: groove;
-    float: right;
     width: 600px;
     margin: 5px 0px 0px 0px;
     background-image: url("../img/bg-capa.jpg");
@@ -931,20 +929,22 @@ img
     border: 1px solid #BADCDE;
 }
 
-.informacionGeneral
-{
+.informacionGeneral {
     text-align: center;
     border-style: groove;
     border-width: thin;
     width: 280px;
-    height: 218px;
+    height: 240px;
     margin: 10px 10px 0px 10px;
     background-image: url("../img/bg-capa-reves.jpg");
     background-repeat: repeat-x;
     background-position: center top;
     border: 1px solid #BADCDE;
     overflow: hidden;
+    order: 2; /* Coloca este elemento en segundo lugar (a la derecha) */
+    margin-left: auto; /* Empuja el elemento hacia la derecha */
 }
+
 
 
 .footDer
@@ -1327,11 +1327,10 @@ select
     padding: 14px 0px 0px 0px;
 }
 
-.mantenedorUsuariosDerecha
-{
+.mantenedorClasePedidoIzquierda {
     border-style: groove;
     border-width: thin;
-    width: 562px;
+    width: 250px;
     display: inline;
     float: left;
     margin: 5px 10px 0px 0px;
@@ -1341,7 +1340,42 @@ select
     border: 1px solid #BADCDE;
     overflow: hidden;
     height: 367px;
-    padding: 14px 0px 0px 20px;
+    padding: 14px 0px 0px 0px;
+}
+.mantenedorClasePedidoDerecha {
+    border-style: groove;
+    border-width: thin;
+    width: 535px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 367px;
+    padding: 14px 0px 10px 20px;
+}
+.tablaCrearClasePedido {
+    margin: 5px 10px 0px 0px;
+}
+
+.mantenedorUsuariosDerecha
+{
+    border-style: groove;
+    border-width: thin;
+    width: 535px;
+    display: inline;
+    float: left;
+    margin: 5px 10px 0px 0px;
+    background-image: url("../img/bg-capa.jpg");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border: 1px solid #BADCDE;
+    overflow: hidden;
+    height: 367px;
+    padding: 14px 0px 10px 20px;
 }
 .tablaCrearUsuario
 {
@@ -1599,4 +1633,19 @@ select
 {
     margin-right: auto;
     width: 170px;
+}
+
+/* Nuevas reglas para el layout */
+.clear.hideSkiplink {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+}
+
+
+.sidebar {
+    width: 80%;
+    margin: 20px auto;
+    float: none;
 }

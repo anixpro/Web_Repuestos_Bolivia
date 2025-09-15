@@ -271,6 +271,11 @@ public class ControlPersona
         return persona.getRut();
     }
 
+    public int IdPersona()
+    {
+        return persona.getIdPersona();
+    }
+
     public String mailPersona(String usuario, String contrasena)
     {
         return (persona.saberMiMail(usuario, contrasena));

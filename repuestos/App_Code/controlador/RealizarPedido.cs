@@ -108,18 +108,11 @@ public class RealizarPedido
                 {
                     throw new Exception("La marca no ha sido ingresada al sistema. Contacte al administrador");
                 }
-                /*if (_controlMarca.obtenerMarcaPorNombre(marca).esForaneo)
-                {
-                    _erq.LocalDtWebRepuestosItem.I_FORANEO = "X";
-                }*/
 
                 //Se asignan los item a la estructura de consulta
                 //_erq.LocalDtWebRepuestos = _erq.LocalDtWebRepuestosItem;
                 _erp.WsConsultaRepuesto.Credentials = new System.Net.NetworkCredential("INT_WTY_SKBP", "5k82017PoPpe");
                 _erp.WsConsultaRepuesto.PreAuthenticate = true;
-
-                //Envio todos los datosa para la consulta al WS
-                //_erq.WsResponseConsultaRepuesto = _erq.WsConsultaRepuesto.MI_WebS_Repuestos_Synch(_erq.LocalDtWebRepuestos);
 
                 string precio1 = "", precio2 = "", precio1R = "", precio2R = "";
                 double totalLista = 0, totalConce = 0, totalListaR = 0, totalConceR = 0;
@@ -172,206 +165,100 @@ public class RealizarPedido
                                                                 out MyArray1,
                                                                 out MyArray2);
 
-                /* _erq.WsConsultaRepuesto.EndSI_ConsultaRepuesto_oa(ar,
-                                                                      out dato1,
-                                                                      out dato2,
-                                                                      out dato3,
-                                                                      out dato4,
-                                                                      out dato5,
-                                                                      out dato6,
-                                                                      out MyArray, out MyArray1, out MyArray2);*/
-
-
-
-
-                foreach (ERP.ZEWS026 WsDatos in MyArray1)
+                //crear if de error de servicio 
+                foreach (ERP.ZEWS004 WsError in MyArray)
                 {
-
-                    //String a = WsDatos.EZ_MVGR1;
-                    _resultBusqueda.Marca = "CHERY";
-
-                    _resultBusqueda.Cantidad = "1";
-                    _resultBusqueda.PrecioLista = "1000";
-                    _resultBusqueda.PrecioConce = "1000";
-                    _resultBusqueda.GrupoMat = "Z2";
-                    _resultBusqueda.Descripcion = "ALTERNADOR MOTOR";
-                    _resultBusqueda.Codigo = "x22333";
-                    _resultBusqueda.Stock =  _sapApi.GetCurrentStockByProduct(_resultBusqueda.Codigo, _consultaRep.GrupoMaterial, _consultaRep.DestinaMercacia, nombre, marca);
-                    stockSap_Origen = _resultBusqueda.Stock;
-                    MVGR1 = "1"; //REPERESENTACION DE LA MARCA;
-
-                    //decimalPosition = ResultBusqueda.PrecioLista.IndexOf(".");
-                    //decimalPosition = ResultBusqueda.PrecioConce.IndexOf(".");
-
-                    //if(_resultBusqueda.Stock > 0){
-                    //if (decimalPosition >= 0)
-                    //{
-                    //precio1 = ResultBusqueda.PrecioLista.Remove(decimalPosition, 0).Trim();
-                    // precio2 = ResultBusqueda.PrecioConce.Remove(decimalPosition, 0).Trim();
-
-                    precio1 = ResultBusqueda.PrecioLista;
-                    precio2 = ResultBusqueda.PrecioConce;
-                    // }
-                    totalConce = double.Parse(precio2) * int.Parse(_resultBusqueda.Cantidad);
-                    totalLista = double.Parse(precio1) * int.Parse(_resultBusqueda.Cantidad);//descomentar
-                    //Nueva Funcionalidad Porcentaje
-                    /*string porce;
-                    string[] deml;
-                    string aux;
-                    int dat = 0;
-                    double descuento = 0;
-                    double de = 0;
-                    de = totalLista - totalConce;
-                    if (de == 0)
+                    if (WsError.TYPE == "")
                     {
-                        porce = "0";
+                        foreach (ERP.ZEWS026 WsDatos in MyArray1)
+                        {
+
+                            //String a = WsDatos.EZ_MVGR1;
+                            _resultBusqueda.Marca = marca.ToUpper();
+
+                            _resultBusqueda.Cantidad = _consultaRep.CantidadRep.ToString();
+                            _resultBusqueda.PrecioLista = WsDatos.EZ_KBETR1;
+                            _resultBusqueda.PrecioConce = WsDatos.EZ_KBETR2;
+                            _resultBusqueda.GrupoMat = WsDatos.EZ_KONDM;
+                            _resultBusqueda.Descripcion = WsDatos.EZ_MAKTX;
+                            _resultBusqueda.Codigo = WsDatos.EZ_MFRPN;
+                            _resultBusqueda.Stock = _sapApi.GetCurrentStockByProduct(_resultBusqueda.Codigo, _consultaRep.GrupoMaterial, _consultaRep.DestinaMercacia, nombre, marca);
+                            stockSap_Origen = _resultBusqueda.Stock;
+                            MVGR1 = "1"; //REPERESENTACION DE LA MARCA;
+
+
+                            precio1 = ResultBusqueda.PrecioLista;
+                            precio2 = ResultBusqueda.PrecioConce;
+                            // }
+                            totalConce = double.Parse(precio2) * int.Parse(_resultBusqueda.Cantidad);
+                            totalLista = double.Parse(precio1) * int.Parse(_resultBusqueda.Cantidad);//descomentar
+
+                            int porce = 0;
+                            String final = Convert.ToString(porce) + "%";
+
+
+                            double totalLista_F = (double.Parse(precio1) * porce) / 100;
+                            double totalConce_F = double.Parse(precio1) - totalLista_F;
+                            //END FUNCIONALIDAD PORCENTAJE
+
+                            String MVGR1_F = _controlBd.ObtieneGrupoMateriales(MVGR1);
+
+                            if (MVGR1_F == "" || MVGR1_F == "000")
+                            {
+                                MVGR1_F = "";
+                                MVGR1_F = "S/G";
+                            }
+
+
+                            _controlBd.InsertarDatos(@"insert into LISTA_BUSQUEDA_TMP(ID_SESSION,MARCA,CANTIDAD,PRECIO_LISTA,PRECION_CONCE,GRUPO_MAT,DESCRIP,CODIGO,STOCK,TOTAL_C,TOTAL_L, DESCUENTO,GRUPO)
+                                  values ('" + idSession + "', '" + _resultBusqueda.Marca + "' , '" + cantidad + "' , '" + Math.Round(double.Parse(precio1), 2) + "' , '" + Math.Round(totalConce_F, 2) + "' , '" + _resultBusqueda.GrupoMat + "' , '" + _resultBusqueda.Descripcion + "' , '" + _resultBusqueda.Codigo + "','" + ResultBusqueda.Stock + "' , '" + totalConce + "', '" + totalLista + "','" + final + "'," + "'" + MVGR1_F + "')");
+                        }
+
+                        //consulta que devuelve los repuestos de remplazo para guardarlos en la tabla reemplazo y luedo ser despecados en grid de reemplazo
+                        if (_erp.WsResponseConsultaRepuesto != null)
+                        {
+                            foreach (ERP.ZEWS027 WsDatos2 in MyArray2)
+                            {
+                                _resultReemplazos.Marca = marca.ToUpper();
+                                _resultReemplazos.T_INTTYPE = WsDatos2.T_INTTYPE;
+                                _resultReemplazos.T_KBETR1 = WsDatos2.T_KBETR1;
+                                _resultReemplazos.Cantidad = _consultaRep.CantidadRep.ToString();
+                                //_resultReemplazos.T_KBETR2 = WsDatos2.T_KBETR2;
+                                _resultReemplazos.T_KONDM = WsDatos2.T_KONDM;
+                                _resultReemplazos.T_MAKTX = WsDatos2.T_MAKTX;
+                                _resultReemplazos.T_MFRPN = WsDatos2.T_MFRPN;
+                                _resultReemplazos.Stock = _sapApi.GetCurrentStockByProduct(_resultReemplazos.T_MFRPN, _consultaRep.GrupoMaterial, _consultaRep.DestinaMercacia, nombre, marca);
+                                String T_MVGR1 = WsDatos2.T_MVGR1;
+
+
+                                precio1R = ResultReemplazos.T_KBETR1;
+
+                                totalListaR = double.Parse(precio1R, System.Globalization.CultureInfo.InvariantCulture) * cantidad;
+
+                                int porce = 30;
+                                double precio1R_F = (double.Parse(precio1R, System.Globalization.CultureInfo.InvariantCulture) * porce) / 100;
+                                double precio1R_FF = double.Parse(precio1R, System.Globalization.CultureInfo.InvariantCulture) - precio1R_F;
+
+                                String T_MVGR1_F = _controlBd.ObtieneGrupoMateriales(T_MVGR1);
+
+                                if (T_MVGR1_F == "" || T_MVGR1_F == "000")
+                                {
+                                    T_MVGR1_F = "";
+                                    T_MVGR1_F = "S/G";
+                                }
+
+                                _controlBd.InsertarDatos(@"insert into LISTA_REEMPLAZO_TMP(ID_SESSION,MARCA,CANTIDAD,T_INTTYPE,T_KBETR1,T_KBETR2,T_KONDM,T_MAKTX,T_MFRPN,TOTAL_C,TOTAL_L,STOCK,GRUPO)
+                                values( '" + idSession + "' , '" + _resultReemplazos.Marca + "' , '" + _resultReemplazos.Cantidad + "' , '" + _resultReemplazos.T_INTTYPE + "' , '" + precio2R + "' , '" + Math.Round(precio1R_FF, 2) + "' , '" + _resultReemplazos.T_KONDM + "' , '" + _resultReemplazos.T_MAKTX + "' , '" + _resultReemplazos.T_MFRPN + "' , '" + totalConceR + "', '" + totalListaR + "' , '" + _resultReemplazos.Stock + "','" + T_MVGR1_F + "')");
+                            }
+                        }
                     }
                     else
                     {
-                        de = de / totalLista;
-                        if (de == 0)
-                        {
-                            porce = "0";
-                        }
-                        if (de.ToString().Length < 4)
-                        {
-                            descuento = de * 100;
-                        }
-                        if (de.ToString().Length > 4)
-                        {
-                            //descuento = Convert.ToDouble(de.ToString().Remove(4, 16)) * 100;
-                            string dede = Convert.ToString(de);
-                            deml = dede.Split(',');
-                            aux = deml[1];
-                            if (deml[1].Length > 2)
-                            {
-                                aux = aux.Substring(0, 2);
-                                int daux = Convert.ToInt32(aux.Substring(1, 1));
-                                if (daux <= 9 && daux > 5)
-                                {
-                                    dat = Convert.ToInt32(aux);
-                                    dat = dat + 1;
-                                    descuento = Convert.ToDouble(dat);
-                                }
-                                if (daux < 5 && daux > 0)
-                                {
-                                    dat = Convert.ToInt32(aux);
-                                    descuento = Convert.ToDouble(dat);
-                                }
-                                if (daux == 0)
-                                {
-                                    descuento = Convert.ToDouble(aux);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            descuento = de * 100;
-                        }
+                        disponibilidadServicio = false;
+                        mensajeError = "ERROR en el servicio, contactar con administrador de sistemas";
+                        return false;
                     }
-                    string final;
-                    int des = 0;
-                    int valor = Convert.ToInt32(descuento);
-                    if (valor < 10)
-                    {
-                        porce = Convert.ToString(valor) + "0";
-                    }
-                    else
-                    {
-                        porce = Convert.ToString(descuento);
-                        if (porce.ToString().Contains(','))
-                        {
-                            string[] split = porce.Split(',');
-                            des = Convert.ToInt32(split[1]);
-                            if (des < 10 || des > 0)
-                            {
-                                des = Convert.ToInt32(split[0]);
-                                des = des + 1;
-                            }
-                        }
-                        int num = Convert.ToInt32(porce);
-                        if (num > 5 && num < 10)
-                        {
-                            num = 10;
-                            porce = Convert.ToString(num);
-                        }
-                        if (num <= 5 && num >= 1)
-                        {
-                            num = 5;
-                            porce = Convert.ToString(num);
-                        }
-                        if (num == 0)
-                        {
-                            porce = "0";
-                        }
-                        else
-                        {
-                            porce = Convert.ToString(num);
-                        }
-                    }*/
-                    int porce = 0;
-                    String final = Convert.ToString(porce) + "%";
-
-
-                    double totalLista_F = (double.Parse(precio1) * porce) / 100;
-                    double totalConce_F = double.Parse(precio1) - totalLista_F;
-                    //END FUNCIONALIDAD PORCENTAJE
-
-                    String MVGR1_F = _controlBd.ObtieneGrupoMateriales(MVGR1);
-
-                    if (MVGR1_F == "" || MVGR1_F == "000")
-                    {
-                        MVGR1_F = "";
-                        MVGR1_F = "S/G";
-                    }
-
-
-                    _controlBd.InsertarDatos(@"insert into LISTA_BUSQUEDA_TMP(ID_SESSION,MARCA,CANTIDAD,PRECIO_LISTA,PRECION_CONCE,GRUPO_MAT,DESCRIP,CODIGO,STOCK,TOTAL_C,TOTAL_L, DESCUENTO,GRUPO)
-                                  values ('" + idSession + "', '" + _resultBusqueda.Marca + "' , '" + cantidad + "' , '" + precio1 + "' , '" + Math.Round(totalConce_F, 2) + "' , '" + _resultBusqueda.GrupoMat + "' , '" + _resultBusqueda.Descripcion + "' , '" + _resultBusqueda.Codigo.Substring(3) + "','" + ResultBusqueda.Stock + "' , '" + totalConce + "', '" + totalLista + "','" + final + "'," + "'" + MVGR1_F + "')");
-                }
-
-                //Se crea un DataTable para mostrar los datos de la consulta del repuesto
-                if (_erp.WsResponseConsultaRepuesto != null)
-                {
-                    foreach (ERP.ZEWS027 WsDatos2 in MyArray2)
-                    {
-                        _resultReemplazos.Marca = marca.ToUpper();
-                        _resultReemplazos.T_INTTYPE = WsDatos2.T_INTTYPE;
-                        _resultReemplazos.T_KBETR1 = WsDatos2.T_KBETR1;
-                        _resultReemplazos.Cantidad = _consultaRep.CantidadRep.ToString();
-                        //_resultReemplazos.T_KBETR2 = WsDatos2.T_KBETR2;
-                        _resultReemplazos.T_KONDM = WsDatos2.T_KONDM;
-                        _resultReemplazos.T_MAKTX = WsDatos2.T_MAKTX;
-                        _resultReemplazos.T_MFRPN = WsDatos2.T_MFRPN;
-                        _resultReemplazos.Stock = _sapApi.GetCurrentStockByProduct(_resultReemplazos.T_MFRPN, _consultaRep.GrupoMaterial, _consultaRep.DestinaMercacia, nombre, marca);
-                        String T_MVGR1 = WsDatos2.T_MVGR1;
-
-
-                        //decimalPositionR = ResultReemplazos.T_KBETR2.IndexOf(".");
-                        //decimalPositionR = ResultReemplazos.T_KBETR1.IndexOf(".");
-                        //if (decimalPositionR >= 0)
-                        // {
-                        precio1R = ResultReemplazos.T_KBETR1;
-                        // }
-
-                        //totalConceR = int.Parse(precio2R) * cantidad;
-                        totalListaR = double.Parse(precio1R, System.Globalization.CultureInfo.InvariantCulture) * cantidad;
-
-                        int porce = 30;
-                        double precio1R_F = (double.Parse(precio1R, System.Globalization.CultureInfo.InvariantCulture) * porce) / 100;
-                        double precio1R_FF = double.Parse(precio1R, System.Globalization.CultureInfo.InvariantCulture) - precio1R_F;
-
-                        String T_MVGR1_F = _controlBd.ObtieneGrupoMateriales(T_MVGR1);
-
-                        if (T_MVGR1_F == "" || T_MVGR1_F == "000")
-                        {
-                            T_MVGR1_F = "";
-                            T_MVGR1_F = "S/G";
-                        }
-
-                        _controlBd.InsertarDatos(@"insert into LISTA_REEMPLAZO_TMP(ID_SESSION,MARCA,CANTIDAD,T_INTTYPE,T_KBETR1,T_KBETR2,T_KONDM,T_MAKTX,T_MFRPN,TOTAL_C,TOTAL_L,STOCK,GRUPO)
-                                values( '" + idSession + "' , '" + _resultReemplazos.Marca + "' , '" + _resultReemplazos.Cantidad + "' , '" + _resultReemplazos.T_INTTYPE + "' , '" + precio2R + "' , '" + Math.Round(precio1R_FF, 2) + "' , '" + _resultReemplazos.T_KONDM + "' , '" + _resultReemplazos.T_MAKTX + "' , '" + _resultReemplazos.T_MFRPN.Substring(3) + "' , '" + totalConceR + "', '" + totalListaR + "' , '" + _resultReemplazos.Stock + "','" + T_MVGR1_F + "')");
-                    }
+                            
                 }
             }
             catch (System.Net.WebException ex)
@@ -379,10 +266,14 @@ public class RealizarPedido
                 logger.Error("WebException en [BuscarRepuesto] Message: " + ex.Message + " Inner: " + ex.InnerException + " Stack: " + ex.StackTrace);
                 disponibilidadServicio = false;
                 mensajeError = "ERROR FATAL. El servicio Web para conectarse a SAP no está operativo. Disculpe las molestias";
+                return false;
             }
             catch (Exception ex)
             {
                 logger.Error("En [BuscarRepuesto] Message: " + ex.Message + " Inner: " + ex.InnerException + " Stack: " + ex.StackTrace);
+                disponibilidadServicio = false;
+                mensajeError = "ERROR FATAL. El servicio Web para conectarse a SAP no está operativo. Disculpe las molestias";
+                return false;
             }
             disponibilidadVFC = false;
             disponibilidadRepuesto = true;
@@ -828,12 +719,55 @@ public class RealizarPedido
                 _erp.WsCreaPedidoResponse = _erp.WsCreaPedidoVenta.SI_Generacion_Pedido_Venta_Out(_erp.WsCreaPedidoItem);
                 //_erq.WsResponse = _erq.WsIngresoCotizacion.SI_Generacion_Cotizacion_Interna_OutAsync(_erq.DtWebIngresoCotizacionItem);
 
+                //se valida si el servicio presenta error, agregado por Anibal Berrios 27-08-20205 
+               foreach  (ERP.DT_Errores1 error in  _erp.WsCreaPedidoResponse.E_ERROR)
+                {
+                    if(error.E_TYPE != "" )
+                    {
+                        this.mensajeError = "Error en servicio, favor comunicarse con el administrador de sistemas.";
+
+                        //verifica en que campo viene la descripcion del error desde el servicio para guardarlo en el log
+                        if (error.E_MESSAGE != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + error.E_MESSAGE);
+                        }
+                        else if(error.E_MESSAGE_V1 != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + error.E_MESSAGE_V1);
+                        }
+                        else if (error.E_MESSAGE_V2 != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + error.E_MESSAGE_V2);
+                        }
+                        else if(error.E_MESSAGE_V3 != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + error.E_MESSAGE_V3);
+                        }
+                        else if(error.E_MESSAGE_V4 != "")
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: " + error.E_MESSAGE_V1);
+                        }
+                        else
+                        {
+                            logger.Error("Error en el servicio SAP, del metodo CrearCotizacion, Descripcion: no se pudo identificar el error");
+                        }
+                        return false;
+                    }
+                }
+
+
             }
             catch (System.Net.WebException ex)
             {
                 this.mensajeError = "Error: " + ex.Message + ". Detalle: " + ex.StackTrace;
                 _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [2_RealizaPedido_CrearCotizacion] Message: " + ex.Message + " Inner: " + ex.InnerException + " Stack: " + ex.StackTrace);
 
+            }
+            catch(Exception ex)
+            {
+                this.mensajeError = "Error: " + ex.Message + ". Detalle: " + ex.StackTrace;
+               // _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [RealizaPedido_CrearCotizacion] Message: " + ex.Message + " Inner: " + ex.InnerException + " Stack: " + ex.StackTrace);
+                return false;
             }
 
             try
@@ -853,7 +787,7 @@ public class RealizarPedido
 
                     foreach (ERP.DT_Errores1 wsError in _erp.WsCreaPedidoResponse.E_ERROR) //cambio POROSTEGUI REVISAR
                     {
-                        MessageBox.Show(wsError.E_MESSAGE);
+                        MessageBox.Show(wsError.E_MESSAGE);                       
                         _mail.EnviarCorreo(ConfigurationManager.AppSettings["correo_error"].ToString(), ConfigurationManager.AppSettings["asunto_error"].ToString(), "En [RealizaPedido_CrearCotizacion_Errores SAP] Message: " + wsError.E_MESSAGE);
                     }
                 }

@@ -25,9 +25,6 @@ public partial class Vistas_Seguimiento : System.Web.UI.Page
 		 String tipoPedido = "";
 		 
 		 SqlDataSourcePedido.SelectCommand="SELECT * FROM [PEDIDO] order by id_pedido desc";
-		 SqlDataSourceReservas.SelectCommand="SELECT * FROM [BACKORDER] order by num_backOrder desc";
-		 SqlDataSourceVFC.SelectCommand="SELECT * FROM [VFC] order by fecha_creacion desc";
-		 SqlDataSourceDescartados.SelectCommand="SELECT * FROM [DESCARTADOS] order by fechaDescarte desc";
 		 
 		if (!Page.IsPostBack){
             pedido = Request.QueryString["pedido"];
@@ -42,15 +39,6 @@ public partial class Vistas_Seguimiento : System.Web.UI.Page
 			{
 			  case "pedido":
                     SqlDataSourcePedido.SelectCommand = "SELECT * FROM [PEDIDO] WHERE  E_VBELN = '" + pedido.Trim() + "' order by id_pedido desc";
-			  break;
-			  case "reserva":
-				SqlDataSourceReservas.SelectCommand="SELECT * FROM [BACKORDER] WHERE  num_backorder = '" + pedido.Trim() + "' order by num_backOrder desc";
-			  break;
-			  case "vfc":
-				 SqlDataSourceVFC.SelectCommand="SELECT * FROM [VFC] WHERE  num_vfc = '" + pedido.Trim() + "' order by fecha_creacion desc";
-			  break;
-			  case "descartado":
-				 SqlDataSourceDescartados.SelectCommand="SELECT * FROM [DESCARTADOS] WHERE id_pedido = '" + pedido.Trim() + "' order by fechaDescarte desc";
 			  break;
 			}
 

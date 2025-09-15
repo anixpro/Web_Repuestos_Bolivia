@@ -31,10 +31,13 @@ public class ControlBD
     Boletin _boletin;
 
     Canal _canal;
+    MensajeSistema RespuestaBD = new MensajeSistema();
 
 
     //envio correo 
     SendMail_helper _mail = new SendMail_helper();
+
+    public SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["skbergeConnectionString"].ConnectionString);
 
     private static readonly ILog logger = log4net.LogManager.GetLogger(typeof(ControlBD));
 
@@ -1362,4 +1365,122 @@ public class ControlBD
         }
         return listaCanalesVenta;
     }
+
+    //Anibal Berrios Requerimiento Bolvia 19-08-2025
+    public DataSet CargaComboClasePedido(int IdUsuario)
+    {
+        SqlDataAdapter dataAdapter = new SqlDataAdapter("SP_CargaClasePedido", conexion);
+        dataAdapter.SelectCommand.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = IdUsuario;
+
+        dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+        DataSet dataSet = new DataSet();
+
+        dataAdapter.Fill(dataSet);
+
+        if (dataSet.Tables[0].Rows.Count == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return dataSet;
+        }
+    }
+
+    public DataSet CargaSectorMarca(string marca)
+    {
+        SqlDataAdapter dataAdapter = new SqlDataAdapter("SP_CargaSectorMarca", conexion);
+
+        dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+        dataAdapter.SelectCommand.Parameters.Add("@marca", SqlDbType.VarChar, 100).Value = marca;
+
+        DataSet dataSet = new DataSet();
+
+        dataAdapter.Fill(dataSet);
+
+        if (dataSet.Tables[0].Rows.Count == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return dataSet;
+        }
+    }
+
+    //*************CODIGO MANTENEDOR CLASE PEDIDO**********///
+
+    //Bloque insertar nueva clase 
+
+    public MensajeSistema InsertaClasePedido(string NombreClasePedido, string CodigoClasePedido)
+    {
+        ControlBD cBD = new ControlBD();
+        try
+        {
+            cBD.conexion.Open();
+
+            SqlCommand comando = new SqlCommand("SP_InsertaClasePedido", cBD.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            comando.Parameters.Add("@NombreClase", SqlDbType.Char, 50).Value = NombreClasePedido;
+            comando.Parameters.Add("@CodigoClase", SqlDbType.Char, 50).Value = CodigoClasePedido;
+
+            comando.Parameters.Add("@errcod", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+            comando.Parameters.Add("@errmsje", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
+
+            comando.ExecuteNonQuery();
+
+            RespuestaBD.Codigo = comando.Parameters["@errcod"].Value.ToString();
+            RespuestaBD.Mensaje = comando.Parameters["@errmsje"].Value.ToString().Replace("'", "");
+
+            return RespuestaBD;
+
+        }
+        catch (Exception e)
+        {
+            RespuestaBD.Codigo = "EXCEPCION";
+            RespuestaBD.Mensaje = e.Message.ToString().Replace("'", "");
+            return RespuestaBD;
+        }
+        finally
+        {
+            cBD.conexion.Close();
+        }
+    }
+
+    //Bloque actualizar clase
+    //Carga ComboBox
+    public DataSet CargaComboClasePedidoMantedor()
+    {
+        try
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("SP_CargaClasePedidoMantenedor", conexion);
+
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            DataSet dataSet = new DataSet();
+
+            dataAdapter.Fill(dataSet);
+
+            if (dataSet.Tables[0].Rows.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return dataSet;
+            }
+        }
+        catch(Exception ex)
+        {
+            return null;
+        }
+    }
+
+
 }
+
+    

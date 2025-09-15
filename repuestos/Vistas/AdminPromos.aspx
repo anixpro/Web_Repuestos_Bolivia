@@ -141,7 +141,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div class="titulo">
-        Promociones SKBergé
+        Promociones Astara
     </div>
     <!-- Acá se despliegan los mensajes de error -->
     <div id="msjesError" runat="server" clientidmode="Static"></div>

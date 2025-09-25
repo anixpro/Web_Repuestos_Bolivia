@@ -1451,7 +1451,8 @@ public class ControlBD
         }
     }
 
-    //Bloque actualizar clase
+    //Bloque actualizar clase Pedido
+
     //Carga ComboBox
     public DataSet CargaComboClasePedidoMantedor()
     {
@@ -1480,7 +1481,264 @@ public class ControlBD
         }
     }
 
+    //Actualiza la clase 
+    public MensajeSistema ActualizaClasePedido(string NombreClasePedido, int IdClasePedido)
+    {
+        ControlBD cBD = new ControlBD();
+        try
+        {
+            cBD.conexion.Open();
+
+            SqlCommand comando = new SqlCommand("SP_ActualizaClasePedidoMantenedor", cBD.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            comando.Parameters.Add("@NombreClase", SqlDbType.Char, 50).Value = NombreClasePedido;
+            comando.Parameters.Add("@IDClase", SqlDbType.Int).Value = IdClasePedido;
+
+            comando.Parameters.Add("@errcod", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+            comando.Parameters.Add("@errmsje", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
+
+            comando.ExecuteNonQuery();
+
+            RespuestaBD.Codigo = comando.Parameters["@errcod"].Value.ToString();
+            RespuestaBD.Mensaje = comando.Parameters["@errmsje"].Value.ToString().Replace("'", "");
+
+            return RespuestaBD;
+
+        }
+        catch (Exception e)
+        {
+            RespuestaBD.Codigo = "EXCEPCION";
+            RespuestaBD.Mensaje = e.Message.ToString().Replace("'", "");
+            return RespuestaBD;
+        }
+        finally
+        {
+            cBD.conexion.Close();
+        }
+    }
+
+    //Bloque Desactivar clase Pedido
+
+    public DataSet CargaEstadoClasePedidoMantedor(int IdClasePedido)
+    {
+        try
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("SP_CargaEstadoClasePedido", conexion);
+
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("@IdClasePedido", SqlDbType.Int).Value = IdClasePedido;
+
+            DataSet dataSet = new DataSet();
+
+            dataAdapter.Fill(dataSet);
+
+            if (dataSet.Tables[0].Rows.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return dataSet;
+            }
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+
+    public MensajeSistema DesactivarClasePedido(int idClasePedido, int EstadoClase)
+    {
+        ControlBD cBD = new ControlBD();
+        try
+        {
+            cBD.conexion.Open();
+
+            SqlCommand comando = new SqlCommand("SP_ActualizaEstadoClasePedido", cBD.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            comando.Parameters.Add("@IdClasePedido", SqlDbType.Int).Value = idClasePedido;
+            comando.Parameters.Add("@EstadoClase", SqlDbType.Int).Value = EstadoClase;
+
+            comando.Parameters.Add("@errcod", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+            comando.Parameters.Add("@errmsje", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
+
+            comando.ExecuteNonQuery();
+
+            RespuestaBD.Codigo = comando.Parameters["@errcod"].Value.ToString();
+            RespuestaBD.Mensaje = comando.Parameters["@errmsje"].Value.ToString().Replace("'", "");
+
+            return RespuestaBD;
+
+        }
+        catch (Exception e)
+        {
+            RespuestaBD.Codigo = "EXCEPCION";
+            RespuestaBD.Mensaje = e.Message.ToString().Replace("'", "");
+            return RespuestaBD;
+        }
+        finally
+        {
+            cBD.conexion.Close();
+        }
+    }
+
+    //Bloque asignar clase Pedido a usuarios
+
+    public DataSet CargaUsuarioAsignar()
+    {
+        try
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("SP_CargaUsuarioClasePedido", conexion);
+
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            DataSet dataSet = new DataSet();
+
+            dataAdapter.Fill(dataSet);
+
+            if (dataSet.Tables[0].Rows.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return dataSet;
+            }
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+    public DataSet CargaClasePeidiosAsignar()
+    {
+        try
+        {
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("SP_CargaClasePedidoAsignar", conexion);
+
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            DataSet dataSet = new DataSet();
+
+            dataAdapter.Fill(dataSet);
+
+            if (dataSet.Tables[0].Rows.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return dataSet;
+            }
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+    public DataSet CargaClaseUsuario(int IdUsuario)
+    {
+        SqlDataAdapter dataAdapter = new SqlDataAdapter("SP_CargaClasePedido", conexion);
+        dataAdapter.SelectCommand.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = IdUsuario;
+
+        dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+        DataSet dataSet = new DataSet();
+
+        dataAdapter.Fill(dataSet);
+
+        if (dataSet.Tables[0].Rows.Count == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return dataSet;
+        }
+    }
+
+    public MensajeSistema EliminarClasePedidoUsuario(int IdUsuario)
+    {
+        ControlBD cBD = new ControlBD();
+        try
+        {
+            cBD.conexion.Open();
+
+            SqlCommand comando = new SqlCommand("SP_EliminaClaseUsuario", cBD.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            comando.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = IdUsuario;
+
+            comando.Parameters.Add("@errcod", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+            comando.Parameters.Add("@errmsje", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
+
+            comando.ExecuteNonQuery();
+
+            RespuestaBD.Codigo = comando.Parameters["@errcod"].Value.ToString();
+            RespuestaBD.Mensaje = comando.Parameters["@errmsje"].Value.ToString().Replace("'", "");
+
+            return RespuestaBD;
+
+        }
+        catch (Exception e)
+        {
+            RespuestaBD.Codigo = "EXCEPCION";
+            RespuestaBD.Mensaje = e.Message.ToString().Replace("'", "");
+            return RespuestaBD;
+        }
+        finally
+        {
+            cBD.conexion.Close();
+        }
+    }
+
+    public MensajeSistema AsignarClasePedidoUsuario(int IdUsuario, int IdClase)
+    {
+        ControlBD cBD = new ControlBD();
+        try
+        {
+            cBD.conexion.Open();
+
+            SqlCommand comando = new SqlCommand("SP_AsignaClaseUsuario", cBD.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            comando.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = IdUsuario;
+            comando.Parameters.Add("@IdClase", SqlDbType.Int).Value = IdClase;
+
+            comando.Parameters.Add("@errcod", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+            comando.Parameters.Add("@errmsje", SqlDbType.NVarChar, 100).Direction = ParameterDirection.Output;
+
+            comando.ExecuteNonQuery();
+
+            RespuestaBD.Codigo = comando.Parameters["@errcod"].Value.ToString();
+            RespuestaBD.Mensaje = comando.Parameters["@errmsje"].Value.ToString().Replace("'", "");
+
+            return RespuestaBD;
+
+        }
+        catch (Exception e)
+        {
+            RespuestaBD.Codigo = "EXCEPCION";
+            RespuestaBD.Mensaje = e.Message.ToString().Replace("'", "");
+            return RespuestaBD;
+        }
+        finally
+        {
+            cBD.conexion.Close();
+        }
+    }
 
 }
 
-    
